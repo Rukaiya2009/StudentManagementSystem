@@ -8133,11 +8133,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem\\StudentManagementSystem.csproj",
+      "projectUniqueName": "F:\\StudentManagementSystem\\StudentManagementSystem\\StudentManagementSystem.csproj",
       "projectName": "StudentManagementSystem",
-      "projectPath": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem\\StudentManagementSystem.csproj",
+      "projectPath": "F:\\StudentManagementSystem\\StudentManagementSystem\\StudentManagementSystem.csproj",
       "packagesPath": "C:\\Users\\Rukaiya\\.nuget\\packages\\",
-      "outputPath": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem\\obj\\",
+      "outputPath": "F:\\StudentManagementSystem\\StudentManagementSystem\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
