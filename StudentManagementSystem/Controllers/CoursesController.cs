@@ -10,9 +10,7 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem.Controllers
 {
-    [Authorize]
-
-    public class CoursesController : Controller
+   public class CoursesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
