@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem.Controllers
 {
-   public class CoursesController : Controller
+    public class CoursesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
@@ -20,6 +20,7 @@ namespace StudentManagementSystem.Controllers
         }
 
         // GET: Courses
+        [AllowAnonymous] // Everyone can view course list
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Courses.Include(c => c.Department).Include(c => c.Teacher);
@@ -27,6 +28,7 @@ namespace StudentManagementSystem.Controllers
         }
 
         // GET: Courses/Details/5
+        [AllowAnonymous] // Everyone can view course details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -47,6 +49,7 @@ namespace StudentManagementSystem.Controllers
         }
 
         // GET: Courses/Create
+        [Authorize(Roles = "Admin,Teacher")] // Only Admin and Teacher can create
         public IActionResult Create()
         {
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
@@ -55,10 +58,9 @@ namespace StudentManagementSystem.Controllers
         }
 
         // POST: Courses/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Teacher")] // Only Admin and Teacher can create
         public async Task<IActionResult> Create([Bind("CourseId,CourseName,Credit,DepartmentId,TeacherId")] Course course)
         {
             if (ModelState.IsValid)
@@ -73,6 +75,7 @@ namespace StudentManagementSystem.Controllers
         }
 
         // GET: Courses/Edit/5
+        [Authorize(Roles = "Admin,Teacher")] // Only Admin and Teacher can edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,10 +94,9 @@ namespace StudentManagementSystem.Controllers
         }
 
         // POST: Courses/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Teacher")] // Only Admin and Teacher can edit
         public async Task<IActionResult> Edit(int id, [Bind("CourseId,CourseName,Credit,DepartmentId,TeacherId")] Course course)
         {
             if (id != course.CourseId)
@@ -128,6 +130,7 @@ namespace StudentManagementSystem.Controllers
         }
 
         // GET: Courses/Delete/5
+        [Authorize(Roles = "Admin,Teacher")] // Only Admin and Teacher can delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -150,6 +153,7 @@ namespace StudentManagementSystem.Controllers
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Teacher")] // Only Admin and Teacher can delete
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var course = await _context.Courses.FindAsync(id);

@@ -1,0 +1,39 @@
+﻿@page
+@model StudentManagementSystem.Areas.Identity.Pages.Account.ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirm Email";
+}
+
+<h2>Confirm Your Email</h2>
+
+@if (!string.IsNullOrEmpty(Model.StatusMessage))
+{
+    <div class="alert alert-info">@Model.StatusMessage</div>
+}
+
+@if (Model.IsConfirmed)
+{
+    <div class="alert alert-success">
+        Your email has been confirmed! You can now <a href="/Identity/Account/Login">log in</a>.
+    </div>
+}
+else
+{
+    <p>Please confirm your account by clicking the button below.</p>
+
+    <form method="post">
+        <input type="hidden" asp-for="UserId" />
+        <input type="hidden" asp-for="Code" />
+        <button type="submit" class="btn btn-primary" @(Model.IsConfirmed ? "disabled" : null)>Confirm Email</button>
+    </form>
+}
+@section Scripts {
+    @if (Model.IsConfirmed)
+    {
+        <script>
+            setTimeout(function () {
+                window.location.href = "/Identity/Account/Login";
+            }, 3000); // 3 seconds delay
+        </script>
+    }
+}

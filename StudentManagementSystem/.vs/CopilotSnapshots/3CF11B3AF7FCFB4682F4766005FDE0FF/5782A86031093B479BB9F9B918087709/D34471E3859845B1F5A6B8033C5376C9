@@ -1,0 +1,19 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirm your email";
+}
+
+<h2>Confirm Your Email</h2>
+
+@if (!Model.IsConfirmed)
+{
+    <p>Please confirm your account by clicking the button below.</p>
+    <form method="post">
+        <button type="submit" class="btn btn-primary">Confirm Email</button>
+    </form>
+}
+else
+{
+    <p>Your email has been confirmed! <a href="/Identity/Account/Login">Click here to login</a>.</p>
+}

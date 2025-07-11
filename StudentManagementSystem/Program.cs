@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using StudentManagementSystem.Data;
+using StudentManagementSystem.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,22 +12,32 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// 🟩 STEP 2: Add Identity with Role Support
+// ✅ STEP 1.1: Fix Identity login path redirection
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Identity/Account/Login";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    options.SlidingExpiration = true;
+});
+
+// 🟩 STEP 2: Add Identity with Role Support + Email Confirmation Required
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
-    options.SignIn.RequireConfirmedAccount = false; // Disable email confirmation
+    options.SignIn.RequireConfirmedAccount = true; // ✅ Email confirmation REQUIRED
 })
 .AddEntityFrameworkStores<ApplicationDbContext>()
-.AddDefaultTokenProviders(); // Required for password reset/token-based features
+.AddDefaultTokenProviders();
 
-// 🟩 STEP 3: Add MVC + Razor Pages
+// 🟩 STEP 3: Register DevEmailSender for IEmailSender (for development/testing)
+builder.Services.AddTransient<IEmailSender, DevEmailSender>();
+
+// 🟩 STEP 4: Add MVC + Razor Pages
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-// ⬇️ Build the app
 var app = builder.Build();
 
-// 🟩 STEP 4: Seed Roles (Admin, Student, Teacher)
+// 🟩 STEP 5: Seed Roles (Admin, Student, Teacher)
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
@@ -41,7 +53,7 @@ using (var scope = app.Services.CreateScope())
         }
     }
 
-    // ✅ Optional: Create default Admin user here (uncomment to activate)
+    // ✅ Optional: Create default Admin user here (manual test only)
     /*
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
     var adminEmail = "admin@example.com";
@@ -66,31 +78,30 @@ using (var scope = app.Services.CreateScope())
     */
 }
 
-// 🟩 STEP 5: Configure Middleware
+// 🟩 STEP 6: Middleware
 if (app.Environment.IsDevelopment())
 {
-    app.UseMigrationsEndPoint(); // Helpful during development
+    app.UseMigrationsEndPoint();
 }
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    app.UseHsts(); // Strict security in production
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();        // ✅ Serve wwwroot (CSS, JS, images)
+app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication();     // ✅ Enable Identity login
-app.UseAuthorization();      // ✅ Enforce [Authorize] attribute
+app.UseAuthentication();
+app.UseAuthorization();
 
-// 🟩 STEP 6: Configure Routing
+// 🟩 STEP 7: Routing
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapRazorPages(); // ✅ Enable /Identity area
+app.MapRazorPages();
 
-// 🟩 STEP 7: Start App
 app.Run();
