@@ -1,0 +1,19 @@
+﻿// Services/DevEmailSender.cs
+using Microsoft.AspNetCore.Identity.UI.Services;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+public class DevEmailSender : IEmailSender
+{
+    public Task SendEmailAsync(string email, string subject, string htmlMessage)
+    {
+        // Log to debug output
+        Debug.WriteLine($"[DEV EMAIL] To: {email}");
+        Debug.WriteLine($"Subject: {subject}");
+        Debug.WriteLine($"Message: {htmlMessage}");
+
+        // Optional: Write to file or database if needed
+
+        return Task.CompletedTask;
+    }
+}

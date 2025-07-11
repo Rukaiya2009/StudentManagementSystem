@@ -1,53 +1,52 @@
-﻿@model IEnumerable<StudentManagementSystem.Models.Course>
+﻿@using Microsoft.AspNetCore.Identity
+@using StudentManagementSystem.Models
+@inject SignInManager<IdentityUser> SignInManager
 
-@{
-    ViewData["Title"] = "Index";
-}
 
-<h1>Index</h1>
+@model IEnumerable<StudentManagementSystem.Models.Course>  
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CourseName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Credit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Department)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Teacher)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Credit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Department.DepartmentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Teacher.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CourseId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CourseId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+@{  
+    ViewData["Title"] = "Courses";  
+}  
+
+<h1>Courses</h1>  
+
+@if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Teacher")))  
+{  
+    <p>  
+        <a asp-action="Create" class="btn btn-primary">Create New</a>  
+    </p>  
+}  
+
+<table class="table">  
+    <thead>  
+        <tr>  
+            <th>@Html.DisplayNameFor(model => model.CourseName)</th>  
+            <th>@Html.DisplayNameFor(model => model.Credit)</th>  
+            <th>@Html.DisplayNameFor(model => model.Department.DepartmentName)</th>  
+            <th>@Html.DisplayNameFor(model => model.Teacher.Name)</th>  
+            <th></th>  
+        </tr>  
+    </thead>  
+    <tbody>  
+        @foreach (var item in Model)  
+        {  
+            <tr>  
+                <td>@Html.DisplayFor(modelItem => item.CourseName)</td>  
+                <td>@Html.DisplayFor(modelItem => item.Credit)</td>  
+                <td>@Html.DisplayFor(modelItem => item.Department.DepartmentName)</td>  
+                <td>@Html.DisplayFor(modelItem => item.Teacher.Name)</td>  
+                <td>  
+                    <a asp-action="Details" asp-route-id="@item.CourseId">Details</a>  
+                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Teacher")))  
+                    {  
+                        <span> | </span>  
+                        <a asp-action="Edit" asp-route-id="@item.CourseId">Edit</a>  
+                        <span> | </span>  
+                        <a asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>  
+                    }  
+                </td>  
+            </tr>  
+        }  
+    </tbody>  
 </table>

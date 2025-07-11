@@ -1,0 +1,53 @@
+﻿@page
+@model StudentManagementSystem.Areas.Identity.Pages.Account.ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirm Email";
+}
+
+<h2>Confirm Your Email</h2>
+
+@if (!string.IsNullOrEmpty(Model.StatusMessage))
+{
+    <div class="alert alert-info">@Model.StatusMessage</div>
+}
+
+@if (Model.IsConfirmed)
+{
+    <div class="alert alert-success">
+        Your email has been confirmed! Redirecting to login in <span id="countdown">3</span> seconds...
+        <noscript>
+            <p>
+                JavaScript is disabled. After confirming your email, please <a href="/Identity/Account/Login">click here to log in</a>.
+            </p>
+        </noscript>
+    </div>
+    <script>
+        let counter = 3;
+        const countdownEl = document.getElementById('countdown');
+        const interval = setInterval(() => {
+            counter--;
+            if (counter <= 0) clearInterval(interval);
+            countdownEl.textContent = counter;
+        }, 1000);
+        setTimeout(function () {
+            window.location.href = "/Identity/Account/Login";
+        }, 3000);
+    </script>
+}
+else
+{
+    <p>Please confirm your account by clicking the button below.</p>
+
+    <form method="post" id="confirmForm">
+        <input type="hidden" asp-for="UserId" />
+        <input type="hidden" asp-for="Code" />
+        <input type="hidden" asp-for="ReturnUrl" />
+        <button type="submit" class="btn btn-primary" @(Model.IsConfirmed ? "disabled" : null)>Confirm Email</button>
+    </form>
+    <script>
+        window.addEventListener("load", function () {
+            document.getElementById("confirmForm").submit();
+        });
+    </script>
+}
+The `@section Scripts` block has been removed as the redirect functionality is now handled inline within the `@if (Model.IsConfirmed)` block. The success message has been enhanced with a countdown and a `<noscript>` fallback for users with JavaScript disabled. The redirect UX has been improved accordingly. The rest of the file remains unchanged. 

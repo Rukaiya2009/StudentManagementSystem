@@ -1,0 +1,91 @@
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.WebUtilities;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StudentManagementSystem.Areas.Identity.Pages.Account
+{
+    public class ConfirmEmailModel : PageModel
+    {
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public ConfirmEmailModel(UserManager<IdentityUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
+        [BindProperty(SupportsGet = true)]
+        public string? UserId { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? Code { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? ReturnUrl { get; set; }
+
+        [TempData]
+        public string? StatusMessage { get; set; }
+        public bool IsConfirmed { get; set; } = false;
+
+        public async Task<IActionResult> OnGetAsync()
+        {
+            if (string.IsNullOrWhiteSpace(UserId) || string.IsNullOrWhiteSpace(Code))
+            {
+                StatusMessage = "Invalid confirmation request.";
+                return Page();
+            }
+            // Do not decode or confirm here, only validate inputs and show the page
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (string.IsNullOrWhiteSpace(UserId) || string.IsNullOrWhiteSpace(Code))
+            {
+                StatusMessage = "Invalid confirmation request.";
+                return Page();
+            }
+
+            var user = await _userManager.FindByIdAsync(UserId);
+            if (user == null)
+            {
+                StatusMessage = $"Unable to load user with ID '{UserId}'.";
+                return Page();
+            }
+
+            // Decode the code from Base64Url
+            string decodedCode;
+            try
+            {
+                var decodedBytes = WebEncoders.Base64UrlDecode(Code);
+                decodedCode = Encoding.UTF8.GetString(decodedBytes);
+            }
+            catch
+            {
+                StatusMessage = "Invalid confirmation code format.";
+                return Page();
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(user, decodedCode);
+            if (result.Succeeded)
+            {
+                IsConfirmed = true;
+                StatusMessage = "Thank you for confirming your email.";
+                // Redirect to original returnUrl if present and safe
+                if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+                {
+                    return LocalRedirect(ReturnUrl);
+                }
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
+            else
+            {
+                StatusMessage = "Error confirming your email.";
+            }
+
+            return Page();
+        }
+    }
+}

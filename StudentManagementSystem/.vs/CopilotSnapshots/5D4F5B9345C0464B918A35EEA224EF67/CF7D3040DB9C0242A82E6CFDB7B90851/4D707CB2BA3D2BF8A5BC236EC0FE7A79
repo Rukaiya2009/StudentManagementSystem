@@ -1,0 +1,69 @@
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
+
+namespace StudentManagementSystem.Areas.Identity.Pages.Account
+{
+    public class ConfirmEmailModel : PageModel
+    {
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public ConfirmEmailModel(UserManager<IdentityUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
+        [BindProperty]
+        public string? UserId { get; set; }
+
+        [BindProperty]
+        public string? Code { get; set; }
+
+        public string? StatusMessage { get; set; }
+        public bool IsConfirmed { get; set; } = false;
+
+        public async Task<IActionResult> OnGetAsync(string? userId, string? code)
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(code))
+            {
+                StatusMessage = "Invalid confirmation request.";
+                return Page();
+            }
+
+            UserId = userId;
+            Code = code;
+            // Show the confirmation page with button
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (string.IsNullOrEmpty(UserId) || string.IsNullOrEmpty(Code))
+            {
+                StatusMessage = "Invalid confirmation request.";
+                return Page();
+            }
+
+            var user = await _userManager.FindByIdAsync(UserId);
+            if (user == null)
+            {
+                StatusMessage = $"Unable to load user with ID '{UserId}'.";
+                return Page();
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(user, Code);
+            if (result.Succeeded)
+            {
+                IsConfirmed = true;
+                StatusMessage = "Thank you for confirming your email.";
+            }
+            else
+            {
+                StatusMessage = "Error confirming your email.";
+            }
+
+            return Page();
+        }
+    }
+}

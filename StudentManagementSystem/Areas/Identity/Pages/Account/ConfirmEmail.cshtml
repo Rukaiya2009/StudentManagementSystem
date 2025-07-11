@@ -1,0 +1,59 @@
+@page
+@model StudentManagementSystem.Areas.Identity.Pages.Account.ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirm Email";
+}
+
+<h2>Confirm Your Email</h2>
+
+@if (!string.IsNullOrEmpty(Model.StatusMessage))
+{
+    <div class="alert alert-info" role="alert">@Model.StatusMessage</div>
+}
+
+@if (Model.IsConfirmed)
+{
+    <div class="alert alert-success" role="alert">
+        Your email has been confirmed! Redirecting to login in <span id="countdown">3</span> seconds...
+        <noscript>
+            <p>
+                JavaScript is disabled. After confirming your email, please <a href="/Identity/Account/Login">click here to log in</a>.
+            </p>
+        </noscript>
+    </div>
+    <script>
+        let counter = 3;
+        const countdownEl = document.getElementById('countdown');
+        const interval = setInterval(() => {
+            counter--;
+            if (counter <= 0) clearInterval(interval);
+            countdownEl.textContent = counter;
+        }, 1000);
+        setTimeout(function () {
+            window.location.href = "/Identity/Account/Login";
+        }, 3000);
+    </script>
+}
+else
+{
+    <p>Please confirm your account by clicking the button below.</p>
+
+    <form method="post" id="confirmForm">
+        <input type="hidden" asp-for="UserId" />
+        <input type="hidden" asp-for="Code" />
+        <input type="hidden" asp-for="ReturnUrl" />
+        <button type="submit" class="btn btn-primary" aria-label="Confirm Email">Confirm Email</button>
+    </form>
+
+    <noscript>
+        <p>If you're having trouble, <a href="/Identity/Account/Login">log in</a> or <a href="/Identity/Account/ResendEmailConfirmation">resend the email</a>.</p>
+    </noscript>
+
+    <script>
+        // Auto-submit only if not already submitted
+        if (!sessionStorage.getItem("emailConfirmedFormSubmitted")) {
+            document.getElementById("confirmForm").submit();
+            sessionStorage.setItem("emailConfirmedFormSubmitted", "true");
+        }
+    </script>
+}
