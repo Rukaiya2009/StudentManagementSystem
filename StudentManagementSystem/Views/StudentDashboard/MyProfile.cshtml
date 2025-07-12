@@ -37,7 +37,7 @@
                         <div class="col-md-6">
                             <dl class="row">
                                 <dt class="col-sm-4">Date of Birth:</dt>
-                                <dd class="col-sm-8">@Model.DateOfBirth.ToString("MMM dd, yyyy")</dd>
+                                <dd class="col-sm-8">@(Model.DateOfBirth?.ToString("MMM dd, yyyy") ?? "Not specified")</dd>
 
                                 <dt class="col-sm-4">Phone:</dt>
                                 <dd class="col-sm-8">@Model.PhoneNumber</dd>

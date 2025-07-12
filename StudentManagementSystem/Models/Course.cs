@@ -8,16 +8,21 @@ namespace StudentManagementSystem.Models
         public int CourseId { get; set; }
 
         [Required]
-        public string CourseName { get; set; }
+        public string CourseName { get; set; } = string.Empty;
+
+        [Required, StringLength(20)]
+        public string CourseCode { get; set; } = string.Empty;
 
         public int Credit { get; set; }
 
+        public int Credits { get; set; }
+
         public int DepartmentId { get; set; }
-        public Department Department { get; set; }
+        public Department Department { get; set; } = new();
 
         public int? TeacherId { get; set; }  // optional
-        public Teacher Teacher { get; set; }
+        public Teacher Teacher { get; set; } = new();
 
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
     }
 }

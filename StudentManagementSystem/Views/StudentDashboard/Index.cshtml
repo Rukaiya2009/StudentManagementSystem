@@ -56,9 +56,9 @@
                                     @foreach (var enrollment in Model)
                                     {
                                         <tr>
-                                            <td>@enrollment.Course?.CourseCode</td>
-                                            <td>@enrollment.Course?.CourseName</td>
-                                            <td>@enrollment.Course?.Credits</td>
+                                                                                    <td>@enrollment.Course?.CourseCode</td>
+                                        <td>@enrollment.Course?.CourseName</td>
+                                        <td>@enrollment.Course?.Credits</td>
                                             <td>@enrollment.EnrollmentDate.ToString("MMM dd, yyyy")</td>
                                             <td>
                                                 <a asp-controller="Courses" asp-action="Details" asp-route-id="@enrollment.CourseId" class="btn btn-info btn-sm">View Course</a>

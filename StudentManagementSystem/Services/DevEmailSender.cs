@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -6,41 +7,64 @@ using System;
 
 namespace StudentManagementSystem.Services
 {
-    public class DevEmailSender : IEmailSender
+    public class DevEmailSender : IEmailSender<IdentityUser>
     {
-        public Task SendEmailAsync(string email, string subject, string htmlMessage)
-        {
-            // ✅ Log to debug output for development
-            Debug.WriteLine("====== DEV EMAIL SENDER ======");
-            Debug.WriteLine($"To: {email}");
-            Debug.WriteLine($"Subject: {subject}");
-            Debug.WriteLine("Body:");
-            Debug.WriteLine(htmlMessage);
-            Debug.WriteLine("==============================");
 
-            // ✅ Add this to auto-open the link and prevent token corruption
+        public Task SendConfirmationLinkAsync(IdentityUser user, string email, string confirmationLink)
+        {
+            Debug.WriteLine("====== DEV EMAIL SENDER - CONFIRMATION LINK ======");
+            Debug.WriteLine($"To: {email}");
+            Debug.WriteLine($"Subject: Confirm your email");
+            Debug.WriteLine($"Confirmation Link: {confirmationLink}");
+            Debug.WriteLine("================================================");
+
+            // Auto-open the confirmation link
             try
             {
-                var start = htmlMessage.IndexOf("href='") + 6;
-                var end = htmlMessage.IndexOf("'", start);
-                if (start >= 6 && end > start)
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
-                    var link = htmlMessage.Substring(start, end - start);
-                    
-                    // Log the clean link for debugging
-                    Debug.WriteLine($"🔗 Clean confirmation link: {link}");
-
-                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                    {
-                        // Use the raw link without HTML encoding
-                        Process.Start(new ProcessStartInfo("cmd", $"/c start \"{link}\"") { CreateNoWindow = true });
-                    }
+                    Process.Start(new ProcessStartInfo("cmd", $"/c start \"{confirmationLink}\"") { CreateNoWindow = true });
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"⚠️ Failed to open link automatically: {ex.Message}");
+                Debug.WriteLine($"⚠️ Failed to open confirmation link automatically: {ex.Message}");
             }
+
+            return Task.CompletedTask;
+        }
+
+        public Task SendPasswordResetLinkAsync(IdentityUser user, string email, string resetLink)
+        {
+            Debug.WriteLine("====== DEV EMAIL SENDER - PASSWORD RESET LINK ======");
+            Debug.WriteLine($"To: {email}");
+            Debug.WriteLine($"Subject: Reset your password");
+            Debug.WriteLine($"Reset Link: {resetLink}");
+            Debug.WriteLine("==================================================");
+
+            // Auto-open the reset link
+            try
+            {
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    Process.Start(new ProcessStartInfo("cmd", $"/c start \"{resetLink}\"") { CreateNoWindow = true });
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"⚠️ Failed to open reset link automatically: {ex.Message}");
+            }
+
+            return Task.CompletedTask;
+        }
+
+        public Task SendPasswordResetCodeAsync(IdentityUser user, string email, string resetCode)
+        {
+            Debug.WriteLine("====== DEV EMAIL SENDER - PASSWORD RESET CODE ======");
+            Debug.WriteLine($"To: {email}");
+            Debug.WriteLine($"Subject: Reset your password");
+            Debug.WriteLine($"Reset Code: {resetCode}");
+            Debug.WriteLine("==================================================");
 
             return Task.CompletedTask;
         }
