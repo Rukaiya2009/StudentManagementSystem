@@ -19,6 +19,20 @@ namespace StudentManagementSystem.Controllers
             _context = context;
         }
 
+        // ✅ NEW: Main Dashboard with Statistics
+        public async Task<IActionResult> Dashboard()
+        {
+            ViewBag.TotalStudents = await _context.Students.CountAsync();
+            ViewBag.TotalTeachers = await _context.Teachers.CountAsync();
+            ViewBag.TotalCourses = await _context.Courses.CountAsync();
+            ViewBag.TotalDepartments = await _context.Departments.CountAsync();
+            ViewBag.TotalEnrollments = await _context.Enrollments.CountAsync();
+            ViewBag.TotalUsers = await _userManager.Users.CountAsync();
+            ViewBag.PendingEmailConfirmations = await _userManager.Users.CountAsync(u => !u.EmailConfirmed);
+            
+            return View();
+        }
+
         public async Task<IActionResult> Index()
         {
             var users = await _userManager.Users.ToListAsync();

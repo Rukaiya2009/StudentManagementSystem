@@ -113,6 +113,22 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
 
                     await _emailSender.SendConfirmationLinkAsync(user, Input.Email, callbackUrl);
 
+                    // ✅ NEW: Show manual confirmation link if enabled
+                    if (_appSettings.EmailSettings.IsManualConfirmationEnabled)
+                    {
+                        var manualCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        manualCode = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(manualCode));
+                        var manualUserId = await _userManager.GetUserIdAsync(user);
+
+                        var manualCallbackUrl = Url.Page(
+                            "/Account/ConfirmEmail",
+                            pageHandler: null,
+                            values: new { area = "Identity", userId = manualUserId, code = manualCode },
+                            protocol: Request.Scheme);
+
+                        TempData["ManualConfirmationLink"] = manualCallbackUrl;
+                    }
+
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
                         // Store confirmation message in TempData for the login page
