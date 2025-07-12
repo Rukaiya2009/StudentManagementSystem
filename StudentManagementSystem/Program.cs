@@ -16,7 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Identity/Account/Login";
-    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    options.AccessDeniedPath = "/Shared/AccessDenied";
     options.SlidingExpiration = true;
 });
 
@@ -101,6 +101,12 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// Add route for AccessDenied page
+app.MapControllerRoute(
+    name: "accessDenied",
+    pattern: "Shared/AccessDenied",
+    defaults: new { controller = "Home", action = "AccessDenied" });
 
 app.MapRazorPages();
 

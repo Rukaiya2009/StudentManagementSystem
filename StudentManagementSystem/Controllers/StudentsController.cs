@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem.Controllers
 {
-    [Authorize(Roles = "Admin,Teacher")]
+    [Authorize]
     public class StudentsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,12 +24,14 @@ namespace StudentManagementSystem.Controllers
         }
 
         // GET: Students
+        [Authorize(Roles = "Admin,Teacher")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Students.ToListAsync());
         }
 
         // GET: Students/Details/5
+        [Authorize(Roles = "Admin,Teacher,Student")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -42,6 +44,7 @@ namespace StudentManagementSystem.Controllers
         }
 
         // GET: Students/Create
+        [Authorize(Roles = "Admin,Teacher")]
         public IActionResult Create()
         {
             return View();
@@ -50,6 +53,7 @@ namespace StudentManagementSystem.Controllers
         // POST: Students/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Teacher")]
         public async Task<IActionResult> Create(Student student, IFormFile ProfileImage)
         {
             if (ModelState.IsValid)
@@ -76,6 +80,7 @@ namespace StudentManagementSystem.Controllers
         }
 
         // GET: Students/Edit/5
+        [Authorize(Roles = "Admin,Teacher")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -89,6 +94,7 @@ namespace StudentManagementSystem.Controllers
         // POST: Students/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Teacher")]
         public async Task<IActionResult> Edit(int id, Student student, IFormFile ProfileImage)
         {
             if (id != student.StudentId) return NotFound();
@@ -125,6 +131,7 @@ namespace StudentManagementSystem.Controllers
         }
 
         // GET: Students/Delete/5
+        [Authorize(Roles = "Admin,Teacher")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -139,6 +146,7 @@ namespace StudentManagementSystem.Controllers
         // POST: Students/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Teacher")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var student = await _context.Students.FindAsync(id);

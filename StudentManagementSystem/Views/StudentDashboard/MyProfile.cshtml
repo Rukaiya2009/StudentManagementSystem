@@ -1,0 +1,86 @@
+@model StudentManagementSystem.Models.Student
+
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="h3 mb-4">My Profile</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Student Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">Student ID:</dt>
+                                <dd class="col-sm-8">@Model.StudentId</dd>
+
+                                <dt class="col-sm-4">First Name:</dt>
+                                <dd class="col-sm-8">@Model.FirstName</dd>
+
+                                <dt class="col-sm-4">Last Name:</dt>
+                                <dd class="col-sm-8">@Model.LastName</dd>
+
+                                <dt class="col-sm-4">Email:</dt>
+                                <dd class="col-sm-8">@Model.Email</dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">Date of Birth:</dt>
+                                <dd class="col-sm-8">@Model.DateOfBirth.ToString("MMM dd, yyyy")</dd>
+
+                                <dt class="col-sm-4">Phone:</dt>
+                                <dd class="col-sm-8">@Model.PhoneNumber</dd>
+
+                                <dt class="col-sm-4">Address:</dt>
+                                <dd class="col-sm-8">@Model.Address</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Profile Picture</h5>
+                </div>
+                <div class="card-body text-center">
+                    @if (Model.ProfilePicture != null)
+                    {
+                        <img src="@Model.ProfilePicture" class="img-fluid rounded" style="max-width: 200px;" alt="Profile Picture" />
+                    }
+                    else
+                    {
+                        <div class="bg-light rounded p-4">
+                            <i class="fas fa-user fa-3x text-muted"></i>
+                            <p class="text-muted mt-2">No profile picture</p>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <a asp-action="Index" class="btn btn-primary btn-block mb-2">Back to Dashboard</a>
+                    <a asp-controller="Students" asp-action="Details" asp-route-id="@Model.StudentId" class="btn btn-info btn-block mb-2">View Student Details</a>
+                    <a asp-controller="Courses" asp-action="Index" class="btn btn-success btn-block">Browse Courses</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
