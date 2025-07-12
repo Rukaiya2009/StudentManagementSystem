@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace StudentManagementSystem.Areas.Identity.Pages.Account
 {
@@ -43,14 +44,21 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
 
             if (string.IsNullOrEmpty(UserId) || string.IsNullOrEmpty(Code))
             {
-                StatusMessage = "Invalid confirmation request.";
+                StatusMessage = "Invalid confirmation request. The confirmation link is missing required parameters.";
                 return Page();
             }
 
             var user = await _userManager.FindByIdAsync(UserId);
             if (user == null)
             {
-                StatusMessage = "Unable to load user.";
+                StatusMessage = "Unable to load user. The user account may have been deleted or the link is invalid.";
+                return Page();
+            }
+
+            if (user.EmailConfirmed)
+            {
+                IsConfirmed = true;
+                StatusMessage = "Your email has already been confirmed. You can now log in.";
                 return Page();
             }
 
@@ -61,7 +69,7 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
             }
             catch
             {
-                StatusMessage = "Invalid confirmation code format.";
+                StatusMessage = "Invalid confirmation code format. The confirmation link may be corrupted. Please request a new confirmation email.";
                 return Page();
             }
 
@@ -70,12 +78,13 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
             if (result.Succeeded)
             {
                 IsConfirmed = true;
-                StatusMessage = "Your email has been confirmed.";
+                StatusMessage = "Your email has been confirmed successfully! You can now log in to your account.";
             }
             else
             {
                 IsConfirmed = false;
-                StatusMessage = "Error confirming your email.";
+                var errors = string.Join(", ", result.Errors.Select(e => e.Description));
+                StatusMessage = $"Error confirming your email: {errors}. The confirmation link may have expired. Please request a new confirmation email.";
             }
 
             return Page();

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System;
 
 namespace StudentManagementSystem.Services
 {
@@ -17,7 +18,7 @@ namespace StudentManagementSystem.Services
             Debug.WriteLine(htmlMessage);
             Debug.WriteLine("==============================");
 
-            // ✅ Add this to auto-open the link
+            // ✅ Add this to auto-open the link and prevent token corruption
             try
             {
                 var start = htmlMessage.IndexOf("href='") + 6;
@@ -25,16 +26,20 @@ namespace StudentManagementSystem.Services
                 if (start >= 6 && end > start)
                 {
                     var link = htmlMessage.Substring(start, end - start);
+                    
+                    // Log the clean link for debugging
+                    Debug.WriteLine($"🔗 Clean confirmation link: {link}");
 
                     if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                     {
-                        Process.Start(new ProcessStartInfo("cmd", $"/c start {link}") { CreateNoWindow = true });
+                        // Use the raw link without HTML encoding
+                        Process.Start(new ProcessStartInfo("cmd", $"/c start \"{link}\"") { CreateNoWindow = true });
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                Debug.WriteLine("⚠️ Failed to open link automatically.");
+                Debug.WriteLine($"⚠️ Failed to open link automatically: {ex.Message}");
             }
 
             return Task.CompletedTask;

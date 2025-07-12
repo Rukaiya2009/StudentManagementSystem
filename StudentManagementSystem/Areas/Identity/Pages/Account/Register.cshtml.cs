@@ -113,8 +113,9 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        // Redirect directly to the confirm email page with userId and code
-                        return Redirect(callbackUrl);
+                        // Store confirmation message in TempData for the login page
+                        TempData["ConfirmationMessage"] = $"Registration successful! Please check your email ({Input.Email}) and click the confirmation link to activate your account.";
+                        return RedirectToPage("./Login");
                     }
                     else
                     {

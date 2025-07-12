@@ -201,8 +201,7 @@
               "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
               "ViewState": "AgIAAB8AAAAAAAAAAAAgwDsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-10T14:04:56.178Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-10T14:04:56.178Z"
             },
             {
               "$type": "Document",
@@ -214,8 +213,7 @@
               "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "ViewState": "AgIAAIIAAAAAAAAAAAAAwJgAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T15:44:17.995Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-10T15:44:17.995Z"
             },
             {
               "$type": "Document",
@@ -225,7 +223,7 @@
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml.cs",
               "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem\\Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml.cs",
               "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAqwBQAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-10T14:05:09.632Z",
               "EditorCaption": ""

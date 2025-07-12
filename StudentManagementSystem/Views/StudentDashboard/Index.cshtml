@@ -1,0 +1,83 @@
+@model IEnumerable<StudentManagementSystem.Models.Enrollment>
+
+@{
+    ViewData["Title"] = "My Dashboard";
+    var student = ViewBag.Student as StudentManagementSystem.Models.Student;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="h3 mb-4">Welcome, @student?.FirstName @student?.LastName!</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Student Info Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">My Profile</h5>
+                </div>
+                <div class="card-body">
+                    @if (student?.ProfilePicture != null)
+                    {
+                        <img src="@student.ProfilePicture" class="img-fluid rounded mb-3" style="max-width: 150px;" alt="Profile Picture" />
+                    }
+                    <h6>@student?.FirstName @student?.LastName</h6>
+                    <p class="text-muted">@student?.Email</p>
+                    <p class="text-muted">Student ID: @student?.StudentId</p>
+                    <a asp-action="MyProfile" class="btn btn-primary btn-sm">View Full Profile</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enrolled Courses -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">My Enrolled Courses</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Course Code</th>
+                                        <th>Course Name</th>
+                                        <th>Credits</th>
+                                        <th>Enrollment Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var enrollment in Model)
+                                    {
+                                        <tr>
+                                            <td>@enrollment.Course?.CourseCode</td>
+                                            <td>@enrollment.Course?.CourseName</td>
+                                            <td>@enrollment.Course?.Credits</td>
+                                            <td>@enrollment.EnrollmentDate.ToString("MMM dd, yyyy")</td>
+                                            <td>
+                                                <a asp-controller="Courses" asp-action="Details" asp-route-id="@enrollment.CourseId" class="btn btn-info btn-sm">View Course</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-4">
+                            <p class="text-muted">You are not enrolled in any courses yet.</p>
+                            <a asp-controller="Courses" asp-action="Index" class="btn btn-primary">Browse Available Courses</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
