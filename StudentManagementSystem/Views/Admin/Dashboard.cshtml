@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Admin Dashboard</h2>
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card bg-light mb-3 text-center">
+            <div class="card-body">
+                <h5 class="card-title">Total Students</h5>
+                <p class="display-4">@ViewBag.TotalStudents</p>
+                <a asp-controller="Students" asp-action="Index" class="btn btn-outline-primary">Manage Students</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-light mb-3 text-center">
+            <div class="card-body">
+                <h5 class="card-title">Total Teachers</h5>
+                <p class="display-4">@ViewBag.TotalTeachers</p>
+                <a asp-controller="Teachers" asp-action="Index" class="btn btn-outline-primary">Manage Teachers</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-light mb-3 text-center">
+            <div class="card-body">
+                <h5 class="card-title">Total Courses</h5>
+                <p class="display-4">@ViewBag.TotalCourses</p>
+                <a asp-controller="Courses" asp-action="Index" class="btn btn-outline-primary">Manage Courses</a>
+            </div>
+        </div>
+    </div>
+</div> 
