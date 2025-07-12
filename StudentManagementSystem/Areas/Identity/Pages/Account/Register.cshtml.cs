@@ -113,27 +113,20 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
 
                     await _emailSender.SendConfirmationLinkAsync(user, Input.Email, callbackUrl);
 
-                    // ✅ NEW: Show manual confirmation link if enabled
-                    if (_appSettings.EmailSettings.IsManualConfirmationEnabled)
-                    {
-                        var manualCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        manualCode = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(manualCode));
-                        var manualUserId = await _userManager.GetUserIdAsync(user);
 
-                        var manualCallbackUrl = Url.Page(
-                            "/Account/ConfirmEmail",
-                            pageHandler: null,
-                            values: new { area = "Identity", userId = manualUserId, code = manualCode },
-                            protocol: Request.Scheme);
-
-                        TempData["ManualConfirmationLink"] = manualCallbackUrl;
-                    }
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        // Store confirmation message in TempData for the login page
-                        TempData["ConfirmationMessage"] = $"Registration successful! Please check your email ({Input.Email}) and click the confirmation link to activate your account.";
-                        return RedirectToPage("./Login");
+                        // ✅ NEW: Redirect directly to ConfirmEmail page with parameters
+                        var redirectCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        redirectCode = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(redirectCode));
+                        
+                        return RedirectToPage("ConfirmEmail", new { 
+                            area = "Identity", 
+                            userId = user.Id, 
+                            code = redirectCode,
+                            returnUrl = returnUrl 
+                        });
                     }
                     else
                     {

@@ -45,14 +45,7 @@
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </form>
 
-        @if (TempData["ManualConfirmationLink"] != null)
-        {
-            <div class="alert alert-success mt-3">
-                Confirm your account by clicking below:
-                <br />
-                <a class="btn btn-success mt-2" href="@TempData["ManualConfirmationLink"]">Confirm Email</a>
-            </div>
-        }
+
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
