@@ -21,13 +21,15 @@
 
                     @if (Model.IsConfirmed)
                     {
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <h4 class="alert-heading">✅ Email Confirmed Successfully!</h4>
                             <p>Your email has been confirmed. You can now log in to your account.</p>
-                            <p class="mb-0">Redirecting to login page in <span id="countdown">@Model.RedirectDelaySeconds</span> seconds...</p>
+                            <p class="mb-0">Redirecting to login page in <span id="countdown" aria-live="polite">@Model.RedirectDelaySeconds</span> seconds...</p>
                             <hr>
                             <a asp-page="./Login" class="btn btn-success">Go to Login Now</a>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
+                        <div class="text-muted mt-2">@ViewData["RedirectMessage"]</div>
                         <script>
                             let counter = @Model.RedirectDelaySeconds;
                             const countdownEl = document.getElementById('countdown');

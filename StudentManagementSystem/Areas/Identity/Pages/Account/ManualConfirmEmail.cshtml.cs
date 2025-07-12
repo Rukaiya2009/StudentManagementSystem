@@ -55,6 +55,7 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
                 IsConfirmed = true;
                 RedirectDelaySeconds = _appSettings.AutoRedirectDelaySeconds;
                 StatusMessage = "Your email has already been confirmed. You can now log in.";
+                ViewData["RedirectMessage"] = $"Redirecting to login page in {_appSettings.AutoRedirectDelaySeconds} seconds...";
                 return Page();
             }
 
@@ -82,6 +83,7 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
                 IsConfirmed = true;
                 RedirectDelaySeconds = _appSettings.AutoRedirectDelaySeconds;
                 StatusMessage = "Your email has already been confirmed. You can now log in.";
+                ViewData["RedirectMessage"] = $"Redirecting to login page in {_appSettings.AutoRedirectDelaySeconds} seconds...";
                 return Page();
             }
 
@@ -98,6 +100,7 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
                     IsConfirmed = true;
                     RedirectDelaySeconds = _appSettings.AutoRedirectDelaySeconds;
                     StatusMessage = "Your email has been confirmed successfully! You can now log in to your account.";
+                    ViewData["RedirectMessage"] = $"Redirecting to login page in {_appSettings.AutoRedirectDelaySeconds} seconds...";
                 }
                 else
                 {

@@ -107,7 +107,7 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = _appSettings.IsManualConfirmationEnabled 
+                    var callbackUrl = _appSettings.EmailSettings.IsManualConfirmationEnabled 
                         ? Url.Page("/Account/ManualConfirmEmail", pageHandler: null, values: new { area = "Identity", userId, code, returnUrl }, protocol: Request.Scheme)
                         : Url.Page("/Account/ConfirmEmail", pageHandler: null, values: new { area = "Identity", userId, code, returnUrl }, protocol: Request.Scheme);
 

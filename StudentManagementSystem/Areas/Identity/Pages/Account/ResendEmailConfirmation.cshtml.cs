@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Options;
+using StudentManagementSystem.Models;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -14,11 +16,13 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender<IdentityUser> _emailSender;
+        private readonly AppSettings _appSettings;
 
-        public ResendEmailConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender<IdentityUser> emailSender)
+        public ResendEmailConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender<IdentityUser> emailSender, IOptions<AppSettings> appSettings)
         {
             _userManager = userManager;
             _emailSender = emailSender;
+            _appSettings = appSettings.Value;
         }
 
         [BindProperty]
@@ -30,6 +34,9 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
             [EmailAddress]
             public string Email { get; set; } = string.Empty;
         }
+
+        public string? StatusMessage { get; set; }
+        public string? ConfirmationLink { get; set; }
 
         public void OnGet()
         {
@@ -43,9 +50,10 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
             }
 
             var user = await _userManager.FindByEmailAsync(Input.Email);
-            if (user == null)
+            if (user == null || await _userManager.IsEmailConfirmedAsync(user))
             {
-                ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+                // Don't reveal that the user does not exist or is already confirmed
+                StatusMessage = "Verification email sent. Please check your email.";
                 return Page();
             }
 
@@ -58,12 +66,20 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
                 values: new { area = "Identity", userId = userId, code = code },
                 protocol: Request.Scheme);
 
-            await _emailSender.SendConfirmationLinkAsync(
-                user,
-                Input.Email,
-                callbackUrl ?? string.Empty);
+            if (_appSettings.EmailSettings.IsManualConfirmationEnabled)
+            {
+                StatusMessage = "<strong>✅ Email Confirmation Link Generated!</strong>";
+                ConfirmationLink = callbackUrl;
+            }
+            else
+            {
+                await _emailSender.SendConfirmationLinkAsync(
+                    user,
+                    Input.Email,
+                    callbackUrl ?? string.Empty);
+                StatusMessage = "Verification email sent. Please check your email.";
+            }
 
-            ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
             return Page();
         }
     }
