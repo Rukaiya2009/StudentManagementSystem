@@ -24,7 +24,7 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
+        private readonly IEmailSender<IdentityUser> _emailSender;
 
         private static readonly HashSet<string> ValidRoles = new() { "Admin", "Teacher", "Student" };
 
@@ -33,7 +33,7 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender<IdentityUser> emailSender)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,7 +44,7 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public InputModel Input { get; set; } = new();
 
         public string ReturnUrl { get; set; }
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
@@ -53,21 +53,21 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
         {
             [Required, EmailAddress]
             [Display(Name = "Email")]
-            public string Email { get; set; }
+            public string Email { get; set; } = string.Empty;
 
             [Required, StringLength(100, MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
-            public string Password { get; set; }
+            public string Password { get; set; } = string.Empty;
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "Passwords do not match.")]
-            public string ConfirmPassword { get; set; }
+            public string ConfirmPassword { get; set; } = string.Empty;
 
             [Required]
             [Display(Name = "Role")]
-            public string Role { get; set; }
+            public string Role { get; set; } = string.Empty;
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -108,8 +108,7 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId, code, returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await _emailSender.SendConfirmationLinkAsync(user, Input.Email, callbackUrl);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

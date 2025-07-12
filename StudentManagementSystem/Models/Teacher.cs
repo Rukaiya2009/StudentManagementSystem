@@ -8,12 +8,13 @@ namespace StudentManagementSystem.Models
         public int TeacherId { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
-        public string Email { get; set; }
+        [EmailAddress]
+        public string Email { get; set; } = string.Empty;
 
-        public string DepartmentName { get; set; }
+        public string DepartmentName { get; set; } = string.Empty;
 
-        public ICollection<Course> Courses { get; set; }
+        public ICollection<Course> Courses { get; set; } = new List<Course>();
     }
 }

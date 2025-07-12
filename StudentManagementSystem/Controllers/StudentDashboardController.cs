@@ -24,6 +24,8 @@ namespace StudentManagementSystem.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+                return NotFound();
 
             var student = await _context.Students
                 .FirstOrDefaultAsync(s => s.Email == user.Email);
@@ -43,6 +45,8 @@ namespace StudentManagementSystem.Controllers
         public async Task<IActionResult> MyProfile()
         {
             var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+                return NotFound();
 
             var student = await _context.Students
                 .FirstOrDefaultAsync(s => s.Email == user.Email);

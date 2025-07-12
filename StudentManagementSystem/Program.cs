@@ -29,7 +29,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddDefaultTokenProviders();
 
 // 🟩 STEP 3: Register DevEmailSender for IEmailSender (for development/testing)
-builder.Services.AddTransient<IEmailSender, DevEmailSender>();
+builder.Services.AddTransient<IEmailSender<IdentityUser>, DevEmailSender>();
 
 // 🟩 STEP 4: Add MVC + Razor Pages
 builder.Services.AddControllersWithViews();
