@@ -107,29 +107,27 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = _appSettings.EmailSettings.IsManualConfirmationEnabled 
-                        ? Url.Page("/Account/ManualConfirmEmail", pageHandler: null, values: new { area = "Identity", userId, code, returnUrl }, protocol: Request.Scheme)
-                        : Url.Page("/Account/ConfirmEmail", pageHandler: null, values: new { area = "Identity", userId, code, returnUrl }, protocol: Request.Scheme);
+                    
+                    // Generate confirmation URL
+                    var callbackUrl = Url.Page("/Account/ConfirmEmail", pageHandler: null, values: new { area = "Identity", userId, code, returnUrl }, protocol: Request.Scheme);
 
+                    // Send email confirmation (if email service is configured)
                     await _emailSender.SendConfirmationLinkAsync(user, Input.Email, callbackUrl);
-
-
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        // ✅ NEW: Redirect directly to ConfirmEmail page with parameters
-                        var redirectCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        redirectCode = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(redirectCode));
-                        
+                        // ✅ Redirect directly to ConfirmEmail page with parameters
+                        _logger.LogInformation("User {Email} registered successfully. Redirecting to email confirmation.", Input.Email);
                         return RedirectToPage("ConfirmEmail", new { 
                             area = "Identity", 
                             userId = user.Id, 
-                            code = redirectCode,
+                            code = code,
                             returnUrl = returnUrl 
                         });
                     }
                     else
                     {
+                        _logger.LogInformation("User {Email} registered and signed in successfully.", Input.Email);
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
