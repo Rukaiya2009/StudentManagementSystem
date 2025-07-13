@@ -62,6 +62,7 @@ namespace StudentManagementSystem.Controllers
             {
                 _context.Add(department);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Department created successfully!";
                 return RedirectToAction(nameof(Index));
             }
             return View(department);
@@ -99,23 +100,34 @@ namespace StudentManagementSystem.Controllers
             {
                 try
                 {
-                    _context.Update(department);
+                    var existingDepartment = await _context.Departments.FindAsync(id);
+                    if (existingDepartment == null)
+                    {
+                        TempData["ErrorMessage"] = "Department not found or has been deleted.";
+                        return RedirectToAction(nameof(Index));
+                    }
+                    existingDepartment.DepartmentName = department.DepartmentName;
+                    existingDepartment.Description = department.Description;
                     await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Department updated successfully!";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!DepartmentExists(department.DepartmentId))
                     {
-                        return NotFound();
+                        TempData["ErrorMessage"] = "Department not found or has been deleted.";
+                        return RedirectToAction(nameof(Index));
                     }
                     else
                     {
-                        throw;
+                        TempData["ErrorMessage"] = "The department was modified by another user. Please refresh and try again.";
+                        return RedirectToAction(nameof(Index));
                     }
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(department);
+            var existingDepartmentForView = await _context.Departments.FindAsync(id);
+            return View(existingDepartmentForView ?? department);
         }
 
         // GET: Departments/Delete/5
@@ -145,9 +157,9 @@ namespace StudentManagementSystem.Controllers
             if (department != null)
             {
                 _context.Departments.Remove(department);
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Department deleted successfully!";
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

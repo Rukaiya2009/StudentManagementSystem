@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="h3 mb-4">Welcome, @student?.FirstName @student?.LastName!</h1>
+            <h1 class="h3 mb-4">Welcome, @student?.FullName!</h1>
         </div>
     </div>
 
@@ -24,7 +24,7 @@
                     {
                         <img src="@student.ProfilePicture" class="img-fluid rounded mb-3" style="max-width: 150px;" alt="Profile Picture" />
                     }
-                    <h6>@student?.FirstName @student?.LastName</h6>
+                    <h6>@student?.FullName</h6>
                     <p class="text-muted">@student?.Email</p>
                     <p class="text-muted">Student ID: @student?.StudentId</p>
                     <a asp-action="MyProfile" class="btn btn-primary btn-sm">View Full Profile</a>

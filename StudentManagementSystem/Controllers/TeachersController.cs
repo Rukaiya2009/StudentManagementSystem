@@ -61,6 +61,7 @@ namespace StudentManagementSystem.Controllers
             {
                 _context.Add(teacher);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Teacher created successfully!";
                 return RedirectToAction(nameof(Index));
             }
             return View(teacher);
@@ -83,8 +84,6 @@ namespace StudentManagementSystem.Controllers
         }
 
         // POST: Teachers/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("TeacherId,Name,Email,DepartmentName")] Teacher teacher)
@@ -98,23 +97,39 @@ namespace StudentManagementSystem.Controllers
             {
                 try
                 {
-                    _context.Update(teacher);
+                    var existingTeacher = await _context.Teachers.FindAsync(id);
+                    if (existingTeacher == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Update fields manually on the tracked entity
+                    existingTeacher.Name = teacher.Name;
+                    existingTeacher.Email = teacher.Email;
+                    existingTeacher.DepartmentName = teacher.DepartmentName;
+
                     await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Teacher updated successfully!";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!TeacherExists(teacher.TeacherId))
                     {
-                        return NotFound();
+                        TempData["ErrorMessage"] = "Teacher not found or has been deleted.";
+                        return RedirectToAction(nameof(Index));
                     }
                     else
                     {
-                        throw;
+                        TempData["ErrorMessage"] = "The teacher was modified by another user. Please refresh and try again.";
+                        return RedirectToAction(nameof(Index));
                     }
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(teacher);
+            
+            // Return the existing teacher from database to maintain state
+            var existingTeacherForView = await _context.Teachers.FindAsync(id);
+            return View(existingTeacherForView ?? teacher);
         }
 
         // GET: Teachers/Delete/5
@@ -144,9 +159,10 @@ namespace StudentManagementSystem.Controllers
             if (teacher != null)
             {
                 _context.Teachers.Remove(teacher);
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Teacher deleted successfully!";
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

@@ -112,6 +112,7 @@ namespace StudentManagementSystem.Controllers
             {
                 _context.Add(enrollment);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Enrollment created successfully!";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -146,22 +147,37 @@ namespace StudentManagementSystem.Controllers
             {
                 try
                 {
-                    _context.Update(enrollment);
+                    var existingEnrollment = await _context.Enrollments.FindAsync(id);
+                    if (existingEnrollment == null)
+                    {
+                        TempData["ErrorMessage"] = "Enrollment not found or has been deleted.";
+                        return RedirectToAction(nameof(Index));
+                    }
+                    existingEnrollment.StudentId = enrollment.StudentId;
+                    existingEnrollment.CourseId = enrollment.CourseId;
+                    existingEnrollment.Grade = enrollment.Grade;
                     await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Enrollment updated successfully!";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!EnrollmentExists(enrollment.EnrollmentId))
-                        return NotFound();
+                    {
+                        TempData["ErrorMessage"] = "Enrollment not found or has been deleted.";
+                        return RedirectToAction(nameof(Index));
+                    }
                     else
-                        throw;
+                    {
+                        TempData["ErrorMessage"] = "The enrollment was modified by another user. Please refresh and try again.";
+                        return RedirectToAction(nameof(Index));
+                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
-
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName", enrollment.CourseId);
             ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", enrollment.StudentId);
-            return View(enrollment);
+            var existingEnrollmentForView = await _context.Enrollments.FindAsync(id);
+            return View(existingEnrollmentForView ?? enrollment);
         }
 
         // GET: Enrollments/Delete/5
@@ -191,6 +207,7 @@ namespace StudentManagementSystem.Controllers
             {
                 _context.Enrollments.Remove(enrollment);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Enrollment deleted successfully!";
             }
             return RedirectToAction(nameof(Index));
         }

@@ -67,6 +67,7 @@ namespace StudentManagementSystem.Controllers
             {
                 _context.Add(course);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Course created successfully!";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", course.DepartmentId);
@@ -108,25 +109,42 @@ namespace StudentManagementSystem.Controllers
             {
                 try
                 {
-                    _context.Update(course);
+                    var existingCourse = await _context.Courses.FindAsync(id);
+                    if (existingCourse == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Update fields manually on the tracked entity
+                    existingCourse.CourseName = course.CourseName;
+                    existingCourse.Credit = course.Credit;
+                    existingCourse.DepartmentId = course.DepartmentId;
+                    existingCourse.TeacherId = course.TeacherId;
+
                     await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Course updated successfully!";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CourseExists(course.CourseId))
                     {
-                        return NotFound();
+                        TempData["ErrorMessage"] = "Course not found or has been deleted.";
+                        return RedirectToAction(nameof(Index));
                     }
                     else
                     {
-                        throw;
+                        TempData["ErrorMessage"] = "The course was modified by another user. Please refresh and try again.";
+                        return RedirectToAction(nameof(Index));
                     }
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", course.DepartmentId);
-            ViewData["TeacherId"] = new SelectList(_context.Teachers, "TeacherId", "Name", course.TeacherId);
-            return View(course);
+            
+            // Return the existing course from database to maintain state
+            var existingCourseForView = await _context.Courses.FindAsync(id);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", existingCourseForView?.DepartmentId ?? course.DepartmentId);
+            ViewData["TeacherId"] = new SelectList(_context.Teachers, "TeacherId", "Name", existingCourseForView?.TeacherId ?? course.TeacherId);
+            return View(existingCourseForView ?? course);
         }
 
         // GET: Courses/Delete/5
@@ -160,9 +178,10 @@ namespace StudentManagementSystem.Controllers
             if (course != null)
             {
                 _context.Courses.Remove(course);
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Course deleted successfully!";
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
