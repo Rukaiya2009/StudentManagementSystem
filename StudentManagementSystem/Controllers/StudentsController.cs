@@ -111,9 +111,11 @@ namespace StudentManagementSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Teacher")]
-        public async Task<IActionResult> Edit(int id, Student student, IFormFile ProfileImage)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FullName,DateOfBirth,Gender,Email,Phone,Address")] Student student, IFormFile ProfileImage)
         {
             if (id != student.StudentId) return NotFound();
+
+
 
             if (!ModelState.IsValid)
             {
@@ -128,6 +130,15 @@ namespace StudentManagementSystem.Controllers
                 return View(existingStudentForView ?? student);
             }
 
+            // Validate that we received the student data
+            if (student == null)
+            {
+                TempData["ErrorMessage"] = "No student data received.";
+                return RedirectToAction(nameof(Index));
+            }
+
+
+
             try
             {
                 var existingStudent = await _context.Students.FindAsync(id);
@@ -140,6 +151,8 @@ namespace StudentManagementSystem.Controllers
                 existingStudent.Email = student.Email;
                 existingStudent.Phone = student.Phone;
                 existingStudent.Address = student.Address;
+
+
 
                 // Handle image upload
                 if (ProfileImage != null)

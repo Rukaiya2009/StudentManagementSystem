@@ -8,6 +8,8 @@
 
 <h4>Student</h4>
 <hr />
+
+
 <div class="row">
     <div class="col-md-6">
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
@@ -30,9 +32,9 @@
                 <label asp-for="Gender" class="control-label"></label>
                 <select asp-for="Gender" class="form-control">
                     <option value="">-- Select Gender --</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
                 </select>
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
