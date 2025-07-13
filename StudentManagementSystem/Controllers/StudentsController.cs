@@ -58,22 +58,38 @@ namespace StudentManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (ProfileImage != null)
+                            if (ProfileImage != null)
+            {
+                // Validate file type
+                var allowedTypes = new[] { "image/jpeg", "image/jpg", "image/png", "image/gif" };
+                if (!allowedTypes.Contains(ProfileImage.ContentType.ToLower()))
                 {
-                    string wwwRootPath = _hostEnvironment.WebRootPath;
-                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(ProfileImage.FileName);
-                    string path = Path.Combine(wwwRootPath + "/images/", fileName);
-
-                    using (var fileStream = new FileStream(path, FileMode.Create))
-                    {
-                        await ProfileImage.CopyToAsync(fileStream);
-                    }
-
-                    student.ProfilePicture = "/images/" + fileName;
+                    ModelState.AddModelError("ProfileImage", "Please select a valid image file (JPG, PNG, GIF)");
+                    return View(student);
                 }
+
+                // Validate file size (5MB max)
+                if (ProfileImage.Length > 5 * 1024 * 1024)
+                {
+                    ModelState.AddModelError("ProfileImage", "File size must be less than 5MB");
+                    return View(student);
+                }
+
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(ProfileImage.FileName);
+                string path = Path.Combine(wwwRootPath + "/images/", fileName);
+
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await ProfileImage.CopyToAsync(fileStream);
+                }
+
+                student.ProfilePicture = "/images/" + fileName;
+            }
 
                 _context.Add(student);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Student created successfully!";
                 return RedirectToAction(nameof(Index));
             }
             return View(student);
@@ -99,35 +115,92 @@ namespace StudentManagementSystem.Controllers
         {
             if (id != student.StudentId) return NotFound();
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                foreach (var error in errors)
                 {
-                    if (ProfileImage != null)
+                    Console.WriteLine($"ModelState Error: {error}");
+                }
+                
+                // Return the existing student from database to maintain state
+                var existingStudentForView = await _context.Students.FindAsync(id);
+                return View(existingStudentForView ?? student);
+            }
+
+            try
+            {
+                var existingStudent = await _context.Students.FindAsync(id);
+                if (existingStudent == null) return NotFound();
+
+                // Update fields manually on the tracked entity
+                existingStudent.FullName = student.FullName;
+                existingStudent.DateOfBirth = student.DateOfBirth;
+                existingStudent.Gender = student.Gender;
+                existingStudent.Email = student.Email;
+                existingStudent.Phone = student.Phone;
+                existingStudent.Address = student.Address;
+
+                // Handle image upload
+                if (ProfileImage != null)
+                {
+                    // Validate file type
+                    var allowedTypes = new[] { "image/jpeg", "image/jpg", "image/png", "image/gif" };
+                    if (!allowedTypes.Contains(ProfileImage.ContentType.ToLower()))
                     {
-                        string wwwRootPath = _hostEnvironment.WebRootPath;
-                        string fileName = Guid.NewGuid().ToString() + Path.GetExtension(ProfileImage.FileName);
-                        string path = Path.Combine(wwwRootPath + "/images/", fileName);
-
-                        using (var fileStream = new FileStream(path, FileMode.Create))
-                        {
-                            await ProfileImage.CopyToAsync(fileStream);
-                        }
-
-                        student.ProfilePicture = "/images/" + fileName;
+                        ModelState.AddModelError("ProfileImage", "Please select a valid image file (JPG, PNG, GIF)");
+                        var existingStudentForView = await _context.Students.FindAsync(id);
+                        return View(existingStudentForView ?? student);
                     }
 
-                    _context.Update(student);
-                    await _context.SaveChangesAsync();
+                    // Validate file size (5MB max)
+                    if (ProfileImage.Length > 5 * 1024 * 1024)
+                    {
+                        ModelState.AddModelError("ProfileImage", "File size must be less than 5MB");
+                        var existingStudentForView = await _context.Students.FindAsync(id);
+                        return View(existingStudentForView ?? student);
+                    }
+
+                    // Delete old image if exists
+                    if (!string.IsNullOrEmpty(existingStudent.ProfilePicture))
+                    {
+                        string oldFilePath = Path.Combine(_hostEnvironment.WebRootPath, existingStudent.ProfilePicture.TrimStart('/'));
+                        if (System.IO.File.Exists(oldFilePath))
+                        {
+                            System.IO.File.Delete(oldFilePath);
+                        }
+                    }
+
+                    // Save new image
+                    string wwwRootPath = _hostEnvironment.WebRootPath;
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(ProfileImage.FileName);
+                    string path = Path.Combine(wwwRootPath + "/images/", fileName);
+
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await ProfileImage.CopyToAsync(fileStream);
+                    }
+
+                    existingStudent.ProfilePicture = "/images/" + fileName;
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!StudentExists(student.StudentId)) return NotFound();
-                    else throw;
-                }
-                return RedirectToAction(nameof(Index));
+
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Student updated successfully!";
             }
-            return View(student);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!StudentExists(student.StudentId)) 
+                {
+                    TempData["ErrorMessage"] = "Student not found or has been deleted.";
+                    return RedirectToAction(nameof(Index));
+                }
+                else 
+                {
+                    TempData["ErrorMessage"] = "The student was modified by another user. Please refresh and try again.";
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Students/Delete/5
@@ -165,6 +238,7 @@ namespace StudentManagementSystem.Controllers
 
                 _context.Students.Remove(student);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Student deleted successfully!";
             }
 
             return RedirectToAction(nameof(Index));

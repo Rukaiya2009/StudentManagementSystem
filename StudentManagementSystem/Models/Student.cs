@@ -11,12 +11,6 @@ namespace StudentManagementSystem.Models
         [Required, StringLength(100)]
         public string FullName { get; set; } = string.Empty;
 
-        [Required, StringLength(50)]
-        public string FirstName { get; set; } = string.Empty;
-
-        [Required, StringLength(50)]
-        public string LastName { get; set; } = string.Empty;
-
         [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
 
@@ -27,8 +21,6 @@ namespace StudentManagementSystem.Models
         public string? Email { get; set; }
 
         public string Phone { get; set; } = string.Empty;
-
-        public string PhoneNumber { get; set; } = string.Empty;
 
         public string? Address { get; set; }
 
