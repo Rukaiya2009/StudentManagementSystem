@@ -54,6 +54,7 @@ namespace StudentManagementSystem.Controllers
         {
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
             ViewData["TeacherId"] = new SelectList(_context.Teachers, "TeacherId", "Name");
+            ViewBag.CourseLevelList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<CourseLevel>();
             return View();
         }
 
@@ -61,7 +62,7 @@ namespace StudentManagementSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Teacher")] // Only Admin and Teacher can create
-        public async Task<IActionResult> Create([Bind("CourseId,CourseName,Credit,DepartmentId,TeacherId")] Course course)
+        public async Task<IActionResult> Create([Bind("CourseId,CourseName,Credit,DepartmentId,TeacherId,Level")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -72,6 +73,7 @@ namespace StudentManagementSystem.Controllers
             }
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", course.DepartmentId);
             ViewData["TeacherId"] = new SelectList(_context.Teachers, "TeacherId", "Name", course.TeacherId);
+            ViewBag.CourseLevelList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<CourseLevel>();
             return View(course);
         }
 
@@ -91,6 +93,7 @@ namespace StudentManagementSystem.Controllers
             }
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", course.DepartmentId);
             ViewData["TeacherId"] = new SelectList(_context.Teachers, "TeacherId", "Name", course.TeacherId);
+            ViewBag.CourseLevelList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<CourseLevel>();
             return View(course);
         }
 
@@ -98,7 +101,7 @@ namespace StudentManagementSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Teacher")] // Only Admin and Teacher can edit
-        public async Task<IActionResult> Edit(int id, [Bind("CourseId,CourseName,Credit,DepartmentId,TeacherId")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("CourseId,CourseName,Credit,DepartmentId,TeacherId,Level")] Course course)
         {
             if (id != course.CourseId)
             {
@@ -120,6 +123,7 @@ namespace StudentManagementSystem.Controllers
                     existingCourse.Credit = course.Credit;
                     existingCourse.DepartmentId = course.DepartmentId;
                     existingCourse.TeacherId = course.TeacherId;
+                    existingCourse.Level = course.Level;
 
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Course updated successfully!";
@@ -144,6 +148,7 @@ namespace StudentManagementSystem.Controllers
             var existingCourseForView = await _context.Courses.FindAsync(id);
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", existingCourseForView?.DepartmentId ?? course.DepartmentId);
             ViewData["TeacherId"] = new SelectList(_context.Teachers, "TeacherId", "Name", existingCourseForView?.TeacherId ?? course.TeacherId);
+            ViewBag.CourseLevelList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<CourseLevel>();
             return View(existingCourseForView ?? course);
         }
 

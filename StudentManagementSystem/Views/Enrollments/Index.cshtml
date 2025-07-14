@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<StudentManagementSystem.Models.Enrollment>
+@using StudentManagementSystem.Models
 
 @{
     ViewData["Title"] = "Index";
@@ -9,6 +10,21 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form asp-action="Index" method="get" class="mb-3 d-flex gap-2 align-items-center">
+    <select name="statusFilter" asp-items="ViewBag.StatusList" class="form-select w-auto">
+        <option value="">-- All Statuses --</option>
+    </select>
+    <select name="courseId" asp-items="ViewBag.Courses" class="form-select w-auto">
+        <option value="">All Courses</option>
+    </select>
+    <select name="studentId" asp-items="ViewBag.Students" class="form-select w-auto">
+        <option value="">All Students</option>
+    </select>
+    <button type="submit" class="btn btn-primary">
+        <i class="bi bi-filter-circle"></i> Filter
+    </button>
+    <a asp-action="Index" class="btn btn-secondary">Reset</a>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -20,6 +36,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
             </th>
             <th></th>
         </tr>
@@ -37,11 +56,36 @@
                 @Html.DisplayFor(modelItem => item.Grade)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EnrollmentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EnrollmentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EnrollmentId">Delete</a>
+                <span class="badge bg-@GetStatusColor(item.Status)">
+                    @EnumHelper.GetDisplayName(item.Status)
+                </span>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.EnrollmentId" class="btn btn-sm btn-outline-info" title="Details">
+                    <i class="bi bi-eye"></i>
+                </a>
+                <a asp-action="Edit" asp-route-id="@item.EnrollmentId" class="btn btn-sm btn-outline-warning" title="Edit">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.EnrollmentId" class="btn btn-sm btn-outline-danger" title="Delete">
+                    <i class="bi bi-trash"></i>
+                </a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@functions {
+    public string GetStatusColor(StudentManagementSystem.Models.EnrollmentStatus status)
+    {
+        return status switch
+        {
+            EnrollmentStatus.Pending => "warning",
+            EnrollmentStatus.Active => "success",
+            EnrollmentStatus.Completed => "secondary",
+            EnrollmentStatus.Dropped => "danger",
+            _ => "light"
+        };
+    }
+}

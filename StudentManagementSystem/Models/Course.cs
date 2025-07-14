@@ -17,6 +17,8 @@ namespace StudentManagementSystem.Models
 
         public int Credits { get; set; }
 
+        public CourseLevel Level { get; set; } = CourseLevel.Beginner;
+
         public int DepartmentId { get; set; }
         public Department Department { get; set; } = new();
 

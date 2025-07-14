@@ -4,24 +4,28 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Teachers</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="fa-solid fa-plus me-2"></i>Create New Teacher
+    </a>
 </p>
-<table class="table">
+<table class="table table-hover table-striped align-middle">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                <i class="fa-solid fa-user me-2"></i>Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                <i class="fa-solid fa-envelope me-2"></i>Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DepartmentName)
+                <i class="fa-solid fa-building me-2"></i>Department
             </th>
-            <th></th>
+            <th>
+                <i class="fa-solid fa-cogs me-2"></i>Actions
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -37,11 +41,34 @@
                 @Html.DisplayFor(modelItem => item.DepartmentName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.TeacherId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TeacherId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TeacherId">Delete</a>
+                <div class="btn-group" role="group">
+                    <a asp-action="Edit" asp-route-id="@item.TeacherId" class="btn btn-sm btn-outline-primary" title="Edit @item.Name" aria-label="Edit @item.Name">
+                        <i class="fa-solid fa-edit"></i>
+                    </a>
+                    <a asp-action="Details" asp-route-id="@item.TeacherId" class="btn btn-sm btn-outline-info" title="View details of @item.Name" aria-label="View details of @item.Name">
+                        <i class="fa-solid fa-eye"></i>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.TeacherId" class="btn btn-sm btn-outline-danger" title="Delete @item.Name" aria-label="Delete @item.Name">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </div>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<style>
+    .btn-group .btn {
+        transition: all 0.2s ease-in-out;
+    }
+    
+    .btn-group .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .table tbody tr:hover {
+        background-color: rgba(0,123,255,0.05) !important;
+    }
+</style>

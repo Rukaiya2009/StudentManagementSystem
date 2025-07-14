@@ -14,18 +14,20 @@
 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Teacher")))  
 {  
     <p>  
-        <a asp-action="Create" class="btn btn-primary">Create New</a>  
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fa-solid fa-plus me-2"></i>Create New Course
+        </a>  
     </p>  
 }  
 
-<table class="table">  
+<table class="table table-hover table-striped align-middle">  
     <thead>  
         <tr>  
-            <th>@Html.DisplayNameFor(model => model.CourseName)</th>  
-            <th>@Html.DisplayNameFor(model => model.Credit)</th>  
-            <th>@Html.DisplayNameFor(model => model.Department.DepartmentName)</th>  
-            <th>@Html.DisplayNameFor(model => model.Teacher.Name)</th>  
-            <th></th>  
+            <th><i class="fa-solid fa-book me-2"></i>Course Name</th>  
+            <th><i class="fa-solid fa-star me-2"></i>Credit</th>  
+            <th><i class="fa-solid fa-building me-2"></i>Department</th>  
+            <th><i class="fa-solid fa-user-tie me-2"></i>Teacher</th>  
+            <th><i class="fa-solid fa-cogs me-2"></i>Actions</th>  
         </tr>  
     </thead>  
     <tbody>  
@@ -37,16 +39,37 @@
                 <td>@Html.DisplayFor(modelItem => item.Department.DepartmentName)</td>  
                 <td>@Html.DisplayFor(modelItem => item.Teacher.Name)</td>  
                 <td>  
-                    <a asp-action="Details" asp-route-id="@item.CourseId">Details</a>  
-                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Teacher")))  
-                    {  
-                        <span> | </span>  
-                        <a asp-action="Edit" asp-route-id="@item.CourseId">Edit</a>  
-                        <span> | </span>  
-                        <a asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>  
-                    }  
+                    <div class="btn-group" role="group">
+                        <a asp-action="Details" asp-route-id="@item.CourseId" class="btn btn-sm btn-outline-info" title="View details of @item.CourseName" aria-label="View details of @item.CourseName">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Teacher")))  
+                        {  
+                            <a asp-action="Edit" asp-route-id="@item.CourseId" class="btn btn-sm btn-outline-primary" title="Edit @item.CourseName" aria-label="Edit @item.CourseName">
+                                <i class="fa-solid fa-edit"></i>
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.CourseId" class="btn btn-sm btn-outline-danger" title="Delete @item.CourseName" aria-label="Delete @item.CourseName">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        }  
+                    </div>
                 </td>  
             </tr>  
         }  
     </tbody>  
 </table>
+
+<style>
+    .btn-group .btn {
+        transition: all 0.2s ease-in-out;
+    }
+    
+    .btn-group .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .table tbody tr:hover {
+        background-color: rgba(0,123,255,0.05) !important;
+    }
+</style>

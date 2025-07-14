@@ -4,36 +4,40 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Students</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="fas fa-plus me-2"></i>Create New Student
+    </a>
 </p>
-<table class="table">
+<table class="table table-hover table-striped align-middle">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FullName)
+                <i class="fas fa-user me-2"></i>Full Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateOfBirth)
+                <i class="fas fa-calendar me-2"></i>Date of Birth
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gender)
+                <i class="fas fa-venus-mars me-2"></i>Gender
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                <i class="fas fa-envelope me-2"></i>Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Phone)
+                <i class="fas fa-phone me-2"></i>Phone
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                <i class="fas fa-map-marker-alt me-2"></i>Address
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProfilePicture)
+                <i class="fas fa-image me-2"></i>Profile Picture
             </th>
-            <th></th>
+            <th>
+                <i class="fas fa-cogs me-2"></i>Actions
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -47,7 +51,7 @@
                     @Html.DisplayFor(modelItem => item.DateOfBirth)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Gender)
+                    @EnumHelper.GetDisplayName(item.Gender)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
@@ -59,13 +63,64 @@
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td>
-                    <img src="~/images/@item.ProfilePicture" width="80" height="80" class="img-thumbnail" />
+                    <div class="d-flex align-items-center">
+                        @if (!string.IsNullOrEmpty(item.ProfilePicture))
+                        {
+                            <img src="@Url.Content(item.ProfilePicture)"
+                                 alt="Profile picture of @item.FullName"
+                                 class="rounded-circle profile-img"
+                                 style="width: 50px; height: 50px; object-fit: cover; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border: 2px solid #fff;"
+                                 title="Profile picture of @item.FullName" />
+                        }
+                        else
+                        {
+                            <div class="rounded-circle d-flex align-items-center justify-content-center text-muted profile-placeholder"
+                                 style="width: 50px; height: 50px; background-color: #f8f9fa; border: 2px solid #dee2e6;"
+                                 title="No profile picture available for @item.FullName">
+                                <i class="fa-solid fa-user" style="font-size: 20px;"></i>
+                            </div>
+                        }
+                    </div>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+                    <div class="btn-group" role="group">
+                        <a asp-action="Edit" asp-route-id="@item.StudentId" class="btn btn-sm btn-outline-primary" title="Edit @item.FullName" aria-label="Edit @item.FullName">
+                            <i class="fa-solid fa-edit"></i>
+                        </a>
+                        <a asp-action="Details" asp-route-id="@item.StudentId" class="btn btn-sm btn-outline-info" title="View details of @item.FullName" aria-label="View details of @item.FullName">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.StudentId" class="btn btn-sm btn-outline-danger" title="Delete @item.FullName" aria-label="Delete @item.FullName">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
                 </td>
             </tr>
         }
 </table>
+
+<style>
+    .btn-group .btn {
+        transition: all 0.2s ease-in-out;
+    }
+    
+    .btn-group .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .table tbody tr:hover {
+        background-color: rgba(0,123,255,0.05) !important;
+    }
+    
+    .profile-img,
+    .profile-placeholder {
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+    }
+    
+    .profile-img:hover,
+    .profile-placeholder:hover {
+        transform: scale(1.1);
+    }
+</style>

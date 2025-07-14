@@ -15,7 +15,7 @@ namespace StudentManagementSystem.Models
         public DateTime? DateOfBirth { get; set; }
 
         [Required]
-        public string Gender { get; set; } = string.Empty;
+        public Gender Gender { get; set; } = Gender.Male;
 
         [EmailAddress]
         public string? Email { get; set; }

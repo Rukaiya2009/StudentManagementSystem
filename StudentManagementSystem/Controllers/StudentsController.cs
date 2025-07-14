@@ -27,7 +27,15 @@ namespace StudentManagementSystem.Controllers
         [Authorize(Roles = "Admin,Teacher")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Students.ToListAsync());
+            var students = await _context.Students.AsNoTracking().ToListAsync();
+            
+            // Debug: Log what we're loading from DB
+            foreach (var s in students)
+            {
+                System.Diagnostics.Debug.WriteLine($"Index Load - StudentId: {s.StudentId}, Name: {s.FullName}, Gender: '{s.Gender}'");
+            }
+            
+            return View(students);
         }
 
         // GET: Students/Details/5
@@ -104,6 +112,7 @@ namespace StudentManagementSystem.Controllers
             var student = await _context.Students.FindAsync(id);
             if (student == null) return NotFound();
 
+            ViewBag.GenderList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<Gender>();
             return View(student);
         }
 
@@ -111,11 +120,9 @@ namespace StudentManagementSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Teacher")]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FullName,DateOfBirth,Gender,Email,Phone,Address")] Student student, IFormFile ProfileImage)
+        public async Task<IActionResult> Edit(int id, Student student, IFormFile ProfileImage)
         {
             if (id != student.StudentId) return NotFound();
-
-
 
             if (!ModelState.IsValid)
             {
@@ -127,8 +134,24 @@ namespace StudentManagementSystem.Controllers
                 
                 // Return the existing student from database to maintain state
                 var existingStudentForView = await _context.Students.FindAsync(id);
+                ViewBag.GenderList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<Gender>();
                 return View(existingStudentForView ?? student);
             }
+
+            // Debug: Log received values
+            System.Diagnostics.Debug.WriteLine($"Received Student Data:");
+            System.Diagnostics.Debug.WriteLine($"StudentId: {student.StudentId}");
+            System.Diagnostics.Debug.WriteLine($"FullName: {student.FullName}");
+            System.Diagnostics.Debug.WriteLine($"Email: {student.Email}");
+            System.Diagnostics.Debug.WriteLine($"Phone: {student.Phone}");
+            System.Diagnostics.Debug.WriteLine($"Address: {student.Address}");
+            System.Diagnostics.Debug.WriteLine($"Gender: '{student.Gender}'");
+            System.Diagnostics.Debug.WriteLine($"DateOfBirth: {student.DateOfBirth}");
+            
+            // Also log to console for easier debugging
+            Console.WriteLine($"DEBUG: Gender received: '{student.Gender}'");
+            Console.WriteLine($"DEBUG: ModelState Gender: '{ModelState["Gender"]?.AttemptedValue}'");
+            Console.WriteLine($"DEBUG: Request Form Gender: '{Request.Form["Gender"]}'");
 
             // Validate that we received the student data
             if (student == null)
@@ -137,22 +160,26 @@ namespace StudentManagementSystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-
-
             try
             {
                 var existingStudent = await _context.Students.FindAsync(id);
                 if (existingStudent == null) return NotFound();
 
-                // Update fields manually on the tracked entity
-                existingStudent.FullName = student.FullName;
+                // 🔍 Log the incoming vs existing gender value
+                System.Diagnostics.Debug.WriteLine($"Incoming Gender: '{student.Gender}'");
+                System.Diagnostics.Debug.WriteLine($"Existing Gender: '{existingStudent.Gender}'");
+
+                // Update fields directly - let EF Core handle the change detection
+                existingStudent.FullName = student.FullName?.Trim() ?? existingStudent.FullName;
                 existingStudent.DateOfBirth = student.DateOfBirth;
                 existingStudent.Gender = student.Gender;
-                existingStudent.Email = student.Email;
-                existingStudent.Phone = student.Phone;
-                existingStudent.Address = student.Address;
+                existingStudent.Email = student.Email?.Trim();
+                existingStudent.Phone = student.Phone?.Trim() ?? existingStudent.Phone;
+                existingStudent.Address = student.Address?.Trim();
 
-
+                // Debug: Log what we just did
+                System.Diagnostics.Debug.WriteLine($"✅ PROPER EF UPDATE - StudentId: {existingStudent.StudentId}, Gender: '{existingStudent.Gender}'");
+                Console.WriteLine($"DEBUG: After update - FullName: '{existingStudent.FullName}', Gender: '{existingStudent.Gender}'");
 
                 // Handle image upload
                 if (ProfileImage != null)
@@ -197,7 +224,17 @@ namespace StudentManagementSystem.Controllers
                     existingStudent.ProfilePicture = "/images/" + fileName;
                 }
 
+                // Save all changes using proper EF Core
                 await _context.SaveChangesAsync();
+                
+                // Debug: Log what was actually saved
+                System.Diagnostics.Debug.WriteLine($"✅ SAVED TO DB - StudentId: {existingStudent.StudentId}, Gender: '{existingStudent.Gender}'");
+                Console.WriteLine($"DEBUG: Gender saved to DB: '{existingStudent.Gender}'");
+                
+                // Verify by reloading from database
+                var verificationStudent = await _context.Students.FindAsync(id);
+                Console.WriteLine($"DEBUG: Gender after reload from DB: '{verificationStudent?.Gender}'");
+                
                 TempData["SuccessMessage"] = "Student updated successfully!";
             }
             catch (DbUpdateConcurrencyException)

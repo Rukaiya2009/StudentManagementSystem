@@ -15,6 +15,11 @@ namespace StudentManagementSystem.Models
         [StringLength(10)]
         public string Grade { get; set; } = string.Empty; // A, B, etc.
 
+        public EnrollmentStatus Status { get; set; } = EnrollmentStatus.Active;
+
         public DateTime EnrollmentDate { get; set; } = DateTime.Now;
+
+        [Required]
+        public Gender Gender { get; set; } = Gender.Male;
     }
 }
