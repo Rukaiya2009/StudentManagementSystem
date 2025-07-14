@@ -8,6 +8,7 @@ using StudentManagementSystem.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace StudentManagementSystem.Controllers
 {
@@ -122,6 +123,7 @@ namespace StudentManagementSystem.Controllers
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName");
             ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName");
             ViewBag.StatusList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<EnrollmentStatus>();
+            ViewBag.GradeList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<Grading>();
             return View();
         }
 
@@ -157,6 +159,7 @@ namespace StudentManagementSystem.Controllers
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName", enrollment.CourseId);
             ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", enrollment.StudentId);
             ViewBag.StatusList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<EnrollmentStatus>();
+            ViewBag.GradeList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<Grading>();
             return View(enrollment);
         }
 
@@ -217,7 +220,6 @@ namespace StudentManagementSystem.Controllers
                 .Include(e => e.Course)
                 .Include(e => e.Student)
                 .FirstOrDefaultAsync(m => m.EnrollmentId == id);
-
             if (enrollment == null) return NotFound();
 
             return View(enrollment);
@@ -232,9 +234,28 @@ namespace StudentManagementSystem.Controllers
             var enrollment = await _context.Enrollments.FindAsync(id);
             if (enrollment != null)
             {
+                TempData["DeletedEnrollment"] = System.Text.Json.JsonSerializer.Serialize(enrollment);
                 _context.Enrollments.Remove(enrollment);
                 await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "Enrollment deleted successfully!";
+                TempData["ShowUndo"] = true;
+                TempData["SuccessMessage"] = $"Enrollment deleted. <button class='btn btn-link p-0 m-0 align-baseline' onclick=\"undoDeleteEnrollment()\">Undo</button>";
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin,Teacher")]
+        public async Task<IActionResult> UndoDelete()
+        {
+            if (TempData["DeletedEnrollment"] is string json && !string.IsNullOrEmpty(json))
+            {
+                var enrollment = System.Text.Json.JsonSerializer.Deserialize<Enrollment>(json);
+                if (enrollment != null)
+                {
+                    _context.Enrollments.Add(enrollment);
+                    await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = $"Enrollment restored.";
+                }
             }
             return RedirectToAction(nameof(Index));
         }

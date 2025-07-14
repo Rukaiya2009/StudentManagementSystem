@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Grade" class="control-label"></label>
-                <input asp-for="Grade" class="form-control" />
+                @Html.DropDownListFor(model => model.Grade, (List<SelectListItem>)ViewBag.GradeList, "-- Select Grade --", new { @class = "form-control" })
                 <span asp-validation-for="Grade" class="text-danger"></span>
             </div>
             <div class="form-group">

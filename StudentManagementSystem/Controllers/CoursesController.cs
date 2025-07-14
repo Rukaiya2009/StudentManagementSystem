@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace StudentManagementSystem.Controllers
 {
@@ -176,17 +177,35 @@ namespace StudentManagementSystem.Controllers
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Teacher")] // Only Admin and Teacher can delete
+        [Authorize(Roles = "Admin,Teacher")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var course = await _context.Courses.FindAsync(id);
             if (course != null)
             {
+                TempData["DeletedCourse"] = System.Text.Json.JsonSerializer.Serialize(course);
                 _context.Courses.Remove(course);
                 await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "Course deleted successfully!";
+                TempData["ShowUndo"] = true;
+                TempData["SuccessMessage"] = $"Course '{course.CourseName}' deleted. <button class='btn btn-link p-0 m-0 align-baseline' onclick=\"undoDeleteCourse()\">Undo</button>";
             }
+            return RedirectToAction(nameof(Index));
+        }
 
+        [HttpPost]
+        [Authorize(Roles = "Admin,Teacher")]
+        public async Task<IActionResult> UndoDelete()
+        {
+            if (TempData["DeletedCourse"] is string json && !string.IsNullOrEmpty(json))
+            {
+                var course = System.Text.Json.JsonSerializer.Deserialize<Course>(json);
+                if (course != null)
+                {
+                    _context.Courses.Add(course);
+                    await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = $"Course '{course.CourseName}' restored.";
+                }
+            }
             return RedirectToAction(nameof(Index));
         }
 

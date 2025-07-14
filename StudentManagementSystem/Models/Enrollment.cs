@@ -2,6 +2,15 @@
 
 namespace StudentManagementSystem.Models
 {
+    public enum Grading
+    {
+        APlus, A, AMinus,
+        BPlus, B, BMinus,
+        CPlus, C, CMinus,
+        DPlus, D, DMinus,
+        F
+    }
+
     public class Enrollment
     {
         public int EnrollmentId { get; set; }
@@ -12,14 +21,11 @@ namespace StudentManagementSystem.Models
         public int CourseId { get; set; }
         public Course Course { get; set; } = new();
 
-        [StringLength(10)]
-        public string Grade { get; set; } = string.Empty; // A, B, etc.
+        [Required]
+        public Grading? Grade { get; set; } = null;
 
         public EnrollmentStatus Status { get; set; } = EnrollmentStatus.Active;
 
         public DateTime EnrollmentDate { get; set; } = DateTime.Now;
-
-        [Required]
-        public Gender Gender { get; set; } = Gender.Male;
     }
 }

@@ -158,11 +158,28 @@ namespace StudentManagementSystem.Controllers
             var teacher = await _context.Teachers.FindAsync(id);
             if (teacher != null)
             {
+                TempData["DeletedTeacher"] = System.Text.Json.JsonSerializer.Serialize(teacher);
                 _context.Teachers.Remove(teacher);
                 await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "Teacher deleted successfully!";
+                TempData["ShowUndo"] = true;
+                TempData["SuccessMessage"] = $"Teacher '{teacher.Name}' deleted. <button class='btn btn-link p-0 m-0 align-baseline' onclick=\"undoDeleteTeacher()\">Undo</button>";
             }
+            return RedirectToAction(nameof(Index));
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> UndoDelete()
+        {
+            if (TempData["DeletedTeacher"] is string json && !string.IsNullOrEmpty(json))
+            {
+                var teacher = System.Text.Json.JsonSerializer.Deserialize<Teacher>(json);
+                if (teacher != null)
+                {
+                    _context.Teachers.Add(teacher);
+                    await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = $"Teacher '{teacher.Name}' restored.";
+                }
+            }
             return RedirectToAction(nameof(Index));
         }
 

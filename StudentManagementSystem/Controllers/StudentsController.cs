@@ -8,6 +8,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace StudentManagementSystem.Controllers
 {
@@ -273,24 +274,32 @@ namespace StudentManagementSystem.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var student = await _context.Students.FindAsync(id);
-
             if (student != null)
             {
-                // Delete image file from wwwroot if exists
-                if (!string.IsNullOrEmpty(student.ProfilePicture))
-                {
-                    string filePath = Path.Combine(_hostEnvironment.WebRootPath, student.ProfilePicture.TrimStart('/'));
-                    if (System.IO.File.Exists(filePath))
-                    {
-                        System.IO.File.Delete(filePath);
-                    }
-                }
-
+                // Store student in TempData for undo (serialize as JSON)
+                TempData["DeletedStudent"] = System.Text.Json.JsonSerializer.Serialize(student);
                 _context.Students.Remove(student);
                 await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "Student deleted successfully!";
+                TempData["ShowUndo"] = true;
+                TempData["SuccessMessage"] = $"Student '{student.FullName}' deleted. <button class='btn btn-link p-0 m-0 align-baseline' onclick=\"undoDeleteStudent()\">Undo</button>";
             }
+            return RedirectToAction(nameof(Index));
+        }
 
+        [HttpPost]
+        [Authorize(Roles = "Admin,Teacher")]
+        public async Task<IActionResult> UndoDelete()
+        {
+            if (TempData["DeletedStudent"] is string json && !string.IsNullOrEmpty(json))
+            {
+                var student = System.Text.Json.JsonSerializer.Deserialize<Student>(json);
+                if (student != null)
+                {
+                    _context.Students.Add(student);
+                    await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = $"Student '{student.FullName}' restored.";
+                }
+            }
             return RedirectToAction(nameof(Index));
         }
 
