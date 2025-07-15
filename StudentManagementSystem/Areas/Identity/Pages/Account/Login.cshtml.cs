@@ -96,7 +96,7 @@ namespace StudentManagementSystem.Areas.Identity.Pages.Account
                     }
                     else if (roles.Contains("Student"))
                     {
-                        return LocalRedirect("/Students/Index");
+                        return LocalRedirect("/StudentDashboard/Index");
                     }
                     else
                     {

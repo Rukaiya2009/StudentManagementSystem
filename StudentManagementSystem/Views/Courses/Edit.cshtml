@@ -19,6 +19,11 @@
                 <span asp-validation-for="CourseName" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Level" class="control-label"></label>
+                @Html.DropDownListFor(model => model.Level, (List<SelectListItem>)ViewBag.CourseLevelList, "-- Select Level --", new { @class = "form-control" })
+                <span asp-validation-for="Level" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Credit" class="control-label"></label>
                 <input asp-for="Credit" class="form-control" />
                 <span asp-validation-for="Credit" class="text-danger"></span>

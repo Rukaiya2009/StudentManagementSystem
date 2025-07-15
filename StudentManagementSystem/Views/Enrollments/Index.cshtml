@@ -1,47 +1,80 @@
 ﻿@model IEnumerable<StudentManagementSystem.Models.Enrollment>
-
+@using Microsoft.AspNetCore.Mvc.Rendering
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Enrollments";
 }
 
-<h1>Index</h1>
+<h2>Enrollments</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<form method="get" class="row g-3 mb-3">
+    <div class="col-md-4">
+        <label for="studentId" class="form-label">Filter by Student:</label>
+        <select name="studentId" class="form-select" asp-items="ViewBag.Students">
+            <option value="">All Students</option>
+        </select>
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary me-2">
+            <i class="fa fa-filter"></i> Filter
+        </button>
+        <a href="/Enrollments" class="btn btn-secondary">
+            <i class="fa fa-times"></i> Clear
+        </a>
+    </div>
+</form>
+
+<table class="table table-hover shadow rounded border">
+    <thead class="table-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Student)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Course)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Grade)
-            </th>
-            <th></th>
+            <th>Student</th>
+            <th>Course</th>
+            <th>Enrollment Date</th>
+            <th>Grade</th>
+            <th>Status</th>
+            <th class="text-end">Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
+            <td>@item.Student?.FullName</td>
+            <td>@item.Course?.CourseName</td>
+            <td>@item.EnrollmentDate.ToString("yyyy-MM-dd")</td>
+            <td>@EnumHelper.GetDisplayName(item.Grade)</td>
             <td>
-                @Html.DisplayFor(modelItem => item.Student.FullName)
+                <span class="badge bg-@GetStatusColor(item.Status)">@EnumHelper.GetDisplayName(item.Status)</span>
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Course.CourseName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Grade)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EnrollmentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EnrollmentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EnrollmentId">Delete</a>
+            <td class="text-end">
+                <a asp-action="Details" asp-route-id="@item.EnrollmentId" class="btn btn-sm btn-info me-1" title="Details">
+                    <i class="fa fa-eye"></i>
+                </a>
+                <a asp-action="Edit" asp-route-id="@item.EnrollmentId" class="btn btn-sm btn-warning me-1" title="Edit">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.EnrollmentId" class="btn btn-sm btn-danger" title="Delete">
+                    <i class="fa fa-trash"></i>
+                </a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
+
+@functions {
+    public string GetStatusColor(StudentManagementSystem.Models.EnrollmentStatus status)
+    {
+        return status switch
+        {
+            EnrollmentStatus.Pending => "warning",
+            EnrollmentStatus.Active => "success",
+            EnrollmentStatus.Completed => "secondary",
+            EnrollmentStatus.Dropped => "danger",
+            _ => "light"
+        };
+    }
+}
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

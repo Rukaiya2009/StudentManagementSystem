@@ -1,4 +1,6 @@
 ﻿@model StudentManagementSystem.Models.Student
+@using StudentManagementSystem.Models
+
 
 @{
     ViewData["Title"] = "Edit";
@@ -8,6 +10,10 @@
 
 <h4>Student</h4>
 <hr />
+
+
+
+
 <div class="row">
     <div class="col-md-6">
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
@@ -28,12 +34,8 @@
 
             <div class="form-group">
                 <label asp-for="Gender" class="control-label"></label>
-                <select asp-for="Gender" class="form-control">
-                    <option value="">-- Select Gender --</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
-                </select>
+                @Html.DropDownListFor(model => model.Gender, (List<SelectListItem>)ViewBag.GenderList, "-- Select Gender --", new { @class = "form-control" })
+                <small class="form-text text-muted">Current: @StudentManagementSystem.Helpers.EnumHelper.GetDisplayName(Model.Gender)</small>
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
 
@@ -106,6 +108,20 @@
                     return;
                 }
             }
+        });
+        
+        // Debug form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const genderSelect = document.getElementById('Gender');
+            console.log('Form submitting with Gender value:', genderSelect.value);
+            console.log('Form data:', new FormData(this));
+        });
+        
+        // Debug form load
+        document.addEventListener('DOMContentLoaded', function() {
+            const genderSelect = document.getElementById('Gender');
+            console.log('Form loaded with Gender value:', genderSelect.value);
+            console.log('Available options:', Array.from(genderSelect.options).map(opt => opt.value));
         });
     </script>
 }

@@ -156,9 +156,27 @@ namespace StudentManagementSystem.Controllers
             var department = await _context.Departments.FindAsync(id);
             if (department != null)
             {
+                TempData["DeletedDepartment"] = System.Text.Json.JsonSerializer.Serialize(department);
                 _context.Departments.Remove(department);
                 await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "Department deleted successfully!";
+                TempData["ShowUndo"] = true;
+                TempData["SuccessMessage"] = $"Department '{department.DepartmentName}' deleted. <button class='btn btn-link p-0 m-0 align-baseline' onclick=\"undoDeleteDepartment()\">Undo</button>";
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UndoDelete()
+        {
+            if (TempData["DeletedDepartment"] is string json && !string.IsNullOrEmpty(json))
+            {
+                var department = System.Text.Json.JsonSerializer.Deserialize<Department>(json);
+                if (department != null)
+                {
+                    _context.Departments.Add(department);
+                    await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = $"Department '{department.DepartmentName}' restored.";
+                }
             }
             return RedirectToAction(nameof(Index));
         }

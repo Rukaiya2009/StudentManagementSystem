@@ -8,6 +8,7 @@ using StudentManagementSystem.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace StudentManagementSystem.Controllers
 {
@@ -36,7 +37,7 @@ namespace StudentManagementSystem.Controllers
         }
 
         // GET: Enrollments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(EnrollmentStatus? statusFilter, int? courseId, int? studentId)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -60,6 +61,28 @@ namespace StudentManagementSystem.Controllers
 
                 enrollments = enrollments.Where(e => e.StudentId == student.StudentId);
             }
+
+            // Filtering by status
+            if (statusFilter.HasValue)
+            {
+                enrollments = enrollments.Where(e => e.Status == statusFilter.Value);
+            }
+            // Filtering by course
+            if (courseId.HasValue)
+            {
+                enrollments = enrollments.Where(e => e.CourseId == courseId.Value);
+            }
+            // Filtering by student
+            if (studentId.HasValue)
+            {
+                enrollments = enrollments.Where(e => e.StudentId == studentId.Value);
+            }
+
+            ViewBag.StatusList = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(
+                StudentManagementSystem.Helpers.EnumHelper.ToSelectList<EnrollmentStatus>(), "Value", "Text", statusFilter?.ToString());
+            ViewBag.CurrentStatus = statusFilter;
+            ViewBag.Courses = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(await _context.Courses.ToListAsync(), "CourseId", "CourseName", courseId);
+            ViewBag.Students = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(await _context.Students.ToListAsync(), "StudentId", "FullName", studentId);
 
             return View(await enrollments.ToListAsync());
         }
@@ -99,6 +122,8 @@ namespace StudentManagementSystem.Controllers
         {
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName");
             ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName");
+            ViewBag.StatusList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<EnrollmentStatus>();
+            ViewBag.GradeList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<Grading>();
             return View();
         }
 
@@ -106,7 +131,7 @@ namespace StudentManagementSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Teacher")]
-        public async Task<IActionResult> Create([Bind("EnrollmentId,StudentId,CourseId,Grade")] Enrollment enrollment)
+        public async Task<IActionResult> Create([Bind("EnrollmentId,StudentId,CourseId,Grade,Status")] Enrollment enrollment)
         {
             if (ModelState.IsValid)
             {
@@ -118,6 +143,7 @@ namespace StudentManagementSystem.Controllers
 
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName", enrollment.CourseId);
             ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", enrollment.StudentId);
+            ViewBag.StatusList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<EnrollmentStatus>();
             return View(enrollment);
         }
 
@@ -132,6 +158,8 @@ namespace StudentManagementSystem.Controllers
 
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName", enrollment.CourseId);
             ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", enrollment.StudentId);
+            ViewBag.StatusList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<EnrollmentStatus>();
+            ViewBag.GradeList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<Grading>();
             return View(enrollment);
         }
 
@@ -139,7 +167,7 @@ namespace StudentManagementSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Teacher")]
-        public async Task<IActionResult> Edit(int id, [Bind("EnrollmentId,StudentId,CourseId,Grade")] Enrollment enrollment)
+        public async Task<IActionResult> Edit(int id, [Bind("EnrollmentId,StudentId,CourseId,Grade,Status")] Enrollment enrollment)
         {
             if (id != enrollment.EnrollmentId) return NotFound();
 
@@ -156,6 +184,7 @@ namespace StudentManagementSystem.Controllers
                     existingEnrollment.StudentId = enrollment.StudentId;
                     existingEnrollment.CourseId = enrollment.CourseId;
                     existingEnrollment.Grade = enrollment.Grade;
+                    existingEnrollment.Status = enrollment.Status;
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Enrollment updated successfully!";
                 }
@@ -177,6 +206,7 @@ namespace StudentManagementSystem.Controllers
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName", enrollment.CourseId);
             ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", enrollment.StudentId);
             var existingEnrollmentForView = await _context.Enrollments.FindAsync(id);
+            ViewBag.StatusList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<EnrollmentStatus>();
             return View(existingEnrollmentForView ?? enrollment);
         }
 
@@ -190,7 +220,6 @@ namespace StudentManagementSystem.Controllers
                 .Include(e => e.Course)
                 .Include(e => e.Student)
                 .FirstOrDefaultAsync(m => m.EnrollmentId == id);
-
             if (enrollment == null) return NotFound();
 
             return View(enrollment);
@@ -205,9 +234,28 @@ namespace StudentManagementSystem.Controllers
             var enrollment = await _context.Enrollments.FindAsync(id);
             if (enrollment != null)
             {
+                TempData["DeletedEnrollment"] = System.Text.Json.JsonSerializer.Serialize(enrollment);
                 _context.Enrollments.Remove(enrollment);
                 await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "Enrollment deleted successfully!";
+                TempData["ShowUndo"] = true;
+                TempData["SuccessMessage"] = $"Enrollment deleted. <button class='btn btn-link p-0 m-0 align-baseline' onclick=\"undoDeleteEnrollment()\">Undo</button>";
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin,Teacher")]
+        public async Task<IActionResult> UndoDelete()
+        {
+            if (TempData["DeletedEnrollment"] is string json && !string.IsNullOrEmpty(json))
+            {
+                var enrollment = System.Text.Json.JsonSerializer.Deserialize<Enrollment>(json);
+                if (enrollment != null)
+                {
+                    _context.Enrollments.Add(enrollment);
+                    await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = $"Enrollment restored.";
+                }
             }
             return RedirectToAction(nameof(Index));
         }

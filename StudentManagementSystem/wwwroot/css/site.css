@@ -121,3 +121,73 @@ body {
     font-size: 0.875rem;
   }
 }
+
+/* Dark mode styles */
+.dark-mode {
+  background-color: #181a1b !important;
+  color: #e0e0e0 !important;
+}
+.dark-mode .navbar, .dark-mode .navbar-nav, .dark-mode .navbar-brand, .dark-mode .nav-link {
+  background-color: #23272b !important;
+  color: #e0e0e0 !important;
+}
+.dark-mode .navbar .nav-link, .dark-mode .navbar .navbar-brand {
+  color: #e0e0e0 !important;
+}
+.dark-mode .navbar .nav-link.active, .dark-mode .navbar .nav-link:focus, .dark-mode .navbar .nav-link:hover {
+  color: #fff !important;
+}
+.dark-mode .bg-white, .dark-mode .bg-light, .dark-mode .container, .dark-mode .card, .dark-mode .modal-content {
+  background-color: #23272b !important;
+  color: #e0e0e0 !important;
+}
+.dark-mode .table {
+  background-color: #23272b !important;
+  color: #e0e0e0 !important;
+}
+.dark-mode .table thead th {
+  background-color: #181a1b !important;
+  color: #e0e0e0 !important;
+}
+.dark-mode .form-control, .dark-mode .form-select {
+  background-color: #23272b !important;
+  color: #e0e0e0 !important;
+  border-color: #444 !important;
+}
+.dark-mode .form-control:focus, .dark-mode .form-select:focus {
+  background-color: #23272b !important;
+  color: #fff !important;
+  border-color: #86b7fe !important;
+}
+.dark-mode .btn, .dark-mode .btn-primary, .dark-mode .btn-outline-secondary {
+  color: #e0e0e0 !important;
+}
+.dark-mode .footer, .dark-mode footer {
+  background-color: #23272b !important;
+  color: #e0e0e0 !important;
+}
+.dark-mode .alert {
+  background-color: #23272b !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #444 !important;
+}
+.dark-mode .badge.bg-success {
+  background-color: #198754 !important;
+  color: #fff !important;
+}
+.dark-mode .badge.bg-warning {
+  background-color: #ffc107 !important;
+  color: #23272b !important;
+}
+.dark-mode .badge.bg-secondary {
+  background-color: #6c757d !important;
+  color: #fff !important;
+}
+.dark-mode .badge.bg-danger {
+  background-color: #dc3545 !important;
+  color: #fff !important;
+}
+.dark-mode .modal-content {
+  background-color: #23272b !important;
+  color: #e0e0e0 !important;
+}

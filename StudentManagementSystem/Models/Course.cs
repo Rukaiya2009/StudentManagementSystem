@@ -3,6 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StudentManagementSystem.Models
 {
+    public enum CourseStatus
+    {
+        Free,
+        Paid
+    }
+
     public class Course
     {
         public int CourseId { get; set; }
@@ -17,11 +23,18 @@ namespace StudentManagementSystem.Models
 
         public int Credits { get; set; }
 
+        public CourseLevel Level { get; set; } = CourseLevel.Beginner;
+
         public int DepartmentId { get; set; }
         public Department Department { get; set; } = new();
 
         public int? TeacherId { get; set; }  // optional
         public Teacher Teacher { get; set; } = new();
+
+        [Required]
+        public CourseStatus Status { get; set; } = CourseStatus.Free;
+
+        public double Fee { get; set; } = 0.0;
 
         public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
     }
