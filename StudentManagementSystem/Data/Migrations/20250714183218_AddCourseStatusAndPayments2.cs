@@ -5,7 +5,7 @@
 namespace StudentManagementSystem.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class GradingEnumMigration : Migration
+    public partial class AddCourseStatusAndPayments2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -4,11 +4,28 @@ namespace StudentManagementSystem.Models
 {
     public enum Grading
     {
-        APlus, A, AMinus,
-        BPlus, B, BMinus,
-        CPlus, C, CMinus,
-        DPlus, D, DMinus,
-        F
+        [Display(Name = "A+")]
+        APlus = 1,
+        [Display(Name = "A")]
+        A = 2,
+        [Display(Name = "A-")]
+        AMinus = 3,
+        [Display(Name = "B+")]
+        BPlus = 4,
+        [Display(Name = "B")]
+        B = 5,
+        [Display(Name = "B-")]
+        BMinus = 6,
+        [Display(Name = "C+")]
+        CPlus = 7,
+        [Display(Name = "C")]
+        C = 8,
+        [Display(Name = "C-")]
+        CMinus = 9,
+        [Display(Name = "D")]
+        D = 10,
+        [Display(Name = "F")]
+        F = 11
     }
 
     public class Enrollment
@@ -22,7 +39,7 @@ namespace StudentManagementSystem.Models
         public Course Course { get; set; } = new();
 
         [Required]
-        public Grading? Grade { get; set; } = null;
+        public Grading Grade { get; set; }
 
         public EnrollmentStatus Status { get; set; } = EnrollmentStatus.Active;
 

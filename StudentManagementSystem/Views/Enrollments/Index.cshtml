@@ -1,89 +1,63 @@
 ﻿@model IEnumerable<StudentManagementSystem.Models.Enrollment>
-@using StudentManagementSystem.Models
-
+@using Microsoft.AspNetCore.Mvc.Rendering
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Enrollments";
 }
 
-<h1>Index</h1>
+<h2>Enrollments</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<form asp-action="Index" method="get" class="mb-3 d-flex gap-2 align-items-center">
-    <select name="statusFilter" asp-items="ViewBag.StatusList" class="form-select w-auto">
-        <option value="">-- All Statuses --</option>
-    </select>
-    <select name="courseId" asp-items="ViewBag.Courses" class="form-select w-auto">
-        <option value="">All Courses</option>
-    </select>
-    <select name="studentId" asp-items="ViewBag.Students" class="form-select w-auto">
-        <option value="">All Students</option>
-    </select>
-    <button type="submit" class="btn btn-primary">
-        <i class="bi bi-filter-circle"></i> Filter
-    </button>
-    <a asp-action="Index" class="btn btn-secondary">Reset</a>
-</form>
-@if (TempData["SuccessMessage"] != null)
-{
-    <div id="undo-toast" class="toast align-items-center text-bg-success border-0 position-fixed bottom-0 end-0 m-4" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="7000">
-        <div class="d-flex">
-            <div class="toast-body">
-                @Html.Raw(TempData["SuccessMessage"])
-            </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
+<form method="get" class="row g-3 mb-3">
+    <div class="col-md-4">
+        <label for="studentId" class="form-label">Filter by Student:</label>
+        <select name="studentId" class="form-select" asp-items="ViewBag.Students">
+            <option value="">All Students</option>
+        </select>
     </div>
-}
-<table class="table">
-    <thead>
+    <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary me-2">
+            <i class="fa fa-filter"></i> Filter
+        </button>
+        <a href="/Enrollments" class="btn btn-secondary">
+            <i class="fa fa-times"></i> Clear
+        </a>
+    </div>
+</form>
+
+<table class="table table-hover shadow rounded border">
+    <thead class="table-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Student)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Course)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Grade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th><i class="fa-solid fa-cogs me-2"></i>Actions</th>
+            <th>Student</th>
+            <th>Course</th>
+            <th>Enrollment Date</th>
+            <th>Grade</th>
+            <th>Status</th>
+            <th class="text-end">Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
+            <td>@item.Student?.FullName</td>
+            <td>@item.Course?.CourseName</td>
+            <td>@item.EnrollmentDate.ToString("yyyy-MM-dd")</td>
+            <td>@EnumHelper.GetDisplayName(item.Grade)</td>
             <td>
-                @Html.DisplayFor(modelItem => item.Student.FullName)
+                <span class="badge bg-@GetStatusColor(item.Status)">@EnumHelper.GetDisplayName(item.Status)</span>
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Course.CourseName)
-            </td>
-            <td>
-                @EnumHelper.GetDisplayName(item.Grade)
-            </td>
-            <td>
-                <span class="badge bg-@GetStatusColor(item.Status)">
-                    @EnumHelper.GetDisplayName(item.Status)
-                </span>
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.EnrollmentId" class="btn btn-sm btn-outline-info" title="Details">
-                    <i class="bi bi-eye"></i>
+            <td class="text-end">
+                <a asp-action="Details" asp-route-id="@item.EnrollmentId" class="btn btn-sm btn-info me-1" title="Details">
+                    <i class="fa fa-eye"></i>
                 </a>
-                <a asp-action="Edit" asp-route-id="@item.EnrollmentId" class="btn btn-sm btn-outline-warning" title="Edit">
-                    <i class="bi bi-pencil-square"></i>
+                <a asp-action="Edit" asp-route-id="@item.EnrollmentId" class="btn btn-sm btn-warning me-1" title="Edit">
+                    <i class="fa fa-edit"></i>
                 </a>
-                <a asp-action="Delete" asp-route-id="@item.EnrollmentId" class="btn btn-sm btn-outline-danger" title="Delete">
-                    <i class="bi bi-trash"></i>
+                <a asp-action="Delete" asp-route-id="@item.EnrollmentId" class="btn btn-sm btn-danger" title="Delete">
+                    <i class="fa fa-trash"></i>
                 </a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
 
@@ -102,20 +76,5 @@
 }
 
 @section Scripts {
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var toastEl = document.getElementById('undo-toast');
-            if (toastEl) {
-                var toast = new bootstrap.Toast(toastEl);
-                toast.show();
-            }
-        });
-        function undoDeleteEnrollment() {
-            fetch('@Url.Action("UndoDelete", "Enrollments")', {
-                method: 'POST',
-                headers: { 'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val() }
-            }).then(() => window.location.reload());
-        }
-    </script>
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

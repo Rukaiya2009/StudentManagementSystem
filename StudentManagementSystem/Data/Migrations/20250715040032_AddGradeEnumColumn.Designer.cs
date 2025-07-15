@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace StudentManagementSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250714165636_GradingEnumFinalize")]
-    partial class GradingEnumFinalize
+    [Migration("20250715040032_AddGradeEnumColumn")]
+    partial class AddGradeEnumColumn
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -248,7 +248,13 @@ namespace StudentManagementSystem.Data.Migrations
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
+                    b.Property<double>("Fee")
+                        .HasColumnType("float");
+
                     b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<int?>("TeacherId")
@@ -298,6 +304,9 @@ namespace StudentManagementSystem.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Grade")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GradeEnum")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
