@@ -1,4 +1,5 @@
 @model IEnumerable<StudentManagementSystem.Models.Enrollment>
+@using StudentManagementSystem.Models
 
 @{
     ViewData["Title"] = "My Dashboard";
@@ -19,15 +20,21 @@
                 <div class="card-header">
                     <h5 class="card-title mb-0">My Profile</h5>
                 </div>
-                <div class="card-body">
-                    @if (student?.ProfilePicture != null)
+                <div class="card-body text-center">
+                    @if (!string.IsNullOrEmpty(student?.ProfilePicture))
                     {
-                        <img src="@student.ProfilePicture" class="img-fluid rounded mb-3" style="max-width: 150px;" alt="Profile Picture" />
+                        <img src="@student.ProfilePicture" class="img-fluid rounded-circle mb-3" style="max-width: 120px;" alt="Profile Picture" />
+                    }
+                    else
+                    {
+                        <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width:120px;height:120px; line-height: 1;">
+                            <i class="fas fa-user fa-3x text-muted"></i>
+                        </div>
                     }
                     <h6>@student?.FullName</h6>
                     <p class="text-muted">@student?.Email</p>
                     <p class="text-muted">Student ID: @student?.StudentId</p>
-                    <a asp-action="MyProfile" class="btn btn-primary btn-sm">View Full Profile</a>
+                    <a asp-action="MyProfile" class="btn btn-primary btn-sm"><i class="fas fa-user-circle me-1"></i>View Full Profile</a>
                 </div>
             </div>
         </div>
@@ -35,33 +42,81 @@
         <!-- Enrolled Courses -->
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="card-title mb-0">My Enrolled Courses</h5>
+                    <input type="text" id="courseSearch" placeholder="Search courses..." class="form-control form-control-sm w-auto" style="max-width: 220px;" />
                 </div>
                 <div class="card-body">
+                    @{
+                        var gpa = ViewBag.GPA as double?;
+                        var gpaBadge = gpa >= 3.5 ? "bg-success" :
+                                       gpa >= 2.5 ? "bg-primary" :
+                                       gpa >= 2.0 ? "bg-warning" :
+                                       "bg-danger";
+
+                        var gpaText = gpa >= 3.5 ? "Honors" :
+                                      gpa >= 2.5 ? "Good Standing" :
+                                      gpa >= 2.0 ? "On Probation" :
+                                      "At Risk";
+                    }
+                    @if (gpa != null)
+                    {
+                        <div class="alert @gpaBadge text-white">
+                            <strong>GPA:</strong> @gpa.Value.ToString("0.00") – @gpaText
+                        </div>
+                        <div class="progress mt-2" style="height: 20px;">
+                            <div class="progress-bar @gpaBadge" role="progressbar"
+                                 style="width: @(gpa.Value * 25)%"
+                                 aria-valuenow="@gpa.Value"
+                                 aria-valuemin="0"
+                                 aria-valuemax="4">
+                                @gpa.Value.ToString("0.00")
+                            </div>
+                        </div>
+                    }
                     @if (Model.Any())
                     {
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-striped table-bordered table-hover align-middle" id="enrolledCoursesTable">
                                 <thead>
                                     <tr>
                                         <th>Course Code</th>
                                         <th>Course Name</th>
                                         <th>Credits</th>
                                         <th>Enrollment Date</th>
+                                        <th>Grade</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var enrollment in Model)
                                     {
+                                        @{
+                                            var grade = enrollment.Grade;
+                                            var badge = grade switch
+                                            {
+                                                Grading.APlus or Grading.A => "bg-success",
+                                                Grading.AMinus or Grading.BPlus => "bg-primary",
+                                                Grading.B => "bg-warning",
+                                                Grading.BMinus or Grading.CPlus => "bg-info",
+                                                Grading.C => "bg-secondary",
+                                                Grading.CMinus or Grading.D => "bg-dark",
+                                                Grading.F => "bg-danger",
+                                                _ => "bg-light"
+                                            };
+                                        }
                                         <tr>
-                                                                                    <td>@enrollment.Course?.CourseCode</td>
-                                        <td>@enrollment.Course?.CourseName</td>
-                                        <td>@enrollment.Course?.Credits</td>
+                                            <td>@enrollment.Course?.CourseCode</td>
+                                            <td>@enrollment.Course?.CourseName</td>
+                                            <td>@enrollment.Course?.Credits</td>
                                             <td>@enrollment.EnrollmentDate.ToString("MMM dd, yyyy")</td>
                                             <td>
-                                                <a asp-controller="Courses" asp-action="Details" asp-route-id="@enrollment.CourseId" class="btn btn-info btn-sm">View Course</a>
+                                                <span class="badge @badge" title="Grade: @grade">@grade</span>
+                                            </td>
+                                            <td>
+                                                <a asp-controller="Courses" asp-action="Details" asp-route-id="@enrollment.CourseId" class="btn btn-sm btn-outline-info me-1" title="View Course">
+                                                    <i class="fas fa-info-circle"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     }
@@ -80,4 +135,23 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/4e9c2b6e8b.js" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('courseSearch').addEventListener('input', function () {
+            let value = this.value.toLowerCase();
+            document.querySelectorAll('#enrolledCoursesTable tbody tr').forEach(row => {
+                let text = row.textContent.toLowerCase();
+                row.style.display = text.includes(value) ? '' : 'none';
+            });
+        });
+    </script>
+    <style>
+        thead th {
+            color: #212529 !important;
+            background-color: #f8f9fa;
+        }
+    </style>
+} 

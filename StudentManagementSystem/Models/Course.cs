@@ -34,7 +34,8 @@ namespace StudentManagementSystem.Models
         [Required]
         public CourseStatus Status { get; set; } = CourseStatus.Free;
 
-        public double Fee { get; set; } = 0.0;
+        [DataType(DataType.Currency)]
+        public decimal Fee { get; set; }
 
         public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
     }

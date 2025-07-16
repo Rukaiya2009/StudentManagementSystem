@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿namespace StudentManagementSystem.Data
+{
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StudentManagementSystem.Models;
 
@@ -14,4 +16,7 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Course> Courses { get; set; }
     public DbSet<Department> Departments { get; set; }
     public DbSet<Enrollment> Enrollments { get; set; }
+    public DbSet<UserProfile> UserProfiles { get; set; }
+    public DbSet<Payment> Payments { get; set; }
+}
 }

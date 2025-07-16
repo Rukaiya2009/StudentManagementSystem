@@ -39,7 +39,7 @@ namespace StudentManagementSystem.Models
         public Course Course { get; set; } = new();
 
         [Required]
-        public Grading Grade { get; set; }
+        public Grading? Grade { get; set; }
 
         public EnrollmentStatus Status { get; set; } = EnrollmentStatus.Active;
 

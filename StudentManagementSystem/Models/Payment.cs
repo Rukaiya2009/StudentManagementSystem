@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StudentManagementSystem.Models
 {
@@ -9,19 +8,24 @@ namespace StudentManagementSystem.Models
         public int PaymentId { get; set; }
 
         [Required]
-        public int EnrollmentId { get; set; }
-        [ForeignKey("EnrollmentId")]
-        public Enrollment Enrollment { get; set; } = new();
+        public string StudentId { get; set; }
+        public Student Student { get; set; }
 
         [Required]
-        public double Amount { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal Amount { get; set; }
 
-        public DateTime PaymentDate { get; set; } = DateTime.Now;
+        [DataType(DataType.Date)]
+        public DateTime DatePaid { get; set; } = DateTime.Now;
 
-        public string? PaymentMethod { get; set; }  // e.g., Card, Bank, Cash
+        public string PaymentMethod { get; set; }
 
-        [Required]
-        [StringLength(10)]
-        public string Status { get; set; } = "Unpaid"; // Paid or Unpaid
+        public string ReferenceNumber { get; set; }
+
+        public bool IsConfirmed { get; set; } = false;
+
+        public string PaymentProofPath { get; set; }
+
+        public string StudentFullName => Student?.FullName;
     }
 } 

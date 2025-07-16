@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using StudentManagementSystem.Data;
 
 #nullable disable
 
@@ -245,8 +246,8 @@ namespace StudentManagementSystem.Data.Migrations
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Fee")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Fee")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Level")
                         .HasColumnType("int");
@@ -318,6 +319,37 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("Enrollments");
                 });
 
+            modelBuilder.Entity("StudentManagementSystem.Models.Payment", b =>
+                {
+                    b.Property<int>("PaymentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentId"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsPaid")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("StudentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PaymentId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("StudentManagementSystem.Models.Student", b =>
                 {
                     b.Property<int>("StudentId")
@@ -375,9 +407,34 @@ namespace StudentManagementSystem.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProfilePicture")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("TeacherId");
 
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("StudentManagementSystem.Models.UserProfile", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfilePicture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("UserProfiles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -465,6 +522,17 @@ namespace StudentManagementSystem.Data.Migrations
                     b.Navigation("Course");
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("StudentManagementSystem.Models.Payment", b =>
+                {
+                    b.HasOne("StudentManagementSystem.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
                 });
 
             modelBuilder.Entity("StudentManagementSystem.Models.Course", b =>

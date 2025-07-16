@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json;
+using StudentManagementSystem.Data;
 
 namespace StudentManagementSystem.Controllers
 {
@@ -67,35 +68,39 @@ namespace StudentManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                            if (ProfileImage != null)
-            {
-                // Validate file type
-                var allowedTypes = new[] { "image/jpeg", "image/jpg", "image/png", "image/gif" };
-                if (!allowedTypes.Contains(ProfileImage.ContentType.ToLower()))
+                if (ProfileImage != null)
                 {
-                    ModelState.AddModelError("ProfileImage", "Please select a valid image file (JPG, PNG, GIF)");
-                    return View(student);
-                }
+                    // Validate file type
+                    var allowedTypes = new[] { "image/jpeg", "image/jpg", "image/png", "image/gif" };
+                    if (!allowedTypes.Contains(ProfileImage.ContentType.ToLower()))
+                    {
+                        ModelState.AddModelError("ProfileImage", "Please select a valid image file (JPG, PNG, GIF)");
+                        return View(student);
+                    }
 
-                // Validate file size (5MB max)
-                if (ProfileImage.Length > 5 * 1024 * 1024)
+                    // Validate file size (5MB max)
+                    if (ProfileImage.Length > 5 * 1024 * 1024)
+                    {
+                        ModelState.AddModelError("ProfileImage", "File size must be less than 5MB");
+                        return View(student);
+                    }
+
+                    string wwwRootPath = _hostEnvironment.WebRootPath;
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(ProfileImage.FileName);
+                    string path = Path.Combine(wwwRootPath + "/images/", fileName);
+
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await ProfileImage.CopyToAsync(fileStream);
+                    }
+
+                    student.ProfilePicture = "/images/" + fileName;
+                }
+                else
                 {
-                    ModelState.AddModelError("ProfileImage", "File size must be less than 5MB");
-                    return View(student);
+                    // Set default avatar if no image uploaded
+                    student.ProfilePicture = "/images/default-avatar.png";
                 }
-
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(ProfileImage.FileName);
-                string path = Path.Combine(wwwRootPath + "/images/", fileName);
-
-                using (var fileStream = new FileStream(path, FileMode.Create))
-                {
-                    await ProfileImage.CopyToAsync(fileStream);
-                }
-
-                student.ProfilePicture = "/images/" + fileName;
-            }
-
                 _context.Add(student);
                 await _context.SaveChangesAsync();
                 TempData["SuccessMessage"] = "Student created successfully!";
@@ -223,6 +228,11 @@ namespace StudentManagementSystem.Controllers
                     }
 
                     existingStudent.ProfilePicture = "/images/" + fileName;
+                }
+                else if (string.IsNullOrEmpty(existingStudent.ProfilePicture))
+                {
+                    // Set default avatar if no image exists
+                    existingStudent.ProfilePicture = "/images/default-avatar.png";
                 }
 
                 // Save all changes using proper EF Core

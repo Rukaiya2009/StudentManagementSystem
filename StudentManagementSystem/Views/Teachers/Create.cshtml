@@ -27,6 +27,7 @@
                 <input asp-for="DepartmentName" class="form-control" />
                 <span asp-validation-for="DepartmentName" class="text-danger"></span>
             </div>
+            @await Html.PartialAsync("_ImageUploaderPartial", Model?.ProfilePicture)
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

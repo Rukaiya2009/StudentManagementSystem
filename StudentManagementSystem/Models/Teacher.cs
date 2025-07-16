@@ -13,6 +13,8 @@ namespace StudentManagementSystem.Models
         [EmailAddress]
         public string Email { get; set; } = string.Empty;
 
+        public string? ProfilePicture { get; set; }  // file name of image
+
         public string DepartmentName { get; set; } = string.Empty;
 
         public ICollection<Course> Courses { get; set; } = new List<Course>();

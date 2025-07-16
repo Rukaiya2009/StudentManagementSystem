@@ -1,0 +1,105 @@
+@using StudentManagementSystem.Models
+@model IEnumerable<Enrollment>
+
+@{
+    ViewData["Title"] = "My Enrollments";
+    var totalGpa = Model.Sum(e => e.GPA);
+    var avgGpa = Model.Any() ? (totalGpa / Model.Count()).ToString("0.00") : "0.00";
+    string GetHonors(decimal gpa) => gpa switch
+    {
+        >= 3.8m => "Summa Cum Laude",
+        >= 3.6m => "Magna Cum Laude",
+        >= 3.4m => "Cum Laude",
+        _ => ""
+    };
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary mb-4">My Enrollments</h2>
+
+    <!-- GPA Badge and Progress -->
+    <div class="mb-4">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-success fs-5 me-3">
+                GPA: @avgGpa
+            </span>
+            <div class="flex-grow-1">
+                <div class="progress" style="height: 20px;">
+                    <div class="progress-bar bg-success" style="width: @(decimal.Parse(avgGpa) / 4 * 100)%">
+                        @GetHonors(decimal.Parse(avgGpa))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Input -->
+    <div class="input-group mb-3">
+        <span class="input-group-text">Search Courses</span>
+        <input type="text" class="form-control" placeholder="Type to filter..." id="courseFilter">
+    </div>
+
+    <!-- Enrollment Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle text-center" id="enrollmentTable">
+            <thead class="table-dark">
+                <tr>
+                    <th>Course</th>
+                    <th>Teacher</th>
+                    <th>Credits</th>
+                    <th>Grade</th>
+                    <th>GPA</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var enrollment in Model)
+                {
+                    <tr>
+                        <td>@enrollment.Course?.Title</td>
+                        <td>@enrollment.Course?.Teacher?.Name</td>
+                        <td>@enrollment.Course?.Credits</td>
+                        <td>
+                            <span class="badge 
+                                @(enrollment.Grade switch {
+                                    Grade.APlus => "bg-success",
+                                    Grade.A => "bg-primary",
+                                    Grade.AMinus => "bg-info",
+                                    Grade.BPlus => "bg-secondary",
+                                    Grade.B => "bg-warning text-dark",
+                                    Grade.C => "bg-danger",
+                                    _ => "bg-dark"
+                                })"
+                                title="Grade: @enrollment.Grade">
+                                @enrollment.Grade
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge bg-light text-dark" title="GPA Value">@enrollment.GPA</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const searchInput = document.getElementById("courseFilter");
+        const rows = document.querySelectorAll("#enrollmentTable tbody tr");
+
+        searchInput.addEventListener("input", function () {
+            const value = this.value.toLowerCase();
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(value) ? "" : "none";
+            });
+        });
+    </script>
+    <style>
+        thead th {
+            color: #212529 !important;
+            background-color: #f8f9fa;
+        }
+    </style>
+} 

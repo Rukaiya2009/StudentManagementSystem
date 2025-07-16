@@ -9,6 +9,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json;
+using StudentManagementSystem.Data;
+using System.Collections.Generic;
 
 namespace StudentManagementSystem.Controllers
 {
@@ -137,6 +139,23 @@ namespace StudentManagementSystem.Controllers
             {
                 _context.Add(enrollment);
                 await _context.SaveChangesAsync();
+                // Auto-create payment for paid courses only
+                var course = await _context.Courses.FindAsync(enrollment.CourseId);
+                if (course != null && course.Status == CourseStatus.Paid)
+                {
+                    var payment = new Payment
+                    {
+                        StudentId = enrollment.StudentId.ToString(),
+                        Amount = course.Fee,
+                        DatePaid = DateTime.Now,
+                        PaymentMethod = "Pending",
+                        ReferenceNumber = null,
+                        IsConfirmed = false,
+                        PaymentProofPath = null
+                    };
+                    _context.Payments.Add(payment);
+                    await _context.SaveChangesAsync();
+                }
                 TempData["SuccessMessage"] = "Enrollment created successfully!";
                 return RedirectToAction(nameof(Index));
             }

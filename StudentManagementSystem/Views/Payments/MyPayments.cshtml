@@ -1,0 +1,56 @@
+@model IEnumerable<StudentManagementSystem.Models.Payment>
+@{
+    ViewData["Title"] = "My Payments";
+}
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+<h2>My Payments</h2>
+<table class="table table-bordered table-hover">
+    <thead class="table-light">
+        <tr>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Method</th>
+            <th>Reference</th>
+            <th>Status</th>
+            <th>Proof</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Amount.ToString("C")</td>
+            <td>@item.DatePaid.ToShortDateString()</td>
+            <td>@item.PaymentMethod</td>
+            <td>@item.ReferenceNumber</td>
+            <td>
+                @if (item.IsConfirmed)
+                {
+                    <span class="badge bg-success">Confirmed</span>
+                }
+                else
+                {
+                    <span class="badge bg-warning text-dark">Pending</span>
+                }
+            </td>
+            <td>
+                @if (!item.IsConfirmed)
+                {
+                    <a asp-action="PayNow" asp-route-id="@item.PaymentId" class="btn btn-warning btn-sm">Pay Now</a>
+                }
+                else
+                {
+                    <span class="text-success">Paid</span>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table> 
