@@ -27,7 +27,7 @@
             @Html.DisplayNameFor(model => model.Grade)
         </dt>
         <dd class = "col-sm-10">
-            @EnumHelper.GetDisplayName(Model.Grade)
+            @(Model.Grade.HasValue ? EnumHelper.GetDisplayName(Model.Grade.Value) : "Not Graded")
         </dd>
     </dl>
     

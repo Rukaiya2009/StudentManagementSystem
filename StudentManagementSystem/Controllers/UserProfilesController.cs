@@ -28,7 +28,11 @@ namespace StudentManagementSystem.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null) return NotFound();
 
-            var profile = await _context.UserProfiles.FindAsync(userId) ?? new UserProfile { UserId = userId };
+            var profile = await _context.UserProfiles.FindAsync(userId) ?? new UserProfile 
+            { 
+                UserId = userId,
+                FullName = "New User" // Default value for required property
+            };
             return View(profile);
         }
 

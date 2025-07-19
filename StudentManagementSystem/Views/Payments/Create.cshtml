@@ -1,8 +1,8 @@
 @model StudentManagementSystem.Models.Payment
 @{
     ViewData["Title"] = "Create Payment";
-    var students = ViewData["Students"] as List<StudentManagementSystem.Models.Student>;
-    var courses = ViewData["Courses"] as List<StudentManagementSystem.Models.Course>;
+    var students = ViewData["Students"] as List<StudentManagementSystem.Models.Student> ?? new List<StudentManagementSystem.Models.Student>();
+    var courses = ViewData["Courses"] as List<StudentManagementSystem.Models.Course> ?? new List<StudentManagementSystem.Models.Course>();
 }
 <h2>Create Payment</h2>
 <form asp-action="Create" method="post">

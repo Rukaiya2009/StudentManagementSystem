@@ -5,14 +5,14 @@ namespace StudentManagementSystem.Models
     public class UserProfile
     {
         [Key]
-        public string UserId { get; set; }
+        public required string UserId { get; set; }
 
         [Display(Name = "Full Name")]
-        public string FullName { get; set; }
+        public required string FullName { get; set; }
 
         public string ProfilePicture { get; set; } = "/images/default-avatar.png";
 
         // Optional fields
-        public string Role { get; set; }
+        public string? Role { get; set; }
     }
 } 

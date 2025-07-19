@@ -1,0 +1,42 @@
+@model IEnumerable<StudentManagementSystem.Models.Exam>
+@{
+    ViewData["Title"] = "Exams";
+}
+
+<h2 class="text-primary mb-4">Exams</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Add Exam
+    </a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Exam Type</th>
+            <th>Course</th>
+            <th>Classroom</th>
+            <th>Date</th>
+            <th>Duration (Min)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.ExamType</td>
+        <td>@item.Course?.CourseName</td>
+        <td>@item.Classroom?.ClassroomName</td>
+        <td>@item.ExamDate.ToShortDateString()</td>
+        <td>@item.DurationMinutes</td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.ExamId" class="btn btn-sm btn-warning">Edit</a>
+            <a asp-action="Details" asp-route-id="@item.ExamId" class="btn btn-sm btn-info">Details</a>
+            <a asp-action="Delete" asp-route-id="@item.ExamId" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+    </tr>
+}
+    </tbody>
+</table> 

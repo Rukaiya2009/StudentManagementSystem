@@ -3,28 +3,36 @@
     ViewData["Title"] = "All Payments";
 }
 <h2>All Payments</h2>
-<form method="get" class="mb-3">
-    <div class="form-row d-flex flex-wrap gap-2">
-        <input name="search" value="@Request.Query["search"]" class="form-control" placeholder="Search by student name or email" />
-
-        <select name="isConfirmed" class="form-control">
-            <option value="">All Statuses</option>
-            <option value="true" selected="@(Request.Query["isConfirmed"] == "true")">Confirmed</option>
-            <option value="false" selected="@(Request.Query["isConfirmed"] == "false")">Pending</option>
-        </select>
-
-        <input name="fromDate" type="date" class="form-control" value="@Request.Query["fromDate"]" />
-        <input name="toDate" type="date" class="form-control" value="@Request.Query["toDate"]" />
-
-        <select name="sortBy" class="form-control">
-            <option value="">Sort by Date (newest)</option>
-            <option value="date_asc" selected="@(Request.Query["sortBy"] == "date_asc")">Date ↑</option>
-            <option value="date_desc" selected="@(Request.Query["sortBy"] == "date_desc")">Date ↓</option>
-            <option value="amount_asc" selected="@(Request.Query["sortBy"] == "amount_asc")">Amount ↑</option>
-            <option value="amount_desc" selected="@(Request.Query["sortBy"] == "amount_desc")">Amount ↓</option>
-        </select>
-
-        <button class="btn btn-primary">Filter</button>
+<form method="get" class="mb-4">
+    <div class="row g-2 align-items-end">
+        <div class="col-md-3">
+            <input name="search" value="@Context.Request.Query["search"]" class="form-control" placeholder="Search by student name or email" />
+        </div>
+        <div class="col-md-2">
+            <select name="isConfirmed" class="form-control">
+                <option value="">All Statuses</option>
+                <option value="true" selected="@(Context.Request.Query["isConfirmed"] == "true")">Confirmed</option>
+                <option value="false" selected="@(Context.Request.Query["isConfirmed"] == "false")">Pending</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <input name="fromDate" type="date" class="form-control" value="@Context.Request.Query["fromDate"]" />
+        </div>
+        <div class="col-md-2">
+            <input name="toDate" type="date" class="form-control" value="@Context.Request.Query["toDate"]" />
+        </div>
+        <div class="col-md-2">
+            <select name="sortBy" class="form-control">
+                <option value="">Sort by Date (newest)</option>
+                <option value="date_asc" selected="@(Context.Request.Query["sortBy"] == "date_asc")">Date 191</option>
+                <option value="date_desc" selected="@(Context.Request.Query["sortBy"] == "date_desc")">Date 193</option>
+                <option value="amount_asc" selected="@(Context.Request.Query["sortBy"] == "amount_asc")">Amount 191</option>
+                <option value="amount_desc" selected="@(Context.Request.Query["sortBy"] == "amount_desc")">Amount 193</option>
+            </select>
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-primary w-100">Filter</button>
+        </div>
     </div>
 </form>
 <table class="table table-bordered table-hover">

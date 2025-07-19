@@ -62,7 +62,7 @@
             <div class="card bg-light mb-3 text-center">
                 <div class="card-body">
                     <h5 class="card-title">Total Amount Received</h5>
-                    <p class="display-4 text-success">@((decimal)ViewBag.TotalAmountReceived:C)</p>
+                    <p class="display-4 text-success">@(((decimal)ViewBag.TotalAmountReceived).ToString("C"))</p>
                 </div>
             </div>
         </div>

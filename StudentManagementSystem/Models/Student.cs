@@ -8,8 +8,15 @@ namespace StudentManagementSystem.Models
     {
         public int StudentId { get; set; }
 
+        public string UserId { get; set; } = string.Empty;
         [Required, StringLength(100)]
         public string FullName { get; set; } = string.Empty;
+
+        [Required, StringLength(50)]
+        public string FirstName { get; set; } = string.Empty;
+
+        [Required, StringLength(50)]
+        public string LastName { get; set; } = string.Empty;
 
         [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
@@ -26,6 +33,6 @@ namespace StudentManagementSystem.Models
 
         public string? ProfilePicture { get; set; }  // file name of image
 
-        public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
+        public ICollection<Enrollment>? Enrollments { get; set; } = new List<Enrollment>();
     }
 }

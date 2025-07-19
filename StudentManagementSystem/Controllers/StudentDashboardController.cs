@@ -40,7 +40,7 @@ namespace StudentManagementSystem.Controllers
                 .Where(e => e.StudentId == student.StudentId)
                 .ToListAsync();
 
-            double gpa = GPAHelper.CalculateGPA(enrollments);
+            decimal gpa = GPAHelper.CalculateGPA(enrollments);
             ViewBag.GPA = gpa;
 
             ViewBag.Student = student;

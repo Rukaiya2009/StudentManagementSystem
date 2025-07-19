@@ -27,7 +27,7 @@
         </style>
     }
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3 dark-theme-nav">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">StudentManagementSystem</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -38,6 +38,10 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Courses" asp-action="Index">Courses</a>
                         </li>
 
                         @if (SignInManager.IsSignedIn(User))
@@ -69,12 +73,6 @@
                                     <a class="nav-link" asp-controller="StudentDashboard" asp-action="Index">My Dashboard</a>
                                 </li>
                             }
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Courses" asp-action="Index">Courses</a>
-                            </li>
-                        }
-                        @if (SignInManager.IsSignedIn(User))
-                        {
                             @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
@@ -84,7 +82,16 @@
                             @if (User.IsInRole("Student"))
                             {
                                 <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Enrollments" asp-action="MyEnrollments">My Courses</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" asp-controller="Payments" asp-action="MyPayments">My Payments</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("Teacher"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Courses" asp-action="MyCourses">My Courses</a>
                                 </li>
                             }
                         }
@@ -105,7 +112,11 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li><a class="dropdown-item" asp-controller="UserProfiles" asp-action="Edit">My Profile</a></li>
-                                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout">Logout</a></li>
+                                    <li>
+                                        <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" method="post" class="d-inline">
+                                            <button type="submit" class="dropdown-item">Logout</button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </li>
                         }
@@ -129,8 +140,16 @@
         </nav>
     </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="d-flex">
+        @await Html.PartialAsync("_Sidebar")
+        <main class="flex-grow-1 p-3" style="margin-left:240px;">
+            @if (TempData["LogoutMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["LogoutMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
             @await Html.PartialAsync("_TempDataMessages")
             @RenderBody()
         </main>

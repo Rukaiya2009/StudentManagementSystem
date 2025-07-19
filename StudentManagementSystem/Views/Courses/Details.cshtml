@@ -1,4 +1,7 @@
 ﻿@model StudentManagementSystem.Models.Course
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Details";
@@ -36,13 +39,40 @@
         </dd>
     </dl>
 </div>
+@if (User.IsInRole("Student"))
+{
+    if (ViewBag.IsEnrolled != null && (bool)ViewBag.IsEnrolled)
+    {
+        <button class="btn btn-secondary mt-3" disabled>Already Enrolled</button>
+    }
+    else
+    {
+        <form asp-action="Enroll" method="post" class="mt-3">
+            <input type="hidden" name="courseId" value="@Model.CourseId" />
+            <button type="submit" class="btn btn-success">Enroll Now</button>
+        </form>
+    }
+}
+else
+{
+    <div class="alert alert-warning mt-3">
+        Please <a href="/Identity/Account/Login">Login</a> as a student to enroll.
+    </div>
+}
+@if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Teacher")))
+{
+    <a asp-action="Edit" asp-route-id="@Model.CourseId" class="btn btn-warning">Edit</a>
+    <a asp-action="Delete" asp-route-id="@Model.CourseId" class="btn btn-danger">Delete</a>
+}
+else if (!SignInManager.IsSignedIn(User) || !(User.IsInRole("Admin") || User.IsInRole("Teacher")))
+{
+    <div class="alert alert-warning mt-3">
+        <strong>Note:</strong> You must be logged in as an <b>Admin</b> or <b>Teacher</b> to edit or delete this course.<br/>
+        <a href="/Identity/Account/Login" class="btn btn-outline-primary me-2 mt-2">Login</a>
+        <a href="/Identity/Account/Register" class="btn btn-outline-success mt-2">Register</a>
+    </div>
+}
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.CourseId" class="btn btn-outline-warning btn-sm me-1" style="border-color: #FFC107; color: #FFC107;">
-        <i class="bi bi-pencil"></i> Edit
-    </a>
-    <a asp-action="Delete" asp-route-id="@Model?.CourseId" class="btn btn-outline-danger btn-sm me-1" style="border-color: #DC3545; color: #DC3545;">
-        <i class="bi bi-trash"></i> Delete
-    </a>
     <a asp-action="Index" class="btn btn-outline-info btn-sm" style="border-color: #0DCAF0; color: #0DCAF0;">
         <i class="bi bi-arrow-left"></i> Back to List
     </a>

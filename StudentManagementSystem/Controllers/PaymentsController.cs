@@ -36,8 +36,9 @@ namespace StudentManagementSystem.Controllers
             if (!string.IsNullOrWhiteSpace(search))
             {
                 query = query.Where(p =>
-                    p.Student.FullName.Contains(search) ||
-                    p.Student.Email.Contains(search));
+                    p.Student != null &&
+                    (p.Student.FullName.Contains(search) ||
+                     p.Student.Email.Contains(search)));
             }
 
             if (isConfirmed.HasValue)
@@ -86,8 +87,13 @@ namespace StudentManagementSystem.Controllers
         public async Task<IActionResult> MyPayments()
         {
             var userId = _userManager.GetUserId(User);
+            if (!int.TryParse(userId, out int studentId))
+            {
+                return Unauthorized();
+            }
+
             var payments = await _context.Payments
-                .Where(p => p.StudentId == userId)
+                .Where(p => p.StudentId == studentId)
                 .ToListAsync();
             return View(payments);
         }
@@ -97,8 +103,13 @@ namespace StudentManagementSystem.Controllers
         public async Task<IActionResult> UploadProof(int id)
         {
             var userId = _userManager.GetUserId(User);
+            if (!int.TryParse(userId, out int studentId))
+            {
+                return Unauthorized();
+            }
+
             var payment = await _context.Payments
-                .FirstOrDefaultAsync(p => p.PaymentId == id && p.StudentId == userId);
+                .FirstOrDefaultAsync(p => p.PaymentId == id && p.StudentId == studentId);
 
             if (payment == null)
             {
@@ -115,8 +126,13 @@ namespace StudentManagementSystem.Controllers
         public async Task<IActionResult> UploadProof(int id, Microsoft.AspNetCore.Http.IFormFile proofFile)
         {
             var userId = _userManager.GetUserId(User);
+            if (!int.TryParse(userId, out int studentId))
+            {
+                return Unauthorized();
+            }
+
             var payment = await _context.Payments
-                .FirstOrDefaultAsync(p => p.PaymentId == id && p.StudentId == userId);
+                .FirstOrDefaultAsync(p => p.PaymentId == id && p.StudentId == studentId);
 
             if (payment == null)
             {
@@ -184,8 +200,13 @@ namespace StudentManagementSystem.Controllers
         public async Task<IActionResult> PayNow(int id)
         {
             var userId = _userManager.GetUserId(User);
+            if (!int.TryParse(userId, out int studentId))
+            {
+                return Unauthorized();
+            }
+
             var payment = await _context.Payments
-                .FirstOrDefaultAsync(p => p.PaymentId == id && p.StudentId == userId && !p.IsConfirmed);
+                .FirstOrDefaultAsync(p => p.PaymentId == id && p.StudentId == studentId && !p.IsConfirmed);
 
             if (payment == null)
                 return NotFound();
@@ -200,8 +221,13 @@ namespace StudentManagementSystem.Controllers
         public async Task<IActionResult> PayNowConfirmed(int id)
         {
             var userId = _userManager.GetUserId(User);
+            if (!int.TryParse(userId, out int studentId))
+            {
+                return Unauthorized();
+            }
+
             var payment = await _context.Payments
-                .FirstOrDefaultAsync(p => p.PaymentId == id && p.StudentId == userId && !p.IsConfirmed);
+                .FirstOrDefaultAsync(p => p.PaymentId == id && p.StudentId == studentId && !p.IsConfirmed);
 
             if (payment == null)
                 return NotFound();

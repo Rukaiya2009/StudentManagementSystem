@@ -19,7 +19,7 @@
                     <tr>
                         <th>@Html.DisplayNameFor(model => model.Name)</th>
                         <th>@Html.DisplayNameFor(model => model.Email)</th>
-                        <th>@Html.DisplayNameFor(model => model.DepartmentName)</th>
+                        <th>@Html.DisplayName("Department")</th>
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
@@ -37,7 +37,7 @@
                             </td>
                             <td>
                                 <span class="badge bg-secondary">
-                                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                                    @(item.Department != null ? item.Department.DepartmentName : "N/A")
                                 </span>
                             </td>
                             <td class="text-center">

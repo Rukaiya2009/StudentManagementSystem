@@ -15,7 +15,12 @@
             <input type="hidden" asp-for="EnrollmentId" />
             <div class="form-group">
                 <label asp-for="StudentId" class="control-label"></label>
-                <select asp-for="StudentId" class="form-control" asp-items="ViewBag.StudentId"></select>
+                <select id="StudentId" name="StudentId" class="form-control select2">
+                    @foreach (var student in ViewBag.StudentList as List<SelectListItem>)
+                    {
+                        <option value="@student.Value">@student.Text</option>
+                    }
+                </select>
                 <span asp-validation-for="StudentId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -29,9 +34,9 @@
                 <span asp-validation-for="Grade" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                @Html.DropDownListFor(model => model.Status, (List<SelectListItem>)ViewBag.StatusList, "-- Select Status --", new { @class = "form-control" })
-                <span asp-validation-for="Status" class="text-danger"></span>
+                <label asp-for="EnrollmentStatus" class="control-label"></label>
+                @Html.DropDownListFor(model => model.EnrollmentStatus, (List<SelectListItem>)ViewBag.StatusList, "-- Select Status --", new { @class = "form-control" })
+                <span asp-validation-for="EnrollmentStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -47,6 +52,16 @@
 </div>
 
 @section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2({
+                placeholder: "Select Student",
+                allowClear: true
+            });
+        });
+    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

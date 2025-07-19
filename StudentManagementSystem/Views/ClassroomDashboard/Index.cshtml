@@ -1,0 +1,39 @@
+@model StudentManagementSystem.Models.Classroom
+
+@{
+    ViewData["Title"] = Model.ClassroomName;
+}
+
+<div class="container-fluid">
+    <h2>@Model.ClassroomName</h2>
+    <p class="text-muted">@Model.Description</p>
+
+    <ul class="nav nav-tabs" id="classroomTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab">Overview</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="assignments-tab" data-bs-toggle="tab" href="#assignments" role="tab">Assignments</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="exams-tab" data-bs-toggle="tab" href="#exams" role="tab">Exams</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="people-tab" data-bs-toggle="tab" href="#people" role="tab">People</a>
+        </li>
+    </ul>
+    <div class="tab-content p-3 border border-top-0" id="classroomTabContent">
+        <div class="tab-pane fade show active" id="overview" role="tabpanel">
+            <p>Overview content here...</p>
+        </div>
+        <div class="tab-pane fade" id="assignments" role="tabpanel">
+            <p>Assignments content here...</p>
+        </div>
+        <div class="tab-pane fade" id="exams" role="tabpanel">
+            <p>Exams content here...</p>
+        </div>
+        <div class="tab-pane fade" id="people" role="tabpanel">
+            <p>People content here...</p>
+        </div>
+    </div>
+</div> 

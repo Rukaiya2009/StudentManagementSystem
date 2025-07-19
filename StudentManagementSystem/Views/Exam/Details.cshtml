@@ -1,0 +1,15 @@
+@model StudentManagementSystem.Models.Exam
+@{
+    ViewData["Title"] = "Exam Details";
+}
+
+<h2 class="text-primary">Exam Details</h2>
+
+<div class="mb-3"><strong>Exam Type:</strong> @Model.ExamType</div>
+<div class="mb-3"><strong>Date:</strong> @Model.ExamDate.ToShortDateString()</div>
+<div class="mb-3"><strong>Duration:</strong> @Model.DurationMinutes minutes</div>
+<div class="mb-3"><strong>Course:</strong> @Model.Course?.CourseName</div>
+<div class="mb-3"><strong>Classroom:</strong> @Model.Classroom?.ClassroomName</div>
+
+<a asp-action="Edit" asp-route-id="@Model.ExamId" class="btn btn-primary">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back to List</a> 

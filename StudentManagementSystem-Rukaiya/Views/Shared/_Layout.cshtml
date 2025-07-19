@@ -1,0 +1,151 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    string IsActive(string controller)
+    {
+        return ViewContext.RouteData.Values["Controller"]?.ToString() == controller ? "active" : "";
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Student Management System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/StudentManagementSystem_Rukaiya.styles.css" asp-append-version="true" />
+</head>
+<body class="light-theme">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SMS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("Home"))" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("Courses"))" asp-controller="Courses" asp-action="Index">Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("Students"))" asp-controller="Students" asp-action="Index">Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("Teachers"))" asp-controller="Teachers" asp-action="Index">Teachers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("Departments"))" asp-controller="Departments" asp-action="Index">Departments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("Classrooms"))" asp-controller="Classrooms" asp-action="Index">Classrooms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("Exams"))" asp-controller="Exams" asp-action="Index">Exams</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("Payments"))" asp-controller="Payments" asp-action="Index">Payments</a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex align-items-center">
+                        <button id="toggle-theme" class="btn btn-outline-light me-2">🌙</button>
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <div class="dropdown">
+                                <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @User.Identity.Name
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a></li>
+                                    <li><form method="post" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home")"><button class="dropdown-item" type="submit">Logout</button></form></li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline-light me-2" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                            <a class="btn btn-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-4">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted mt-4">
+        <div class="container">
+            &copy; 2025 - Student Management System - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        // Dark/Light Mode Toggle Script
+        const toggleButton = document.getElementById('toggle-theme');
+        const body = document.body;
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-theme');
+                body.classList.remove('light-theme');
+                toggleButton.innerText = '☀️';
+            } else {
+                body.classList.add('light-theme');
+                body.classList.remove('dark-theme');
+                toggleButton.innerText = '🌙';
+            }
+        }
+
+        toggleButton.addEventListener('click', () => {
+            const newTheme = body.classList.contains('dark-theme') ? 'light' : 'dark';
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+    </script>
+
+    <style>
+        .dark-theme {
+            background-color: #121212;
+            color: #fff;
+        }
+
+            .dark-theme .navbar,
+            .dark-theme .footer {
+                background-color: #1e1e1e;
+            }
+
+            .dark-theme .nav-link,
+            .dark-theme .dropdown-menu {
+                color: #fff;
+            }
+
+        .light-theme {
+            background-color: #fff;
+            color: #000;
+        }
+    </style>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

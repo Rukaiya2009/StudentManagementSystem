@@ -50,6 +50,7 @@ namespace StudentManagementSystem.Controllers
         // GET: Teachers/Create
         public IActionResult Create()
         {
+            ViewBag.DepartmentId = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
             return View();
         }
 
@@ -58,7 +59,7 @@ namespace StudentManagementSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TeacherId,Name,Email,DepartmentName,ProfilePicture")] Teacher teacher, string CroppedImageData)
+        public async Task<IActionResult> Create([Bind("TeacherId,Name,Email,DepartmentId,ProfilePicture,Phone,UserId")] Teacher teacher, string CroppedImageData)
         {
             if (ModelState.IsValid)
             {
@@ -81,6 +82,7 @@ namespace StudentManagementSystem.Controllers
                 TempData["SuccessMessage"] = "Teacher created successfully!";
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.DepartmentId = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
             return View(teacher);
         }
 
@@ -97,13 +99,14 @@ namespace StudentManagementSystem.Controllers
             {
                 return NotFound();
             }
+            ViewBag.DepartmentId = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
             return View(teacher);
         }
 
         // POST: Teachers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TeacherId,Name,Email,DepartmentName,ProfilePicture")] Teacher teacher, string CroppedImageData)
+        public async Task<IActionResult> Edit(int id, [Bind("TeacherId,Name,Email,DepartmentId,ProfilePicture,Phone,UserId")] Teacher teacher, string CroppedImageData)
         {
             if (id != teacher.TeacherId)
                 return NotFound();
@@ -116,7 +119,7 @@ namespace StudentManagementSystem.Controllers
                         return NotFound();
                     existingTeacher.Name = teacher.Name;
                     existingTeacher.Email = teacher.Email;
-                    existingTeacher.DepartmentName = teacher.DepartmentName;
+                    existingTeacher.DepartmentId = teacher.DepartmentId;
                     // Handle image update
                     if (!string.IsNullOrEmpty(CroppedImageData))
                     {

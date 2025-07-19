@@ -1,6 +1,7 @@
 @using Microsoft.AspNetCore.Identity
 @using StudentManagementSystem.Models
 @inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @model IEnumerable<StudentManagementSystem.Models.Course>
 
@@ -34,7 +35,7 @@
                         <th>
                             <i class="fas fa-user-tie me-2"></i>@Html.DisplayNameFor(model => model.Teacher.Name)
                         </th>
-                        <th class="text-center">Actions</th>
+                        <th class="text-center" style="width: 150px;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,12 +62,21 @@
                                 <a asp-action="Details" asp-route-id="@item.CourseId" class="btn btn-outline-info btn-sm me-1" style="border-color: #0DCAF0; color: #0DCAF0;">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a asp-action="Edit" asp-route-id="@item.CourseId" class="btn btn-outline-warning btn-sm me-1" style="border-color: #FFC107; color: #FFC107;">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <a asp-action="Delete" asp-route-id="@item.CourseId" class="btn btn-outline-danger btn-sm" style="border-color: #DC3545; color: #DC3545;">
-                                    <i class="bi bi-trash"></i>
-                                </a>
+                                @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Teacher")))
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.CourseId" class="btn btn-outline-warning btn-sm me-1" style="border-color: #FFC107; color: #FFC107;">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.CourseId" class="btn btn-outline-danger btn-sm" style="border-color: #DC3545; color: #DC3545;">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                }
+                                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Student"))
+                                {
+                                    <a asp-controller="Enrollments" asp-action="Enroll" asp-route-courseId="@item.CourseId" class="btn btn-outline-success btn-sm" style="border-color: #28A745; color: #28A745;">
+                                        <i class="bi bi-plus-circle"></i> Enroll
+                                    </a>
+                                }
                             </td>
                         </tr>
                     }

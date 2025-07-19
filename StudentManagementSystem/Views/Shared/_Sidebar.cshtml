@@ -1,0 +1,31 @@
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@inject StudentManagementSystem.Data.ApplicationDbContext Db
+
+@{
+    var userId = UserManager.GetUserId(User);
+    var classrooms = new List<StudentManagementSystem.Models.Classroom>();
+
+    if (userId != null)
+    {
+        classrooms = Db.Classrooms
+            .Where(c => !c.IsDeleted)
+            .Where(c => Db.Enrollments.Any(e => e.Student.UserId == userId && e.Course.ClassroomId == c.ClassroomId)
+                        || Db.Teachers.Any(t => t.UserId == userId && t.DepartmentId == c.DepartmentId))
+            .ToList();
+    }
+}
+
+<div class="sidebar">
+  <h5 class="px-3">My Classrooms</h5>
+  <ul class="list-group list-group-flush">
+    @foreach (var classroom in classrooms)
+    {
+      <li class="list-group-item">
+        <a asp-controller="ClassroomDashboard" asp-action="Index" asp-route-id="@classroom.ClassroomId" class="text-decoration-none">
+          <i class="bi bi-building"></i> @classroom.ClassroomName
+        </a>
+      </li>
+    }
+  </ul>
+</div> 
