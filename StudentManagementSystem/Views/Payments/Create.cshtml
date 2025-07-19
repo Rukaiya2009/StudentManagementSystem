@@ -1,0 +1,47 @@
+@model StudentManagementSystem.Models.Payment
+@{
+    ViewData["Title"] = "Create Payment";
+    var students = ViewData["Students"] as List<StudentManagementSystem.Models.Student> ?? new List<StudentManagementSystem.Models.Student>();
+    var courses = ViewData["Courses"] as List<StudentManagementSystem.Models.Course> ?? new List<StudentManagementSystem.Models.Course>();
+}
+<h2>Create Payment</h2>
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label class="form-label">Student</label>
+        <select asp-for="StudentId" class="form-select">
+            <option value="">-- Select Student --</option>
+            @foreach (var s in students)
+            {
+                <option value="@s.StudentId">@s.FullName (@s.Email)</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Course</label>
+        <select asp-for="CourseId" class="form-select">
+            <option value="">-- Select Course --</option>
+            @foreach (var c in courses)
+            {
+                <option value="@c.CourseId">@c.CourseName</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Amount" class="form-label"></label>
+        <input asp-for="Amount" class="form-control" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IsPaid" class="form-label"></label>
+        <select asp-for="IsPaid" class="form-select">
+            <option value="false">Unpaid</option>
+            <option value="true">Paid</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PaymentDate" class="form-label"></label>
+        <input asp-for="PaymentDate" class="form-control" type="date" />
+        <span asp-validation-for="PaymentDate" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Create Payment</button>
+</form> 

@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudentManagementSystem.Data;
 using System.Threading.Tasks;
+using System.Globalization;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace StudentManagementSystem.Controllers
 {
@@ -33,10 +37,45 @@ namespace StudentManagementSystem.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var users = await _userManager.Users.ToListAsync();
-            return View(users);
+            // Existing counts
+            ViewBag.TotalStudents = _context.Students.Count();
+            ViewBag.TotalTeachers = _context.Teachers.Count();
+            ViewBag.TotalCourses = _context.Courses.Count();
+
+            // Payment stats
+            var payments = _context.Payments.AsQueryable();
+            ViewBag.TotalPayments = payments.Count();
+            ViewBag.TotalConfirmedPayments = payments.Count(p => p.IsConfirmed);
+            ViewBag.TotalPendingPayments = payments.Count(p => !p.IsConfirmed);
+            ViewBag.TotalAmountReceived = payments.Where(p => p.IsConfirmed).Sum(p => (decimal?)p.Amount) ?? 0;
+
+            // Monthly income chart - last 6 months
+            var now = DateTime.Now;
+            var monthlyIncome = payments
+                .Where(p => p.IsConfirmed && p.DatePaid >= now.AddMonths(-5).Date)
+                .GroupBy(p => new { p.DatePaid.Year, p.DatePaid.Month })
+                .Select(g => new {
+                    Year = g.Key.Year,
+                    Month = g.Key.Month,
+                    Total = g.Sum(p => p.Amount)
+                })
+                .ToList();
+
+            var labels = new List<string>();
+            var amounts = new List<decimal>();
+            for (int i = 5; i >= 0; i--)
+            {
+                var date = now.AddMonths(-i);
+                var income = monthlyIncome
+                    .FirstOrDefault(m => m.Year == date.Year && m.Month == date.Month)?.Total ?? 0;
+                labels.Add(date.ToString("MMM yyyy", CultureInfo.InvariantCulture));
+                amounts.Add(income);
+            }
+            ViewBag.PaymentLabels = labels;
+            ViewBag.PaymentAmounts = amounts;
+            return View();
         }
 
         [HttpPost]

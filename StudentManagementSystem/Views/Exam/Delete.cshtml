@@ -1,0 +1,23 @@
+@model StudentManagementSystem.Models.Exam
+@{
+    ViewData["Title"] = "Delete Exam";
+}
+
+<h2 class="text-danger">Delete Exam</h2>
+
+<div class="mb-3">
+    <strong>Are you sure you want to delete this exam?</strong>
+</div>
+
+<div class="mb-3"><strong>Exam Type:</strong> @Model.ExamType</div>
+<div class="mb-3"><strong>Date:</strong> @Model.ExamDate.ToShortDateString()</div>
+<div class="mb-3"><strong>Course:</strong> @Model.Course?.CourseName</div>
+<div class="mb-3"><strong>Classroom:</strong> @Model.Classroom?.ClassroomName</div>
+
+<form asp-action="DeleteConfirmed">
+    <input type="hidden" asp-for="ExamId" />
+    <button type="submit" class="btn btn-danger">
+        <i class="bi bi-trash"></i> Confirm Delete
+    </button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form> 

@@ -1,0 +1,35 @@
+@model StudentManagementSystem.Models.Payment
+
+@{
+    ViewData["Title"] = "Upload Payment Proof";
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<h2>Upload Payment Proof for Payment #@Model.PaymentId</h2>
+
+<div>
+    <p><strong>Amount:</strong> @Model.Amount.ToString("C")</p>
+    <p><strong>Date Paid:</strong> @Model.DatePaid.ToShortDateString()</p>
+</div>
+
+<form asp-action="UploadProof" asp-route-id="@Model.PaymentId" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="proofFile" class="form-label">Select proof file (JPG, PNG, GIF, PDF, max 5MB):</label>
+        <input type="file" name="proofFile" id="proofFile" class="form-control" required />
+        <span asp-validation-for="proofFile" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+    <a asp-action="MyPayments" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} 

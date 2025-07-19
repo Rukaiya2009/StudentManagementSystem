@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+@inject StudentManagementSystem.Data.ApplicationDbContext Db
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,11 +13,21 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/StudentManagementSystem.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papm6Q+1Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet" />
 </head>
-<body>
+<body class="@((Context.Request.Cookies["theme"] == "dark") ? "bg-dark text-white" : "")">
+    @if (Context.Request.Cookies["theme"] == "dark")
+    {
+        <style>
+            .navbar, .dropdown-menu {
+                background-color: #222 !important;
+            }
+            .dropdown-item { color: #fff; }
+        </style>
+    }
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3 dark-theme-nav">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">StudentManagementSystem</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -27,6 +38,10 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Courses" asp-action="Index">Courses</a>
                         </li>
 
                         @if (SignInManager.IsSignedIn(User))
@@ -58,30 +73,51 @@
                                     <a class="nav-link" asp-controller="StudentDashboard" asp-action="Index">My Dashboard</a>
                                 </li>
                             }
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Courses" asp-action="Index">Courses</a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Courses" asp-action="Index">Courses</a>
-                            </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Payments" asp-action="Index">Payments</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("Student"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Enrollments" asp-action="MyEnrollments">My Courses</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Payments" asp-action="MyPayments">My Payments</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("Teacher"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Courses" asp-action="MyCourses">My Courses</a>
+                                </li>
+                            }
                         }
                     </ul>
 
                     <ul class="navbar-nav">
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index">
-                                    Hello, @(User?.Identity?.Name ?? "User")!
+                            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                            var profile = Db.UserProfiles.FirstOrDefault(p => p.UserId == userId);
+                            var imageUrl = profile?.ProfilePicture ?? "/images/default-avatar.png";
+                            var fullName = profile?.FullName ?? User.Identity.Name;
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="@imageUrl" alt="avatar" width="32" height="32" class="rounded-circle me-2" />
+                                    <span>@fullName</span>
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" method="post" id="logoutForm">
-                                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                                </form>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" asp-controller="UserProfiles" asp-action="Edit">My Profile</a></li>
+                                    <li>
+                                        <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" method="post" class="d-inline">
+                                            <button type="submit" class="dropdown-item">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
                             </li>
                         }
                         else
@@ -94,8 +130,8 @@
                             </li>
                         }
                         <li class="nav-item d-flex align-items-center ms-2">
-                            <button id="theme-toggle" class="btn btn-outline-secondary btn-sm" title="Toggle dark mode" type="button">
-                                <i id="theme-icon" class="bi bi-moon"></i>
+                            <button id="themeToggle" class="btn btn-outline-secondary btn-sm" title="Toggle dark mode" type="button">
+                                <i class="bi bi-moon"></i>
                             </button>
                         </li>
                     </ul>
@@ -104,8 +140,16 @@
         </nav>
     </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="d-flex">
+        @await Html.PartialAsync("_Sidebar")
+        <main class="flex-grow-1 p-3" style="margin-left:240px;">
+            @if (TempData["LogoutMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["LogoutMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
             @await Html.PartialAsync("_TempDataMessages")
             @RenderBody()
         </main>
@@ -122,41 +166,14 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
-        // Dark mode toggle logic
-        (function() {
-            const body = document.body;
-            const toggle = document.getElementById('theme-toggle');
-            const icon = document.getElementById('theme-icon');
-            const darkClass = 'dark-mode';
-            const darkIcon = 'bi-moon';
-            const lightIcon = 'bi-sun';
-
-            function setTheme(dark) {
-                if (dark) {
-                    body.classList.add(darkClass);
-                    icon.classList.remove(lightIcon);
-                    icon.classList.add(darkIcon);
-                } else {
-                    body.classList.remove(darkClass);
-                    icon.classList.remove(darkIcon);
-                    icon.classList.add(lightIcon);
-                }
-            }
-
-            // Detect system preference on first load
-            let theme = localStorage.getItem('theme');
-            if (!theme) {
-                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                localStorage.setItem('theme', theme);
-            }
-            setTheme(theme === 'dark');
-
-            toggle.addEventListener('click', function() {
-                const isDark = body.classList.toggle(darkClass);
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                setTheme(isDark);
-            });
-        })();
+        document.getElementById('themeToggle').addEventListener('click', function () {
+            const currentTheme = document.body.classList.contains('bg-dark') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.classList.toggle('bg-dark');
+            document.body.classList.toggle('text-white');
+            document.cookie = "theme=" + newTheme + "; path=/";
+            location.reload();
+        });
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

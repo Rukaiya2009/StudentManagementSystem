@@ -6,6 +6,8 @@ using StudentManagementSystem.Data;
 using StudentManagementSystem.Models;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
 
 namespace StudentManagementSystem.Controllers
 {
@@ -37,6 +39,9 @@ namespace StudentManagementSystem.Controllers
                 .Include(e => e.Course)
                 .Where(e => e.StudentId == student.StudentId)
                 .ToListAsync();
+
+            decimal gpa = GPAHelper.CalculateGPA(enrollments);
+            ViewBag.GPA = gpa;
 
             ViewBag.Student = student;
             return View(enrollments);

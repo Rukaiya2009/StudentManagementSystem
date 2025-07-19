@@ -9,6 +9,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json;
+using StudentManagementSystem.Data;
+using System.Collections.Generic;
 
 namespace StudentManagementSystem.Controllers
 {
@@ -65,7 +67,7 @@ namespace StudentManagementSystem.Controllers
             // Filtering by status
             if (statusFilter.HasValue)
             {
-                enrollments = enrollments.Where(e => e.Status == statusFilter.Value);
+                enrollments = enrollments.Where(e => e.EnrollmentStatus == statusFilter.Value);
             }
             // Filtering by course
             if (courseId.HasValue)
@@ -110,7 +112,7 @@ namespace StudentManagementSystem.Controllers
             // ✅ Check that Student and Email are not null before access
             if (roles.Contains("Student") && (enrollment.Student?.Email != user.Email))
             {
-                return Forbid(); // Prevent students from viewing others’ records
+                return Forbid(); // Prevent students from viewing others' records
             }
 
             return View(enrollment);
@@ -120,10 +122,7 @@ namespace StudentManagementSystem.Controllers
         [Authorize(Roles = "Admin,Teacher")]
         public IActionResult Create()
         {
-            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName");
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName");
-            ViewBag.StatusList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<EnrollmentStatus>();
-            ViewBag.GradeList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<Grading>();
+            PopulateDropdowns();
             return View();
         }
 
@@ -131,19 +130,34 @@ namespace StudentManagementSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Teacher")]
-        public async Task<IActionResult> Create([Bind("EnrollmentId,StudentId,CourseId,Grade,Status")] Enrollment enrollment)
+        public async Task<IActionResult> Create([Bind("EnrollmentId,StudentId,CourseId,Grade,EnrollmentStatus")] Enrollment enrollment)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(enrollment);
                 await _context.SaveChangesAsync();
+                // Auto-create payment for paid courses only
+                var course = await _context.Courses.FindAsync(enrollment.CourseId);
+                if (course != null && course.Status == CourseStatus.Paid)
+                {
+                    var payment = new Payment
+                    {
+                        StudentId = enrollment.StudentId,
+                        Amount = course.Fee ?? 0m,
+                        DatePaid = DateTime.Now,
+                        PaymentMethod = "Pending",
+                        ReferenceNumber = string.Empty,
+                        IsConfirmed = false,
+                        PaymentProofPath = string.Empty
+                    };
+                    _context.Payments.Add(payment);
+                    await _context.SaveChangesAsync();
+                }
                 TempData["SuccessMessage"] = "Enrollment created successfully!";
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName", enrollment.CourseId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", enrollment.StudentId);
-            ViewBag.StatusList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<EnrollmentStatus>();
+            PopulateDropdowns(enrollment);
             return View(enrollment);
         }
 
@@ -156,10 +170,7 @@ namespace StudentManagementSystem.Controllers
             var enrollment = await _context.Enrollments.FindAsync(id);
             if (enrollment == null) return NotFound();
 
-            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName", enrollment.CourseId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", enrollment.StudentId);
-            ViewBag.StatusList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<EnrollmentStatus>();
-            ViewBag.GradeList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<Grading>();
+            PopulateDropdowns(enrollment);
             return View(enrollment);
         }
 
@@ -167,7 +178,7 @@ namespace StudentManagementSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Teacher")]
-        public async Task<IActionResult> Edit(int id, [Bind("EnrollmentId,StudentId,CourseId,Grade,Status")] Enrollment enrollment)
+        public async Task<IActionResult> Edit(int id, [Bind("EnrollmentId,StudentId,CourseId,Grade,EnrollmentStatus")] Enrollment enrollment)
         {
             if (id != enrollment.EnrollmentId) return NotFound();
 
@@ -184,7 +195,7 @@ namespace StudentManagementSystem.Controllers
                     existingEnrollment.StudentId = enrollment.StudentId;
                     existingEnrollment.CourseId = enrollment.CourseId;
                     existingEnrollment.Grade = enrollment.Grade;
-                    existingEnrollment.Status = enrollment.Status;
+                    existingEnrollment.EnrollmentStatus = enrollment.EnrollmentStatus;
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Enrollment updated successfully!";
                 }
@@ -203,10 +214,9 @@ namespace StudentManagementSystem.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName", enrollment.CourseId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", enrollment.StudentId);
+            
+            PopulateDropdowns(enrollment);
             var existingEnrollmentForView = await _context.Enrollments.FindAsync(id);
-            ViewBag.StatusList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<EnrollmentStatus>();
             return View(existingEnrollmentForView ?? enrollment);
         }
 
@@ -263,6 +273,15 @@ namespace StudentManagementSystem.Controllers
         private bool EnrollmentExists(int id)
         {
             return _context.Enrollments.Any(e => e.EnrollmentId == id);
+        }
+
+        // DRY helper for form dropdowns
+        private void PopulateDropdowns(Enrollment? enrollment = null)
+        {
+            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName", enrollment?.CourseId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", enrollment?.StudentId);
+            ViewBag.StatusList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<EnrollmentStatus>();
+            ViewBag.GradeList = StudentManagementSystem.Helpers.EnumHelper.ToSelectList<Grading>();
         }
     }
 }

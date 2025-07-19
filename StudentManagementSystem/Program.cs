@@ -63,6 +63,24 @@ using (var scope = app.Services.CreateScope())
         }
     }
 
+    // ✅ Seed dummy teachers linked to departments
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    if (!context.Teachers.Any())
+    {
+        var departments = context.Departments.ToList();
+        if (departments.Count >= 3)
+        {
+            var teachers = new List<Teacher>
+            {
+                new Teacher { Name = "Farhana Haque", Email = "farhana@school.edu", DepartmentId = departments[0].DepartmentId },
+                new Teacher { Name = "Tanvir Rahman", Email = "tanvir@school.edu", DepartmentId = departments[1].DepartmentId },
+                new Teacher { Name = "Jahid Hasan", Email = "jahid@school.edu", DepartmentId = departments[2].DepartmentId },
+            };
+            context.Teachers.AddRange(teachers);
+            context.SaveChanges();
+        }
+    }
+
     // ✅ Optional: Create default Admin user here (manual test only)
     /*
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();

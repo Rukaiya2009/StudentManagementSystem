@@ -1,0 +1,48 @@
+@model StudentManagementSystem.Models.Exam
+@{
+    ViewData["Title"] = "Edit Exam";
+}
+
+<h2 class="text-primary">Edit Exam</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="ExamId" />
+    <div class="mb-3">
+        <label asp-for="ExamType" class="form-label"></label>
+        <input asp-for="ExamType" class="form-control" />
+        <span asp-validation-for="ExamType" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ExamDate" class="form-label"></label>
+        <input asp-for="ExamDate" type="date" class="form-control" />
+        <span asp-validation-for="ExamDate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DurationMinutes" class="form-label"></label>
+        <input asp-for="DurationMinutes" class="form-control" />
+        <span asp-validation-for="DurationMinutes" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CourseId" class="form-label">Course</label>
+        <select asp-for="CourseId" class="form-select" asp-items="ViewBag.CourseId"></select>
+        <span asp-validation-for="CourseId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ClassroomId" class="form-label">Classroom</label>
+        <select asp-for="ClassroomId" class="form-select" asp-items="ViewBag.ClassroomId"></select>
+        <span asp-validation-for="ClassroomId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        <i class="bi bi-save"></i> Save Changes
+    </button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

@@ -8,20 +8,33 @@ namespace StudentManagementSystem.Models
     {
         public int PaymentId { get; set; }
 
-        [Required]
-        public int EnrollmentId { get; set; }
-        [ForeignKey("EnrollmentId")]
-        public Enrollment Enrollment { get; set; } = new();
+        public int? CourseId { get; set; }
+        public bool IsPaid { get => IsConfirmed; set => IsConfirmed = value; }
+        public DateTime PaymentDate { get => DatePaid; set => DatePaid = value; }
+        public string proofFile { get => PaymentProofPath; set => PaymentProofPath = value; }
 
         [Required]
-        public double Amount { get; set; }
+        public required int StudentId { get; set; }
 
-        public DateTime PaymentDate { get; set; } = DateTime.Now;
-
-        public string? PaymentMethod { get; set; }  // e.g., Card, Bank, Cash
+        [ForeignKey("StudentId")]
+        public Student? Student { get; set; }
 
         [Required]
-        [StringLength(10)]
-        public string Status { get; set; } = "Unpaid"; // Paid or Unpaid
+        [DataType(DataType.Currency)]
+        public required decimal Amount { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime DatePaid { get; set; } = DateTime.Now;
+
+        [Required]
+        public required string PaymentMethod { get; set; }
+
+        public string? ReferenceNumber { get; set; }
+
+        public bool IsConfirmed { get; set; } = false;
+
+        public string? PaymentProofPath { get; set; }
+
+        public string? StudentFullName => Student?.FullName;
     }
 } 

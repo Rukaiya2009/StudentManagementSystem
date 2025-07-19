@@ -1,0 +1,83 @@
+@model string
+
+<div class="mb-3 text-center">
+    <img id="profileImagePreview" src="@(!string.IsNullOrEmpty(Model) ? Model : "/images/default-avatar.png")"
+         class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit:cover;" alt="Profile Picture" />
+</div>
+
+<input type="file" name="imageFile" accept="image/*" id="imageInput" class="form-control" />
+<input type="hidden" name="CroppedImageData" id="CroppedImageData" />
+
+<div class="mt-2 d-flex gap-2">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cropModal">Crop & Preview</button>
+    <button type="button" class="btn btn-outline-danger" id="removeImageBtn">Remove Image</button>
+</div>
+
+<!-- Crop Modal -->
+<div class="modal fade" id="cropModal" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Crop Your Image</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img id="imageToCrop" class="img-fluid w-100" />
+      </div>
+      <div class="modal-footer d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" id="cropImageBtn">Crop & Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <script>
+        let cropper;
+        const imageInput = document.getElementById('imageInput');
+        const previewImage = document.getElementById('profileImagePreview');
+        const cropperImage = document.getElementById('imageToCrop');
+        const croppedImageData = document.getElementById('CroppedImageData');
+        const cropBtn = document.getElementById('cropImageBtn');
+        const removeBtn = document.getElementById('removeImageBtn');
+
+        imageInput.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                cropperImage.src = event.target.result;
+                new bootstrap.Modal(document.getElementById('cropModal')).show();
+                if (cropper) cropper.destroy();
+                cropper = new Cropper(cropperImage, {
+                    aspectRatio: 1,
+                    viewMode: 1,
+                    autoCropArea: 1
+                });
+            };
+            reader.readAsDataURL(file);
+        });
+
+        cropBtn.addEventListener('click', function () {
+            if (!cropper) return;
+            const canvas = cropper.getCroppedCanvas({ width: 300, height: 300 });
+            const base64 = canvas.toDataURL('image/png');
+            previewImage.src = base64;
+            croppedImageData.value = base64;
+            bootstrap.Modal.getInstance(document.getElementById('cropModal')).hide();
+        });
+
+        removeBtn.addEventListener('click', function () {
+            const defaultAvatarPath = '/images/default-avatar.png';
+            previewImage.src = defaultAvatarPath;
+            croppedImageData.value = '';
+            imageInput.value = '';
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+        });
+    </script>
+} 

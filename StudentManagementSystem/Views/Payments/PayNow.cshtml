@@ -1,0 +1,40 @@
+@model StudentManagementSystem.Models.Payment
+@{
+    ViewData["Title"] = "Confirm Payment";
+}
+
+<h2>Confirm Payment</h2>
+
+<div class="alert alert-info">
+    You are about to simulate a payment of <strong>@Model.Amount.ToString("C")</strong> for the course fee.
+</div>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Payment ID</th>
+        <td>@Model.PaymentId</td>
+    </tr>
+    <tr>
+        <th>Date Created</th>
+        <td>@Model.DatePaid.ToShortDateString()</td>
+    </tr>
+    <tr>
+        <th>Current Status</th>
+        <td>
+            @if (Model.IsConfirmed)
+            {
+                <span class="badge bg-success">Confirmed</span>
+            }
+            else
+            {
+                <span class="badge bg-warning text-dark">Pending</span>
+            }
+        </td>
+    </tr>
+</table>
+
+<form asp-action="PayNow" method="post">
+    <input type="hidden" asp-for="PaymentId" />
+    <button type="submit" class="btn btn-primary">Confirm Payment</button>
+    <a asp-action="MyPayments" class="btn btn-secondary">Cancel</a>
+</form> 

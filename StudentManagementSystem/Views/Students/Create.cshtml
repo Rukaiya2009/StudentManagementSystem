@@ -53,10 +53,31 @@
             </div>
 
             <div class="form-group">
-                <label for="ProfileImage" class="control-label">Profile Picture</label>
-                <input type="file" name="ProfileImage" id="ProfileImage" class="form-control" accept="image/*" />
-                <small class="form-text text-muted">Accepted formats: JPG, PNG, GIF. Max size: 5MB</small>
+                <label class="control-label">Upload Profile Image</label>
+                <input type="file" class="form-control" id="imageInput" accept="image/*" />
             </div>
+            <div class="mt-3">
+                <img id="previewImage" style="max-width: 200px; display:none;" class="img-thumbnail" />
+            </div>
+            <!-- Cropper Modal -->
+            <div id="cropperModal" class="modal fade" tabindex="-1" role="dialog">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Crop Image</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <img id="cropperImage" style="max-width: 100%;" />
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" id="cropButton" class="btn btn-primary">Crop & Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <input type="hidden" id="croppedImageData" name="CroppedImageData" />
 
             <div class="form-group mt-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -73,29 +94,51 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet" />
     <script>
-        // File upload validation
-        document.getElementById('ProfileImage').addEventListener('change', function(e) {
+        let cropper;
+        const imageInput = document.getElementById('imageInput');
+        const previewImage = document.getElementById('previewImage');
+        const cropperImage = document.getElementById('cropperImage');
+        const croppedImageData = document.getElementById('croppedImageData');
+
+        imageInput.addEventListener('change', function (e) {
             const file = e.target.files[0];
-            const maxSize = 5 * 1024 * 1024; // 5MB
-            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-            
-            if (file) {
-                // Check file size
-                if (file.size > maxSize) {
-                    alert('File size must be less than 5MB');
-                    this.value = '';
-                    return;
-                }
-                
-                // Check file type
-                if (!allowedTypes.includes(file.type)) {
-                    alert('Please select a valid image file (JPG, PNG, GIF)');
-                    this.value = '';
-                    return;
-                }
-            }
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                cropperImage.src = event.target.result;
+                const modal = new bootstrap.Modal(document.getElementById('cropperModal'));
+                modal.show();
+
+                modal._element.addEventListener('shown.bs.modal', () => {
+                    cropper = new Cropper(cropperImage, {
+                        aspectRatio: 1,
+                        viewMode: 1,
+                        movable: true,
+                        zoomable: true
+                    });
+                });
+
+                modal._element.addEventListener('hidden.bs.modal', () => {
+                    cropper.destroy();
+                    cropper = null;
+                });
+            };
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById('cropButton').addEventListener('click', () => {
+            const canvas = cropper.getCroppedCanvas({ width: 200, height: 200 });
+            const base64 = canvas.toDataURL("image/png");
+
+            previewImage.src = base64;
+            previewImage.style.display = "block";
+            croppedImageData.value = base64;
+
+            bootstrap.Modal.getInstance(document.getElementById('cropperModal')).hide();
         });
     </script>
 }

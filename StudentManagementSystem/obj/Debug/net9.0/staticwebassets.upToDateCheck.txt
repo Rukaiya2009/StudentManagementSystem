@@ -1,12 +1,13 @@
 wwwroot\css\site.css
 wwwroot\favicon.ico
-wwwroot\images\17d718a4-04e3-40bc-9f8c-0ce8bf742f17.png
-wwwroot\images\1a0f741f-b150-4778-b8b4-452cd918683e.png
-wwwroot\images\42971f2d-63c4-4c29-8783-2db89e88453d.png
-wwwroot\images\5911420f-ac6a-4c96-9245-a9f79c8c3ead.png
-wwwroot\images\713aacba-8064-455d-afbf-0f9f58325210.png
-wwwroot\images\c275d9f8-6e82-410e-8676-c8343553a970.png
-wwwroot\images\fecdc2ac-e249-444b-b3a2-355696785672.png
+wwwroot\images\ai1.png
+wwwroot\images\ai2.png
+wwwroot\images\ai3.png
+wwwroot\images\ai4.png
+wwwroot\images\banneridk.png
+wwwroot\images\default-avatar.png
+wwwroot\images\FH.png
+wwwroot\images\fh2.png
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
@@ -68,7 +69,6 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
-F:\StudentManagementSystem\StudentManagementSystem\wwwroot\css\site.css
 F:\StudentManagementSystem\StudentManagementSystem\wwwroot\favicon.ico
 F:\StudentManagementSystem\StudentManagementSystem\wwwroot\js\site.js
 F:\StudentManagementSystem\StudentManagementSystem\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
@@ -130,3 +130,4 @@ F:\StudentManagementSystem\StudentManagementSystem\wwwroot\lib\jquery\dist\jquer
 F:\StudentManagementSystem\StudentManagementSystem\wwwroot\lib\jquery\dist\jquery.slim.min.js
 F:\StudentManagementSystem\StudentManagementSystem\wwwroot\lib\jquery\dist\jquery.slim.min.map
 F:\StudentManagementSystem\StudentManagementSystem\wwwroot\lib\jquery\LICENSE.txt
+F:\StudentManagementSystem\StudentManagementSystem\wwwroot\css\site.css

@@ -8,13 +8,24 @@ namespace StudentManagementSystem.Models
         public int TeacherId { get; set; }
 
         [Required]
-        public string Name { get; set; } = string.Empty;
+        public required string Name { get; set; }
 
         [EmailAddress]
-        public string Email { get; set; } = string.Empty;
+        public required string Email { get; set; }
 
-        public string DepartmentName { get; set; } = string.Empty;
+        public string? ProfilePicture { get; set; }  // file name of image
 
-        public ICollection<Course> Courses { get; set; } = new List<Course>();
+        public string? Phone { get; set; }
+
+        // Foreign Key to Department
+        public int? DepartmentId { get; set; }
+        public Department? Department { get; set; }
+
+        public ICollection<Course>? Courses { get; set; }
+
+        // Link to ASP.NET Identity User
+        public string? UserId { get; set; }
+        // Optional navigation property
+        // public IdentityUser? User { get; set; }
     }
 }

@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StudentManagementSystem.Models;
+using System.IO;
+using System.Text.RegularExpressions;
+using StudentManagementSystem.Data;
 
 namespace StudentManagementSystem.Controllers
 {
@@ -47,6 +50,7 @@ namespace StudentManagementSystem.Controllers
         // GET: Teachers/Create
         public IActionResult Create()
         {
+            ViewBag.DepartmentId = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
             return View();
         }
 
@@ -55,15 +59,30 @@ namespace StudentManagementSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TeacherId,Name,Email,DepartmentName")] Teacher teacher)
+        public async Task<IActionResult> Create([Bind("TeacherId,Name,Email,DepartmentId,ProfilePicture,Phone,UserId")] Teacher teacher, string CroppedImageData)
         {
             if (ModelState.IsValid)
             {
+                // Handle cropped image
+                if (!string.IsNullOrEmpty(CroppedImageData))
+                {
+                    var base64Data = Regex.Match(CroppedImageData, @"data:image/(?<type>.+?),(?<data>.+)").Groups["data"].Value;
+                    var bytes = Convert.FromBase64String(base64Data);
+                    var fileName = $"{Guid.NewGuid()}.png";
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/uploads", fileName);
+                    await System.IO.File.WriteAllBytesAsync(filePath, bytes);
+                    teacher.ProfilePicture = "/images/uploads/" + fileName;
+                }
+                else if (string.IsNullOrEmpty(teacher.ProfilePicture))
+                {
+                    teacher.ProfilePicture = "/images/default-avatar.png";
+                }
                 _context.Add(teacher);
                 await _context.SaveChangesAsync();
                 TempData["SuccessMessage"] = "Teacher created successfully!";
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.DepartmentId = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
             return View(teacher);
         }
 
@@ -80,54 +99,54 @@ namespace StudentManagementSystem.Controllers
             {
                 return NotFound();
             }
+            ViewBag.DepartmentId = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
             return View(teacher);
         }
 
         // POST: Teachers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TeacherId,Name,Email,DepartmentName")] Teacher teacher)
+        public async Task<IActionResult> Edit(int id, [Bind("TeacherId,Name,Email,DepartmentId,ProfilePicture,Phone,UserId")] Teacher teacher, string CroppedImageData)
         {
             if (id != teacher.TeacherId)
-            {
                 return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
                     var existingTeacher = await _context.Teachers.FindAsync(id);
                     if (existingTeacher == null)
-                    {
                         return NotFound();
-                    }
-
-                    // Update fields manually on the tracked entity
                     existingTeacher.Name = teacher.Name;
                     existingTeacher.Email = teacher.Email;
-                    existingTeacher.DepartmentName = teacher.DepartmentName;
-
+                    existingTeacher.DepartmentId = teacher.DepartmentId;
+                    // Handle image update
+                    if (!string.IsNullOrEmpty(CroppedImageData))
+                    {
+                        var base64Data = Regex.Match(CroppedImageData, @"data:image/(?<type>.+?),(?<data>.+)").Groups["data"].Value;
+                        var bytes = Convert.FromBase64String(base64Data);
+                        var fileName = $"{Guid.NewGuid()}.png";
+                        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/uploads", fileName);
+                        await System.IO.File.WriteAllBytesAsync(filePath, bytes);
+                        existingTeacher.ProfilePicture = "/images/uploads/" + fileName;
+                    }
+                    else if (string.IsNullOrEmpty(existingTeacher.ProfilePicture))
+                    {
+                        existingTeacher.ProfilePicture = "/images/default-avatar.png";
+                    }
+                    _context.Update(existingTeacher);
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Teacher updated successfully!";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!TeacherExists(teacher.TeacherId))
-                    {
-                        TempData["ErrorMessage"] = "Teacher not found or has been deleted.";
-                        return RedirectToAction(nameof(Index));
-                    }
+                        return NotFound();
                     else
-                    {
-                        TempData["ErrorMessage"] = "The teacher was modified by another user. Please refresh and try again.";
-                        return RedirectToAction(nameof(Index));
-                    }
+                        throw;
                 }
                 return RedirectToAction(nameof(Index));
             }
-            
-            // Return the existing teacher from database to maintain state
             var existingTeacherForView = await _context.Teachers.FindAsync(id);
             return View(existingTeacherForView ?? teacher);
         }

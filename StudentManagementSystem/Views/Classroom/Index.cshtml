@@ -1,0 +1,58 @@
+@model IEnumerable<StudentManagementSystem.Models.Classroom>
+@{
+    ViewData["Title"] = "Classrooms";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="text-primary">Classrooms</h1>
+    <a asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Add New Classroom
+    </a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No classrooms found.</div>
+}
+else
+{
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Classroom Name</th>
+                <th>Department</th>
+                <th>Room Number</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var classroom in Model)
+            {
+                <tr>
+                    <td>@classroom.ClassroomName</td>
+                    <td>@classroom.Department?.DepartmentName</td>
+                    <td>@classroom.ClassroomLink</td>
+                    <td>
+                        <div class="btn-group">
+                            <a asp-action="Details" asp-route-id="@classroom.ClassroomId" class="btn btn-sm btn-info">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@classroom.ClassroomId" class="btn btn-sm btn-primary">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@classroom.ClassroomId" class="btn btn-sm btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                            @if (classroom.IsDeleted)
+                            {
+                                <a asp-action="Undo" asp-route-id="@classroom.ClassroomId" class="btn btn-sm btn-warning">
+                                    <i class="bi bi-arrow-counterclockwise"></i> Undo
+                                </a>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+} 

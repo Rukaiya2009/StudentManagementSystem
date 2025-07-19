@@ -1,0 +1,18 @@
+@model StudentManagementSystem.Models.UserProfile
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+<h2 class="text-primary">Edit Profile</h2>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="FullName" class="form-label"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    @await Html.PartialAsync("_ImageUploaderPartial", Model?.ProfilePicture)
+
+    <button type="submit" class="btn btn-outline-primary mt-3">Save</button>
+</form> 
