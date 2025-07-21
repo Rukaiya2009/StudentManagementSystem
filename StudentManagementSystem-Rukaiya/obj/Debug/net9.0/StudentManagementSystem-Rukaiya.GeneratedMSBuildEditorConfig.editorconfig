@@ -17,429 +17,597 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = StudentManagementSystem_Rukaiya
 build_property.RootNamespace = StudentManagementSystem_Rukaiya
-build_property.ProjectDir = F:\Course-25\Rukaiya Projects\StudentManagementSystem-Rukaiya\
+build_property.ProjectDir = F:\StudentManagementSystem\StudentManagementSystem-Rukaiya\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = F:\Course-25\Rukaiya Projects\StudentManagementSystem-Rukaiya
+build_property.MSBuildProjectDirectory = F:\StudentManagementSystem\StudentManagementSystem-Rukaiya
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/_ViewStart.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/ConfirmEmailChange.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDb25maXJtRW1haWxDaGFuZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/ExternalLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxFeHRlcm5hbExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/ForgotPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZENvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Lockout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2Nrb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/LoginWith2fa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbldpdGgyZmEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/LoginWithRecoveryCode.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbldpdGhSZWNvdmVyeUNvZGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcQ2hhbmdlUGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRGVsZXRlUGVyc29uYWxEYXRhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/Disable2fa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRGlzYWJsZTJmYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRG93bmxvYWRQZXJzb25hbERhdGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/Email.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRW1haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRW5hYmxlQXV0aGVudGljYXRvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/ExternalLogins.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRXh0ZXJuYWxMb2dpbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/GenerateRecoveryCodes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcR2VuZXJhdGVSZWNvdmVyeUNvZGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcUGVyc29uYWxEYXRhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/ResetAuthenticator.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcUmVzZXRBdXRoZW50aWNhdG9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/SetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcU2V0UGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/ShowRecoveryCodes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcU2hvd1JlY292ZXJ5Q29kZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/TwoFactorAuthentication.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcVHdvRmFjdG9yQXV0aGVudGljYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX01hbmFnZU5hdi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/_StatusMessage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1N0YXR1c01lc3NhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/ManualConfirmEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW51YWxDb25maXJtRW1haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3RlckNvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/ResendEmailConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNlbmRFbWFpbENvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/ResetPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkQ29uZmlybWF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/_StatusMessage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfU3RhdHVzTWVzc2FnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/ConfirmEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQ29uZmlybUVtYWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AnnouncementComments/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Admin/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AnnouncementComments/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5ub3VuY2VtZW50Q29tbWVudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AnnouncementComments/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AnnouncementComments/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5ub3VuY2VtZW50Q29tbWVudHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AnnouncementComments/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AnnouncementComments/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5ub3VuY2VtZW50Q29tbWVudHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AnnouncementComments/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AnnouncementComments/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5ub3VuY2VtZW50Q29tbWVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AnnouncementComments/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AnnouncementComments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5ub3VuY2VtZW50Q29tbWVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AssignmentReminders/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AssignmentReminders/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFJlbWluZGVyc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AssignmentReminders/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AssignmentReminders/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFJlbWluZGVyc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AssignmentReminders/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AssignmentReminders/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFJlbWluZGVyc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AssignmentReminders/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AssignmentReminders/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFJlbWluZGVyc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AssignmentReminders/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AssignmentReminders/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFJlbWluZGVyc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AssignmentSubmissions/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AssignmentSubmissions/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFN1Ym1pc3Npb25zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AssignmentSubmissions/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AssignmentSubmissions/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFN1Ym1pc3Npb25zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AssignmentSubmissions/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AssignmentSubmissions/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFN1Ym1pc3Npb25zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AssignmentSubmissions/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AssignmentSubmissions/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFN1Ym1pc3Npb25zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/AssignmentSubmissions/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/AssignmentSubmissions/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFN1Ym1pc3Npb25zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Assignments/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Assignments/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Assignments/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Assignments/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Assignments/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Assignments/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Assignments/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Assignments/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Assignments/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Assignments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomAnnouncements/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomAnnouncements/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tQW5ub3VuY2VtZW50c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomAnnouncements/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomAnnouncements/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tQW5ub3VuY2VtZW50c1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomAnnouncements/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomAnnouncements/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tQW5ub3VuY2VtZW50c1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomAnnouncements/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomAnnouncements/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tQW5ub3VuY2VtZW50c1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomAnnouncements/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomAnnouncements/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tQW5ub3VuY2VtZW50c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomMaterials/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomMaterials/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tTWF0ZXJpYWxzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomMaterials/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomMaterials/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tTWF0ZXJpYWxzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomMaterials/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomMaterials/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tTWF0ZXJpYWxzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomMaterials/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomMaterials/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tTWF0ZXJpYWxzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomMaterials/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomMaterials/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tTWF0ZXJpYWxzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomMaterialViews/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomMaterialViews/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tTWF0ZXJpYWxWaWV3c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomMaterialViews/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomMaterialViews/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tTWF0ZXJpYWxWaWV3c1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomMaterialViews/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomMaterialViews/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tTWF0ZXJpYWxWaWV3c1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomMaterialViews/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomMaterialViews/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tTWF0ZXJpYWxWaWV3c1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/ClassroomMaterialViews/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/ClassroomMaterialViews/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tTWF0ZXJpYWxWaWV3c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Classrooms/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Classrooms/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Classrooms/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Classrooms/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Classrooms/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Classrooms/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Classrooms/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Classrooms/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Classrooms/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Classrooms/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nyb29tc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Courses/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Courses/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Courses/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Courses/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Courses/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Courses/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Courses/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Courses/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Courses/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Courses/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Departments/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Departments/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Departments/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Departments/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Departments/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Departments/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Departments/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Departments/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Departments/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Departments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Enrollments/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Enrollments/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5yb2xsbWVudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Enrollments/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Enrollments/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5yb2xsbWVudHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Enrollments/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Enrollments/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5yb2xsbWVudHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Enrollments/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Enrollments/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5yb2xsbWVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Enrollments/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Enrollments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5yb2xsbWVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Exams/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Exams/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhhbXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Exams/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Exams/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhhbXNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Exams/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Exams/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhhbXNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Exams/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Exams/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhhbXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Exams/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Exams/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhhbXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/GradingRules/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/GradingRules/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZGluZ1J1bGVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/GradingRules/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/GradingRules/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZGluZ1J1bGVzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/GradingRules/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/GradingRules/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZGluZ1J1bGVzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/GradingRules/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/GradingRules/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZGluZ1J1bGVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/GradingRules/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/GradingRules/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZGluZ1J1bGVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Home/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Home/Privacy.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/PaymentMethods/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/PaymentMethods/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudE1ldGhvZHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/PaymentMethods/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/PaymentMethods/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudE1ldGhvZHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/PaymentMethods/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/PaymentMethods/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudE1ldGhvZHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/PaymentMethods/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/PaymentMethods/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudE1ldGhvZHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/PaymentMethods/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/PaymentMethods/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudE1ldGhvZHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Payments/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Payments/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Payments/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Payments/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Payments/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Payments/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Payments/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Payments/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Payments/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Payments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Results/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Results/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdWx0c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Results/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Results/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdWx0c1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Results/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Results/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdWx0c1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Results/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Results/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdWx0c1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Results/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Results/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdWx0c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Shared/Error.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Shared/_LoginPartial.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Shared/_ValidationScriptsPartial.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Students/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Students/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Students/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Students/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Students/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Students/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Students/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Students/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Students/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Students/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Teachers/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Teachers/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlcnNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Teachers/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Teachers/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlcnNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Teachers/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Teachers/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlcnNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Teachers/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Teachers/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlcnNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Teachers/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Teachers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/UserProfiles/Create.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/UserProfiles/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/UserProfiles/Delete.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/UserProfiles/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/UserProfiles/Details.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/UserProfiles/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/UserProfiles/Edit.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/UserProfiles/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/UserProfiles/Index.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/UserProfiles/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/_ViewImports.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/_ViewStart.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Course-25/Rukaiya Projects/StudentManagementSystem-Rukaiya/Views/Shared/_Layout.cshtml]
+[F:/StudentManagementSystem/StudentManagementSystem-Rukaiya/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-dzf2q69arl

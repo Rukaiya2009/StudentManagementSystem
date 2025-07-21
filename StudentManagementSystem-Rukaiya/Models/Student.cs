@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace StudentManagementSystem.Models
+namespace StudentManagementSystem_Rukaiya.Models
 {
     public class Student
     {
@@ -19,8 +19,9 @@ namespace StudentManagementSystem.Models
         public string? ImagePath { get; set; }
 
         // Optional: Link to Identity User
-        [ForeignKey("IdentityUser")]
+        [ForeignKey("User")]
         public string? UserId { get; set; }
+        public ApplicationUser? User { get; set; }
 
         public virtual ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
 

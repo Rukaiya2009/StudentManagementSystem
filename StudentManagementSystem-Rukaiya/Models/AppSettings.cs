@@ -1,4 +1,4 @@
-﻿namespace StudentManagementSystem.Models
+﻿namespace StudentManagementSystem_Rukaiya.Models
 {
     public class AppSettings
     {

@@ -8123,7 +8123,8 @@
       "Microsoft.AspNetCore.Identity.UI >= 9.0.7",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.7",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.7",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 9.0.0"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 9.0.0",
+      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc >= 9.0.0"
     ]
   },
   "packageFolders": {
@@ -8133,11 +8134,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\StudentManagementSystem-Rukaiya.csproj",
+      "projectUniqueName": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\StudentManagementSystem-Rukaiya.csproj",
       "projectName": "StudentManagementSystem-Rukaiya",
-      "projectPath": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\StudentManagementSystem-Rukaiya.csproj",
+      "projectPath": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\StudentManagementSystem-Rukaiya.csproj",
       "packagesPath": "C:\\Users\\Rukaiya\\.nuget\\packages\\",
-      "outputPath": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\obj\\",
+      "outputPath": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -8198,6 +8199,10 @@
             "version": "[9.0.7, )"
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+            "target": "Package",
+            "version": "[9.0.0, )"
+          },
+          "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
             "target": "Package",
             "version": "[9.0.0, )"
           }

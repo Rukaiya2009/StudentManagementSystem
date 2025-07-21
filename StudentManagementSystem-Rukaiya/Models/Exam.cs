@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using StudentManagementSystem.Models;
+using StudentManagementSystem_Rukaiya.Models;
 
-namespace StudentManagementSystem.Models
+namespace StudentManagementSystem_Rukaiya.Models
 {
     public class Exam
     {

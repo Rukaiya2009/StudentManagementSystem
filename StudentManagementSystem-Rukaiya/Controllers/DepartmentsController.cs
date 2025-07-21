@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using StudentManagementSystem.Data;
-using StudentManagementSystem.Models;
+using StudentManagementSystem_Rukaiya.Data;
+using StudentManagementSystem_Rukaiya.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem_Rukaiya.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class DepartmentsController : Controller
     {
         private readonly ApplicationDbContext _context;

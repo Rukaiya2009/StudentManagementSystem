@@ -1,11 +1,22 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     string IsActive(string controller)
     {
         return ViewContext.RouteData.Values["Controller"]?.ToString() == controller ? "active" : "";
+    }
+
+    ApplicationUser? user = null;
+    List<string> userRoles = new List<string>();
+    if (SignInManager.IsSignedIn(User))
+    {
+        user = await UserManager.GetUserAsync(User);
+        if (user != null)
+        {
+            userRoles = (await UserManager.GetRolesAsync(user)).ToList();
+        }
     }
 }
 
@@ -18,6 +29,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/StudentManagementSystem_Rukaiya.styles.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body class="light-theme">
     <header>
@@ -53,20 +65,97 @@
                         <li class="nav-item">
                             <a class="nav-link @(IsActive("Payments"))" asp-controller="Payments" asp-action="Index">Payments</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("AnnouncementComments"))" asp-controller="AnnouncementComments" asp-action="Index">Announcement Comments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("AssignmentReminders"))" asp-controller="AssignmentReminders" asp-action="Index">Assignment Reminders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("Assignments"))" asp-controller="Assignments" asp-action="Index">Assignments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("ClassroomAnnouncements"))" asp-controller="ClassroomAnnouncements" asp-action="Index">Classroom Announcements</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("ClassroomMaterials"))" asp-controller="ClassroomMaterials" asp-action="Index">Classroom Materials</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("ClassroomMaterialViews"))" asp-controller="ClassroomMaterialViews" asp-action="Index">Classroom Material Views</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("Enrollments"))" asp-controller="Enrollments" asp-action="Index">Enrollments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("GradingRules"))" asp-controller="GradingRules" asp-action="Index">Grading Rules</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("PaymentMethods"))" asp-controller="PaymentMethods" asp-action="Index">Payment Methods</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("Results"))" asp-controller="Results" asp-action="Index">Results</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("UserProfiles"))" asp-controller="UserProfiles" asp-action="Index">User Profiles</a>
+                        </li>
+
+                        @if (user != null)
+                        {
+                            if (userRoles.Contains("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Admin" asp-action="Dashboard">Admin Dashboard</a>
+                                </li>
+                            }
+                            else if (userRoles.Contains("Teacher"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Teachers" asp-action="Index">Teacher Dashboard</a>
+                                </li>
+                            }
+                            else if (userRoles.Contains("Student"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="StudentDashboard" asp-action="Index">Student Dashboard</a>
+                                </li>
+                            }
+                        }
                     </ul>
 
                     <div class="d-flex align-items-center">
                         <button id="toggle-theme" class="btn btn-outline-light me-2">🌙</button>
 
-                        @if (SignInManager.IsSignedIn(User))
+                        @if (user != null)
                         {
+                            string avatarPath = "/images/default-avatar.png"; // Default avatar path
+
+                            // Get profile picture from claim
+                            var claims = await UserManager.GetClaimsAsync(user);
+                            var picClaim = claims.FirstOrDefault(c => c.Type == "ProfilePicture");
+                            if (picClaim != null && !string.IsNullOrEmpty(picClaim.Value))
+                            {
+                                avatarPath = picClaim.Value;
+                            }
+                            // Optional fallback to property if you later save ProfileImagePath to DB:
+                            else if (!string.IsNullOrEmpty(user.ProfileImagePath))
+                            {
+                                avatarPath = user.ProfileImagePath;
+                            }
+
                             <div class="dropdown">
-                                <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                    @User.Identity.Name
+                                <a class="btn btn-outline-light dropdown-toggle d-flex align-items-center" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="@avatarPath" alt="Avatar" class="rounded-circle me-2" style="width: 35px; height: 35px; object-fit: cover;" />
+                                    <span>@User.Identity.Name</span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a></li>
-                                    <li><form method="post" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home")"><button class="dropdown-item" type="submit">Logout</button></form></li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a>
+                                    </li>
+                                    <li>
+                                        <form method="post" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home")">
+                                            <button class="dropdown-item" type="submit">Logout</button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         }
@@ -76,6 +165,7 @@
                             <a class="btn btn-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
                         }
                     </div>
+
                 </div>
             </div>
         </nav>
