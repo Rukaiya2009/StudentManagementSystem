@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using StudentManagementSystem.Data;
-using StudentManagementSystem.Models;
+using StudentManagementSystem_Rukaiya.Data;
+using StudentManagementSystem_Rukaiya.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem_Rukaiya.Controllers
 {
-    [Authorize]
     public class CoursesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,49 +20,74 @@ namespace StudentManagementSystem_Rukaiya.Controllers
             _context = context;
         }
 
-        // GET: Courses
+        // GET: Courses (Anyone can view)
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Courses.Include(c => c.Classroom).Include(c => c.Department).Include(c => c.Teacher);
-            return View(await applicationDbContext.ToListAsync());
+            var courses = _context.Courses
+                .Include(c => c.Classroom)
+                .Include(c => c.Department)
+                .Include(c => c.Teacher);
+            return View(await courses.ToListAsync());
         }
 
-        // GET: Courses/Details/5
+        // GET: Courses/Details/5 (Anyone can view)
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var course = await _context.Courses
                 .Include(c => c.Classroom)
                 .Include(c => c.Department)
                 .Include(c => c.Teacher)
                 .FirstOrDefaultAsync(m => m.CourseId == id);
+
             if (course == null)
-            {
                 return NotFound();
-            }
 
             return View(course);
         }
 
+        private void PopulateDropdowns(Course? course = null)
+        {
+            ViewBag.DepartmentId = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", course?.DepartmentId);
+            ViewBag.TeacherId = new SelectList(_context.Teachers, "TeacherId", "Email", course?.TeacherId);
+            ViewBag.ClassroomId = new SelectList(_context.Classrooms, "ClassroomId", "ClassroomName", course?.ClassroomId);
+
+            ViewBag.Level = Enum.GetValues(typeof(CourseLevel))
+                .Cast<CourseLevel>()
+                .Select(l => new SelectListItem
+                {
+                    Value = ((int)l).ToString(),
+                    Text = l.ToString(),
+                    Selected = course != null && (int)course.Level == (int)l
+                });
+
+            ViewBag.Status = Enum.GetValues(typeof(CourseStatus))
+                .Cast<CourseStatus>()
+                .Select(s => new SelectListItem
+                {
+                    Value = ((int)s).ToString(),
+                    Text = s.ToString(),
+                    Selected = course != null && (int)course.Status == (int)s
+                });
+        }
+
         // GET: Courses/Create
+        //[Authorize]
         public IActionResult Create()
         {
-            ViewData["ClassroomId"] = new SelectList(_context.Classrooms, "ClassroomId", "ClassroomName");
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
-            ViewData["TeacherId"] = new SelectList(_context.Teachers, "TeacherId", "Email");
+            PopulateDropdowns();
             return View();
         }
 
         // POST: Courses/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CourseId,CourseName,Title,Credit,CourseCode,Fee,Level,DepartmentId,TeacherId,ClassroomId,Status")] Course course)
+        //[Authorize]
+        public async Task<IActionResult> Create([Bind("CourseId,CourseName,Title,Credit,CourseCode,Fee,Level,DepartmentId,TeacherId,ClassroomId,Status,IsActive")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -71,42 +95,33 @@ namespace StudentManagementSystem_Rukaiya.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClassroomId"] = new SelectList(_context.Classrooms, "ClassroomId", "ClassroomName", course.ClassroomId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", course.DepartmentId);
-            ViewData["TeacherId"] = new SelectList(_context.Teachers, "TeacherId", "Email", course.TeacherId);
+            PopulateDropdowns(course);
             return View(course);
         }
 
         // GET: Courses/Edit/5
+        //[Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var course = await _context.Courses.FindAsync(id);
             if (course == null)
-            {
                 return NotFound();
-            }
-            ViewData["ClassroomId"] = new SelectList(_context.Classrooms, "ClassroomId", "ClassroomName", course.ClassroomId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", course.DepartmentId);
-            ViewData["TeacherId"] = new SelectList(_context.Teachers, "TeacherId", "Email", course.TeacherId);
+
+            PopulateDropdowns(course);
             return View(course);
         }
 
         // POST: Courses/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //[Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("CourseId,CourseName,Title,Credit,CourseCode,Fee,Level,DepartmentId,TeacherId,ClassroomId,Status")] Course course)
         {
             if (id != course.CourseId)
-            {
                 return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
@@ -118,39 +133,32 @@ namespace StudentManagementSystem_Rukaiya.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CourseExists(course.CourseId))
-                    {
                         return NotFound();
-                    }
                     else
-                    {
                         throw;
-                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClassroomId"] = new SelectList(_context.Classrooms, "ClassroomId", "ClassroomName", course.ClassroomId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", course.DepartmentId);
-            ViewData["TeacherId"] = new SelectList(_context.Teachers, "TeacherId", "Email", course.TeacherId);
+
+            PopulateDropdowns(course);
             return View(course);
         }
 
         // GET: Courses/Delete/5
+        //[Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var course = await _context.Courses
                 .Include(c => c.Classroom)
                 .Include(c => c.Department)
                 .Include(c => c.Teacher)
                 .FirstOrDefaultAsync(m => m.CourseId == id);
+
             if (course == null)
-            {
                 return NotFound();
-            }
 
             return View(course);
         }
@@ -158,15 +166,16 @@ namespace StudentManagementSystem_Rukaiya.Controllers
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        //[Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var course = await _context.Courses.FindAsync(id);
             if (course != null)
             {
                 _context.Courses.Remove(course);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

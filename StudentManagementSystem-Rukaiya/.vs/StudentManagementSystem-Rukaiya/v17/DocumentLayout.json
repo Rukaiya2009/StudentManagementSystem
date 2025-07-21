@@ -1,102 +1,66 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\",
+  "WorkspaceRootPath": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\userprofilescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\userprofilescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\teacherscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\teacherscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\resultscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\resultscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\paymentmethodscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\paymentmethodscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\gradingrulescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\gradingrulescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\examscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\examscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\enrollmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\enrollmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\departmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\departmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\coursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\coursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\classroomscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\classroomscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\classroommaterialviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\classroommaterialviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\classroommaterialscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\classroommaterialscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\classroomannouncementscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\classroomannouncementscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\assignmentsubmissionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\assignmentsubmissionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\assignmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\assignmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\assignmentreminderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\assignmentreminderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\controllers\\announcementcommentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\announcementcommentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\models\\exam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:models\\exam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\course-25\\rukaiya projects\\studentmanagementsystem-rukaiya\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\controllers\\departmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\departmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\controllers\\coursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\coursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\controllers\\classroomscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\classroomscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\controllers\\classroommaterialviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\classroommaterialviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\controllers\\classroommaterialscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\classroommaterialscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\controllers\\classroomannouncementscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\classroomannouncementscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\controllers\\assignmentsubmissionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\assignmentsubmissionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\controllers\\assignmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\assignmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\controllers\\assignmentreminderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\assignmentreminderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\controllers\\announcementcommentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:controllers\\announcementcommentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|f:\\studentmanagementsystem\\studentmanagementsystem-rukaiya\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C3F43117-80DE-470C-B6DE-98B337D66273}|StudentManagementSystem-Rukaiya.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -115,314 +79,184 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UserProfilesController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\UserProfilesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserProfilesController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\UserProfilesController.cs",
-              "RelativeToolTip": "Controllers\\UserProfilesController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAQwAYAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:59:15.513Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TeachersController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\TeachersController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TeachersController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\TeachersController.cs",
-              "RelativeToolTip": "Controllers\\TeachersController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:59:08.994Z",
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAGsAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-21T15:59:06.932Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "StudentsController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\StudentsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\StudentsController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\StudentsController.cs",
-              "RelativeToolTip": "Controllers\\StudentsController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "Title": "DepartmentsController.cs",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\DepartmentsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DepartmentsController.cs",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\DepartmentsController.cs",
+              "RelativeToolTip": "Controllers\\DepartmentsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:59:04.487Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-21T15:59:01.016Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ResultsController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\ResultsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ResultsController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\ResultsController.cs",
-              "RelativeToolTip": "Controllers\\ResultsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "Title": "CoursesController.cs",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\CoursesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CoursesController.cs",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\CoursesController.cs",
+              "RelativeToolTip": "Controllers\\CoursesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:59:01.393Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-21T15:58:59.671Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "PaymentsController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\PaymentsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PaymentsController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\PaymentsController.cs",
-              "RelativeToolTip": "Controllers\\PaymentsController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "Title": "ClassroomsController.cs",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ClassroomsController.cs",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomsController.cs",
+              "RelativeToolTip": "Controllers\\ClassroomsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:58:57.547Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-21T15:58:58.527Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "PaymentMethodsController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\PaymentMethodsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PaymentMethodsController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\PaymentMethodsController.cs",
-              "RelativeToolTip": "Controllers\\PaymentMethodsController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "Title": "ClassroomMaterialViewsController.cs",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomMaterialViewsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ClassroomMaterialViewsController.cs",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomMaterialViewsController.cs",
+              "RelativeToolTip": "Controllers\\ClassroomMaterialViewsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:57:47.529Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-21T15:58:57.776Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAPAAAAAAAAAA==",
+              "Title": "ClassroomMaterialsController.cs",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomMaterialsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ClassroomMaterialsController.cs",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomMaterialsController.cs",
+              "RelativeToolTip": "Controllers\\ClassroomMaterialsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:57:32.963Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-21T15:58:56.04Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "GradingRulesController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\GradingRulesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\GradingRulesController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\GradingRulesController.cs",
-              "RelativeToolTip": "Controllers\\GradingRulesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "Title": "ClassroomAnnouncementsController.cs",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomAnnouncementsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ClassroomAnnouncementsController.cs",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomAnnouncementsController.cs",
+              "RelativeToolTip": "Controllers\\ClassroomAnnouncementsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:57:24.298Z",
+              "WhenOpened": "2025-07-21T15:58:55Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Controllers\\AdminController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-21T15:51:16.932Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "ExamsController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\ExamsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ExamsController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\ExamsController.cs",
-              "RelativeToolTip": "Controllers\\ExamsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "Title": "AssignmentSubmissionsController.cs",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\AssignmentSubmissionsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AssignmentSubmissionsController.cs",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\AssignmentSubmissionsController.cs",
+              "RelativeToolTip": "Controllers\\AssignmentSubmissionsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:57:21.441Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-21T15:58:53.983Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "EnrollmentsController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\EnrollmentsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\EnrollmentsController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\EnrollmentsController.cs",
-              "RelativeToolTip": "Controllers\\EnrollmentsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "Title": "AssignmentsController.cs",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\AssignmentsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AssignmentsController.cs",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\AssignmentsController.cs",
+              "RelativeToolTip": "Controllers\\AssignmentsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:57:18.393Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-21T15:58:52.937Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "DepartmentsController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\DepartmentsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\DepartmentsController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\DepartmentsController.cs",
-              "RelativeToolTip": "Controllers\\DepartmentsController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "Title": "AssignmentRemindersController.cs",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\AssignmentRemindersController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AssignmentRemindersController.cs",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\AssignmentRemindersController.cs",
+              "RelativeToolTip": "Controllers\\AssignmentRemindersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:57:12.199Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-21T15:58:50.742Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "CoursesController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\CoursesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CoursesController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\CoursesController.cs",
-              "RelativeToolTip": "Controllers\\CoursesController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "Title": "AnnouncementCommentsController.cs",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\AnnouncementCommentsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AnnouncementCommentsController.cs",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Controllers\\AnnouncementCommentsController.cs",
+              "RelativeToolTip": "Controllers\\AnnouncementCommentsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:57:08.483Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ClassroomsController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ClassroomsController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomsController.cs",
-              "RelativeToolTip": "Controllers\\ClassroomsController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:57:03.996Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ClassroomMaterialViewsController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomMaterialViewsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ClassroomMaterialViewsController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomMaterialViewsController.cs",
-              "RelativeToolTip": "Controllers\\ClassroomMaterialViewsController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:57:00.369Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "ClassroomAnnouncementsController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomAnnouncementsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ClassroomAnnouncementsController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomAnnouncementsController.cs",
-              "RelativeToolTip": "Controllers\\ClassroomAnnouncementsController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:56:52.308Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-21T15:58:18.008Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "ClassroomMaterialsController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomMaterialsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ClassroomMaterialsController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\ClassroomMaterialsController.cs",
-              "RelativeToolTip": "Controllers\\ClassroomMaterialsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:56:51.387Z",
-              "EditorCaption": ""
+              "Title": "appsettings.json",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-07-21T15:39:07.182Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "AssignmentSubmissionsController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\AssignmentSubmissionsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AssignmentSubmissionsController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\AssignmentSubmissionsController.cs",
-              "RelativeToolTip": "Controllers\\AssignmentSubmissionsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "DocumentIndex": 13,
+              "Title": "Register.cshtml.cs",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAmwN0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:56:48.124Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-21T13:41:16.508Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "AssignmentsController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\AssignmentsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AssignmentsController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\AssignmentsController.cs",
-              "RelativeToolTip": "Controllers\\AssignmentsController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:56:44.008Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "AssignmentRemindersController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\AssignmentRemindersController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AssignmentRemindersController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\AssignmentRemindersController.cs",
-              "RelativeToolTip": "Controllers\\AssignmentRemindersController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:56:25.975Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "AnnouncementCommentsController.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\AnnouncementCommentsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AnnouncementCommentsController.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Controllers\\AnnouncementCommentsController.cs",
-              "RelativeToolTip": "Controllers\\AnnouncementCommentsController.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAAA0AAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:30:02.879Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Program.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAUwCMAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T13:18:49.734Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Payment.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Models\\Payment.cs",
-              "RelativeDocumentMoniker": "Models\\Payment.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Models\\Payment.cs",
-              "RelativeToolTip": "Models\\Payment.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T09:56:48.859Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAAAJcAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 12,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ToolTip": "F:\\StudentManagementSystem\\StudentManagementSystem-Rukaiya\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAgwFAAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-19T08:57:35.89Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "Exam.cs",
-              "DocumentMoniker": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Models\\Exam.cs",
-              "RelativeDocumentMoniker": "Models\\Exam.cs",
-              "ToolTip": "F:\\Course-25\\Rukaiya Projects\\StudentManagementSystem-Rukaiya\\Models\\Exam.cs",
-              "RelativeToolTip": "Models\\Exam.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T10:08:42.582Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-21T13:22:54.39Z"
             }
           ]
         }

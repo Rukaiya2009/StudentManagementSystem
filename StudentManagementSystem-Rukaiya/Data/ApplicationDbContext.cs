@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using StudentManagementSystem.Models;
+using StudentManagementSystem_Rukaiya.Models;
 
-namespace StudentManagementSystem.Data
+namespace StudentManagementSystem_Rukaiya.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -53,7 +53,73 @@ namespace StudentManagementSystem.Data
                 .OnDelete(DeleteBehavior.Restrict);  // or DeleteBehavior.NoAction
 
         }
-        public DbSet<StudentManagementSystem.Models.PaymentMethod> PaymentMethod { get; set; } = default!;
+        public DbSet<StudentManagementSystem_Rukaiya.Models.PaymentMethod> PaymentMethod { get; set; } = default!;
 
+    }
+
+    public static class ApplicationDbContextSeed
+    {
+        public static void SeedDummyData(ApplicationDbContext context)
+        {
+            // Only seed if no data exists
+            if (!context.Departments.Any())
+            {
+                var department = new Department { DepartmentName = "Computer Science", Description = "CS Dept", IsActive = true };
+                context.Departments.Add(department);
+                context.SaveChanges();
+
+                var teacher = new Teacher
+                {
+                    FirstName = "John",
+                    LastName = "Doe",
+                    Email = "johndoe@example.com",
+                    FullName = "John Doe",
+                    DepartmentId = department.DepartmentId,
+                    IsActive = true
+                };
+                context.Teachers.Add(teacher);
+                context.SaveChanges();
+
+                var classroom = new Classroom
+                {
+                    ClassroomName = "Room 101",
+                    DepartmentId = department.DepartmentId,
+                    Description = "Main classroom",
+                    IsActive = true
+                };
+                context.Classrooms.Add(classroom);
+                context.SaveChanges();
+
+                var student = new Student
+                {
+                    FirstName = "Alice",
+                    LastName = "Smith",
+                    Email = "alice.smith@example.com",
+                    FullName = "Alice Smith",
+                    Gender = Gender.Female,
+                    Phone = "1234567890",
+                    IsActive = true
+                };
+                context.Students.Add(student);
+                context.SaveChanges();
+
+                var course = new Course
+                {
+                    CourseName = "Intro to Programming",
+                    Title = "CS101",
+                    Credit = 3,
+                    CourseCode = "CS101",
+                    Fee = 100.00M,
+                    Level = CourseLevel.Beginner,
+                    DepartmentId = department.DepartmentId,
+                    TeacherId = teacher.TeacherId,
+                    ClassroomId = classroom.ClassroomId,
+                    Status = CourseStatus.Paid,
+                    IsActive = true
+                };
+                context.Courses.Add(course);
+                context.SaveChanges();
+            }
+        }
     }
 }

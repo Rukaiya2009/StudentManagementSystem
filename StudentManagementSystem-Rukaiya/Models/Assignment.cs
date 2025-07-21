@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace StudentManagementSystem.Models
+namespace StudentManagementSystem_Rukaiya.Models
 {
     public class Assignment
     {

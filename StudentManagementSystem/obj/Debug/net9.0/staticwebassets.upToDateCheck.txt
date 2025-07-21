@@ -69,6 +69,7 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
+F:\StudentManagementSystem\StudentManagementSystem\wwwroot\css\site.css
 F:\StudentManagementSystem\StudentManagementSystem\wwwroot\favicon.ico
 F:\StudentManagementSystem\StudentManagementSystem\wwwroot\js\site.js
 F:\StudentManagementSystem\StudentManagementSystem\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
@@ -130,4 +131,3 @@ F:\StudentManagementSystem\StudentManagementSystem\wwwroot\lib\jquery\dist\jquer
 F:\StudentManagementSystem\StudentManagementSystem\wwwroot\lib\jquery\dist\jquery.slim.min.js
 F:\StudentManagementSystem\StudentManagementSystem\wwwroot\lib\jquery\dist\jquery.slim.min.map
 F:\StudentManagementSystem\StudentManagementSystem\wwwroot\lib\jquery\LICENSE.txt
-F:\StudentManagementSystem\StudentManagementSystem\wwwroot\css\site.css

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
-namespace StudentManagementSystem.Models
+namespace StudentManagementSystem_Rukaiya.Models
 {
     public class Teacher
     {
@@ -19,7 +19,7 @@ namespace StudentManagementSystem.Models
 
         public string? ImagePath { get; set; }
 
-        [ForeignKey("IdentityUser")]
+        [ForeignKey("User")]
         public string? UserId { get; set; }
 
         public virtual ICollection<Course> Courses { get; set; } = new List<Course>();
@@ -38,7 +38,7 @@ namespace StudentManagementSystem.Models
 
         // Link to ASP.NET Identity User
         // Optional navigation property
-        public IdentityUser? User { get; set; }
+        public ApplicationUser? User { get; set; }
 
         public bool IsActive { get; set; } = true;
     }

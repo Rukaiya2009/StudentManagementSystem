@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using StudentManagementSystem.Data;
+using StudentManagementSystem_Rukaiya.Data;
 
 #nullable disable
 
@@ -74,7 +74,115 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.AnnouncementComment", b =>
+                {
+                    b.Property<int>("AnnouncementCommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AnnouncementCommentId"));
+
+                    b.Property<int>("AnnouncementId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CommentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CommentText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AnnouncementCommentId");
+
+                    b.ToTable("AnnouncementComments");
+                });
+
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -116,6 +224,9 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ProfileImagePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -139,119 +250,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("LoginProvider", "ProviderKey");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserLogins", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetUserRoles", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId", "LoginProvider", "Name");
-
-                    b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("StudentManagementSystem.Models.AnnouncementComment", b =>
-                {
-                    b.Property<int>("AnnouncementCommentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AnnouncementCommentId"));
-
-                    b.Property<int>("AnnouncementId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CommentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CommentText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AnnouncementCommentId");
-
-                    b.ToTable("AnnouncementComments");
-                });
-
-            modelBuilder.Entity("StudentManagementSystem.Models.Assignment", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Assignment", b =>
                 {
                     b.Property<int>("AssignmentId")
                         .ValueGeneratedOnAdd()
@@ -279,7 +278,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("Assignments");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.AssignmentReminder", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.AssignmentReminder", b =>
                 {
                     b.Property<int>("AssignmentReminderId")
                         .ValueGeneratedOnAdd()
@@ -301,7 +300,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("AssignmentReminders");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.AssignmentSubmission", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.AssignmentSubmission", b =>
                 {
                     b.Property<int>("AssignmentSubmissionId")
                         .ValueGeneratedOnAdd()
@@ -336,7 +335,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("AssignmentSubmissions");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Classroom", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Classroom", b =>
                 {
                     b.Property<int>("ClassroomId")
                         .ValueGeneratedOnAdd()
@@ -370,7 +369,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("Classrooms");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.ClassroomAnnouncement", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.ClassroomAnnouncement", b =>
                 {
                     b.Property<int>("ClassroomAnnouncementId")
                         .ValueGeneratedOnAdd()
@@ -399,7 +398,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("ClassroomAnnouncements");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.ClassroomMaterial", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.ClassroomMaterial", b =>
                 {
                     b.Property<int>("ClassroomMaterialId")
                         .ValueGeneratedOnAdd()
@@ -426,7 +425,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("ClassroomMaterials");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.ClassroomMaterialView", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.ClassroomMaterialView", b =>
                 {
                     b.Property<int>("ClassroomMaterialViewId")
                         .ValueGeneratedOnAdd()
@@ -448,7 +447,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("ClassroomMaterialViews");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Course", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Course", b =>
                 {
                     b.Property<int>("CourseId")
                         .ValueGeneratedOnAdd()
@@ -504,7 +503,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Department", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Department", b =>
                 {
                     b.Property<int>("DepartmentId")
                         .ValueGeneratedOnAdd()
@@ -527,7 +526,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Enrollment", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Enrollment", b =>
                 {
                     b.Property<int>("EnrollmentId")
                         .ValueGeneratedOnAdd()
@@ -566,7 +565,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("Enrollments");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Exam", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Exam", b =>
                 {
                     b.Property<int>("ExamId")
                         .ValueGeneratedOnAdd()
@@ -608,7 +607,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("Exams");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.GradingRule", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.GradingRule", b =>
                 {
                     b.Property<int>("GradingRuleId")
                         .ValueGeneratedOnAdd()
@@ -634,7 +633,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("GradingRules");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Payment", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Payment", b =>
                 {
                     b.Property<int>("PaymentId")
                         .ValueGeneratedOnAdd()
@@ -679,7 +678,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("Payments");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.PaymentMethod", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.PaymentMethod", b =>
                 {
                     b.Property<int>("PaymentMethodId")
                         .ValueGeneratedOnAdd()
@@ -702,7 +701,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("PaymentMethod");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Result", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Result", b =>
                 {
                     b.Property<int>("ResultId")
                         .ValueGeneratedOnAdd()
@@ -739,7 +738,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("Results");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Student", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Student", b =>
                 {
                     b.Property<int>("StudentId")
                         .ValueGeneratedOnAdd()
@@ -789,14 +788,16 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("StudentId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Teacher", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Teacher", b =>
                 {
                     b.Property<int>("TeacherId")
                         .ValueGeneratedOnAdd()
@@ -849,7 +850,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.ToTable("Teachers");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.UserProfile", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.UserProfile", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -881,7 +882,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -890,7 +891,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -905,7 +906,7 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -914,16 +915,16 @@ namespace StudentManagementSystem_Rukaiya.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Assignment", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Assignment", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Models.Classroom", "Classroom")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Classroom", "Classroom")
                         .WithMany()
                         .HasForeignKey("ClassroomId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -932,15 +933,15 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.Navigation("Classroom");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.AssignmentSubmission", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.AssignmentSubmission", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Models.Assignment", "Assignment")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Assignment", "Assignment")
                         .WithMany()
                         .HasForeignKey("AssignmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StudentManagementSystem.Models.Student", "Student")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -951,9 +952,9 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Classroom", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Classroom", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Models.Department", "Department")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -962,9 +963,9 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.ClassroomAnnouncement", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.ClassroomAnnouncement", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Models.Classroom", "Classroom")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Classroom", "Classroom")
                         .WithMany()
                         .HasForeignKey("ClassroomId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -973,9 +974,9 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.Navigation("Classroom");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.ClassroomMaterial", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.ClassroomMaterial", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Models.Classroom", "Classroom")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Classroom", "Classroom")
                         .WithMany()
                         .HasForeignKey("ClassroomId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -984,19 +985,19 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.Navigation("Classroom");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Course", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Course", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Models.Classroom", "Classroom")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Classroom", "Classroom")
                         .WithMany()
                         .HasForeignKey("ClassroomId");
 
-                    b.HasOne("StudentManagementSystem.Models.Department", "Department")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Department", "Department")
                         .WithMany("Courses")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StudentManagementSystem.Models.Teacher", "Teacher")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Teacher", "Teacher")
                         .WithMany("Courses")
                         .HasForeignKey("TeacherId");
 
@@ -1007,15 +1008,15 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Enrollment", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Enrollment", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Models.Course", "Course")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Course", "Course")
                         .WithMany("Enrollments")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StudentManagementSystem.Models.Student", "Student")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Student", "Student")
                         .WithMany("Enrollments")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1026,13 +1027,13 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Exam", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Exam", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Models.Classroom", "Classroom")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Classroom", "Classroom")
                         .WithMany()
                         .HasForeignKey("ClassroomId");
 
-                    b.HasOne("StudentManagementSystem.Models.Course", "Course")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Course", "Course")
                         .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1043,15 +1044,15 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Payment", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Payment", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Models.PaymentMethod", "PaymentMethod")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.PaymentMethod", "PaymentMethod")
                         .WithMany("Payments")
                         .HasForeignKey("PaymentMethodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StudentManagementSystem.Models.Student", "Student")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1062,21 +1063,21 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Result", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Result", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Models.Course", "Course")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Course", "Course")
                         .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StudentManagementSystem.Models.Exam", "Exam")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Exam", "Exam")
                         .WithMany()
                         .HasForeignKey("ExamId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("StudentManagementSystem.Models.Student", "Student")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1089,13 +1090,22 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Teacher", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Student", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Models.Department", "Department")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Teacher", b =>
+                {
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.Department", "Department")
                         .WithMany("Teachers")
                         .HasForeignKey("DepartmentId");
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                    b.HasOne("StudentManagementSystem_Rukaiya.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
@@ -1104,29 +1114,29 @@ namespace StudentManagementSystem_Rukaiya.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Course", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Course", b =>
                 {
                     b.Navigation("Enrollments");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Department", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Department", b =>
                 {
                     b.Navigation("Courses");
 
                     b.Navigation("Teachers");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.PaymentMethod", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.PaymentMethod", b =>
                 {
                     b.Navigation("Payments");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Student", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Student", b =>
                 {
                     b.Navigation("Enrollments");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Models.Teacher", b =>
+            modelBuilder.Entity("StudentManagementSystem_Rukaiya.Models.Teacher", b =>
                 {
                     b.Navigation("Courses");
                 });
